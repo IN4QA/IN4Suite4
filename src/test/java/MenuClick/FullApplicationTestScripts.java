@@ -73,52 +73,10 @@ public class FullApplicationTestScripts extends DriverScript  {
 	@Test
 	public void verify() throws InterruptedException
 	{
-//		 oBrowser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//		// strTestName = "verify";
-//		 Frames.MainMenuFrame();
-//		 oBrowser.findElement(By.xpath("//span[text()='Finance']")).click();
-//		 Frames.SubMenuFrame();
-//		 oBrowser.findElement(By.xpath("//a[text()='Audit']"));
-//		 
-//		 oBrowser.findElement(By.xpath("//a[text()='Companies By Project']")).click();
-////		 Frames.mainFrame();
-////		 Frames.rightFrame();
-//		 Frames.tabFrame();
-//		 appInd.serverError();
-		 
-//		appInd.verifyPageCrash();
-//		oBrowser.close();
-////		 try {
-//		 oBrowser.findElement(By.name("btnCreate")).click();
-//		 }catch(Exception e) {
-//			 System.out.println(e);
-//		 }
-		
-		
-		
-//		 Frames.SubMenuFrame();
-//		 oBrowser.findElement(By.xpath("//a[text()='Return Inventory']")).click();
-	//	 Purchase.dropdown();
-	//	 Purchase.multiDropdown();
-		 //Thread.sleep(3000);
-		 
-		 
-		 
-		//a[text()='Purchase Orders']
-		 
-/*		 oBrowser.findElement(By.xpath("(//*[@id='defTab'])[2]")).click();
-		 Thread.sleep(3000);
-		 oBrowser.findElement(By.xpath("(//*[text()='My Staffing'])[1]")).click();
-		 Thread.sleep(3000);
-		 oBrowser.findElement(By.xpath("(//*[@id='defTab'])[4]")).click();
-		 Thread.sleep(3000);
-		 oBrowser.findElement(By.xpath("(//*[text()='Set User Passwords'])[1]")).click();
-		 Thread.sleep(3000);
-		 System.out.println("over");	*/
+
 		 
 		WebElement oEL = null; 								
 		
-		 //oBrowser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		 PageCrash pG = new PageCrash(oBrowser);
 		 int i= 1;
 		 String strStatus = null;
