@@ -21,9 +21,7 @@ WebDriver iDriver;
 	}
 	
 	@FindBy(xpath = "//table[@class = 'in4-table']/tbody/tr")
-	static
-	List<WebElement> list;
-	
+	static List<WebElement> list;
 	public static List<WebElement> recordListed() {
 		return list;
 	}
@@ -56,8 +54,8 @@ WebDriver iDriver;
 		return siteactivity;
 	}
 
-	@FindBy(xpath="//a[text()='Billing']")
-	private WebElement billing;
+	@FindBy(xpath="//a[text()='Billing ']")
+	private static WebElement billing;
 	public WebElement getBilling()
 	{
 		return billing;
@@ -198,7 +196,7 @@ WebDriver iDriver;
 		try
 		{
 			Frames.SubMenuFrame();
-			appInd.clickObject(engg.getBilling());
+			appInd.clickObject(billing);
 			return true;
 		}catch(Exception e)
 		{

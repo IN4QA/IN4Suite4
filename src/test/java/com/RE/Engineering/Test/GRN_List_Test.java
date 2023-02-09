@@ -19,6 +19,7 @@ public class GRN_List_Test extends DriverScript{
 		GRNList.MenuSubMenu();
 		GRNList.material();
 		GRNList.Asset();
-		
+		GRNList.materialwithstatus();
+		GRNList.assetwithstatus();
 	}
 }

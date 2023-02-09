@@ -17,7 +17,6 @@ public class PO_List_Test extends DriverScript{
 		POList = new com.RE.Engineering.ObjectRepository.PO_List(oBrowser);
 		
 		POList.MenuSubMenu();
-//		POList.getPoLink();
 		POList.Unfullfilled();
 		POList.fullFilled();
 		POList.ROPO();

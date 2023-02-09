@@ -20,23 +20,21 @@ public class Indent_List_Test extends DriverScript
 			Indent_ListObj = new com.RE.Engineering.ObjectRepository.Indent_List(oBrowser);
 
 						
-				Indent_ListObj.MenuSubMenu();
-				Indent_ListObj.UnfullfilledPOTO();
-			    //Indent_ListObj.Unfullfilledissue();
-			    //Indent_ListObj.All();
-				//Indent_ListObj.SubProject(rownum);
-				//Indent_ListObj.Status(rownum);
-				//Indent_ListObj.Contractor(rownum);
-				//Indent_ListObj.Date(rownum);
-				//Indent_ListObj.WorkCategory(rownum);
-				//Indent_ListObj.TypeOfIndent(rownum);
-				//Indent_ListObj.Debitable();
-				//Indent_ListObj.MaterialType(rownum);
-				//Indent_ListObj.MaterialSubType(rownum);
-				//Indent_ListObj.Material(rownum);
-				//Indent_ListObj.FullfilledPOTO(rownum);
-				//Indent_ListObj.FulfilledIssue(rownum);
-				  
+			Indent_ListObj.MenuSubMenu();
+			Indent_ListObj.UnfullfilledPOTO();
+			Indent_ListObj.Unfullfilledissue();
+			Indent_ListObj.All();
+			Indent_ListObj.SubProject();
+			Indent_ListObj.Status();
+			Indent_ListObj.Contractor();
+			Indent_ListObj.Date();
+			Indent_ListObj.WorkCategory();
+			Indent_ListObj.TypeOfIndent();
+			Indent_ListObj.Debitable();
+			Indent_ListObj.MaterialType();
+			Indent_ListObj.FulfilledPOTO();
+			Indent_ListObj.FulfilledIssue();
+				 
 //			}
 			
 		}

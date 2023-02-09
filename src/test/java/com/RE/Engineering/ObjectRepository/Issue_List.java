@@ -1,22 +1,24 @@
 package com.RE.Engineering.ObjectRepository;
 
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-
 import com.RE.Engineering.Test.Issue_List_Test;
 import com.RE.Submodules.Engineering;
-
+import Utilities.Datatable;
 import Utilities.Frames;
 import Utilities.ListPageCount;
 import Utilities.MainMenu;
 
 public class Issue_List extends Issue_List_Test{
-
+	
+	public static XSSFSheet sheet;
+	public static Datatable xml;
+	public static String sheetname = "Issue_List";
 	public static WebDriver iDriver;
-	public static String project_Name = "BURDWAN TOWNSHIP PHASE -2, Burdwan";
 	public Issue_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
@@ -32,6 +34,11 @@ public class Issue_List extends Issue_List_Test{
 	private WebElement project;
 	public WebElement getproject() {
 		return project;
+	}
+	@FindBy(id="ddlStatus")
+	private WebElement status;
+	public WebElement getstatus() {
+		return status;
 	}
 	
 	@FindBy(xpath = "//input[@id='btnFilterGo']")
@@ -56,6 +63,8 @@ public class Issue_List extends Issue_List_Test{
 	 Engineering en = new Engineering(iDriver);
 	 en.clickInventory();
 	 Thread.sleep(1000);
+	 xml = new Datatable();
+	 sheet = xml.excelData("Issue List");	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -71,16 +80,14 @@ public class Issue_List extends Issue_List_Test{
 }
 	
 	public static void material() throws Throwable {
-		
 		IssueList.getIssueInventry();
 		Frames.rightFrame();
 		Thread.sleep(1000);
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
-		singleDD(IssueList.getproject(), project_Name);
+		singleDD(IssueList.getproject(), sheet.getRow(0).getCell(1).getStringCellValue());
 		Thread.sleep(1000);
 		IssueList.getGo();
-		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname);
 		Thread.sleep(2000);
 		
 	}
@@ -92,11 +99,25 @@ public class Issue_List extends Issue_List_Test{
 		Thread.sleep(1000);
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		IssueList.getAsset();
-		singleDD(IssueList.getproject(), project_Name);
+		singleDD(IssueList.getproject(), sheet.getRow(0).getCell(1).getStringCellValue());
 		IssueList.getGo();
-		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname);
 		Thread.sleep(2000);
 		
 	}
+   
+public static void matstatus() throws Throwable {
+		Frames.SubMenuFrame();
+		IssueList.getIssueInventry();
+		Frames.rightFrame();
+		Thread.sleep(1000);
+		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
+		singleDD(IssueList.getstatus(), sheet.getRow(1).getCell(1).getStringCellValue());
+		Thread.sleep(1000);
+		IssueList.getGo();
+		Thread.sleep(2000);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		Thread.sleep(2000);
+    }
 }
+

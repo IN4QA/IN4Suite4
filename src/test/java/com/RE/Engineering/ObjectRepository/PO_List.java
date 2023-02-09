@@ -2,6 +2,7 @@ package com.RE.Engineering.ObjectRepository;
 
 import java.util.List;
 
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -13,14 +14,17 @@ import org.openqa.selenium.support.ui.Select;
 import com.RE.Engineering.Test.PO_List_Test;
 import com.RE.Submodules.Engineering;
 
+import Utilities.Datatable;
 import Utilities.Frames;
 import Utilities.ListPageCount;
 import Utilities.MainMenu;
 
 public class PO_List extends PO_List_Test{
 	
-
+	public static XSSFSheet sheet;
+	public static Datatable xml;
 	public static WebDriver iDriver;
+	public static String sheetname = "PO_List";
 	public PO_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
@@ -76,6 +80,47 @@ public class PO_List extends PO_List_Test{
 		return list_Project_DD;
 	}
 	
+	//Project
+	@FindBy(xpath = "(//tr[@id='trProjSubProj']//button[@class='multiselect dropdown-toggle btn btn-default'])[1]")
+	private WebElement projectClick;
+	public WebElement getprojectClick() {
+		return projectClick;
+	}
+	@FindBy(xpath = "(//tr[@id='trProjSubProj']//input[@placeholder='Search'])[1]")
+	private WebElement entrProjectName;
+	public WebElement getentrProjectName() {
+		return entrProjectName;
+	}
+	@FindBy(xpath = "//tr[@id='trProjSubProj']//td[2]//li")
+	private List<WebElement> ListedRecordsDD;
+	public List<WebElement> getListedRecordsDD() {
+		return ListedRecordsDD;
+	}
+	
+	// subproject
+	@FindBy(xpath = "(//tr[@id='trProjSubProj']//button[@class='multiselect dropdown-toggle btn btn-default'])[2]")
+	private WebElement subprojectClick;
+	public WebElement getsubprojectClick() {
+		return subprojectClick;
+	}
+
+	@FindBy(xpath = "(//tr[@id='trProjSubProj']//input[@placeholder='Search'])[2]")
+	private WebElement entrsubProjectName;
+	public WebElement getentrsubProjectName() {
+		return entrsubProjectName;
+	}
+	
+	@FindBy(xpath = "//tr[@id='trProjSubProj']//td[4]//li")
+	private List<WebElement> ListedRecordsSubDD;
+	public List<WebElement> getListedRecordsSubDD() {
+		return ListedRecordsSubDD;
+	}
+	
+	@FindBy(xpath = "//input[@name='btnFilterGO']")
+	private WebElement gobutton;
+	public void clickgobutton() {
+		gobutton.click();
+	}
 	 public static void MenuSubMenu()
 	 {
 	try
@@ -86,6 +131,8 @@ public class PO_List extends PO_List_Test{
 	 Engineering en = new Engineering(iDriver);
 	 en.clickInventory();
 	 Thread.sleep(1000);
+	 xml = new Datatable();
+	 sheet = xml.excelData("PO List");
 	 }
 	 	catch (Exception e)
 	 	{
@@ -95,8 +142,7 @@ public class PO_List extends PO_List_Test{
 	 	}
 }
 	 public static void singleDD(WebElement comPath, String Company_Name) {
-			WebElement Certifying_Company = oBrowser.findElement(By.xpath("//select[@id = 'ddlCertifyingCompany']"));
-			Select sct = new Select(Certifying_Company);
+			Select sct = new Select(comPath);
 			sct.selectByVisibleText(Company_Name);
 	 }
 	 
@@ -105,12 +151,15 @@ public class PO_List extends PO_List_Test{
 		 Frames.rightFrame();
 		 Thread.sleep(2000);
 		 String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
-		 WebElement comPath = POList.getCerCompany();
-		 String Company_Name = "Shrachi Developers";
-		 singleDD(comPath, Company_Name);
-		 comPath.sendKeys(Keys.ENTER);
-		 Thread.sleep(2000);
-		 ListPageCount.PageCount(nameofCurrMethod);
+		 singleDD(POList.getCerCompany(), sheet.getRow(0).getCell(1).getStringCellValue());
+		 
+			appInd.multiDD_withText(POList.getprojectClick(), POList.getentrProjectName(), "BURDWAN", POList.getListedRecordsDD());
+			Thread.sleep(3000);
+			appInd.multiDD_withText(POList.getsubprojectClick(), POList.getentrsubProjectName(), "Antara", POList.getListedRecordsSubDD());
+			POList.clickgobutton();
+			Thread.sleep(3000);
+		 
+		 ListPageCount.PageCount(nameofCurrMethod,sheetname);
 		 Thread.sleep(4000);
 		 
 	 }
@@ -119,15 +168,18 @@ public class PO_List extends PO_List_Test{
 		 Frames.SubMenuFrame();
 		 POList.getPoLink();
 		 Frames.rightFrame();
-		 String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
+		 Thread.sleep(2000);
 		 POList.getFFI_Radio();
-		 Thread.sleep(2000);
-		 WebElement comPath = POList.getCerCompany();
-		 String Company_Name = "Shrachi Developers";
-		 singleDD(comPath, Company_Name);
-		 comPath.sendKeys(Keys.ENTER);
-		 Thread.sleep(2000);
-		 ListPageCount.PageCount(nameofCurrMethod);
+		 String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
+		 singleDD(POList.getCerCompany(), sheet.getRow(0).getCell(1).getStringCellValue());
+		 
+			appInd.multiDD_withText(POList.getprojectClick(), POList.getentrProjectName(), "BURDWAN", POList.getListedRecordsDD());
+			Thread.sleep(3000);
+			appInd.multiDD_withText(POList.getsubprojectClick(), POList.getentrsubProjectName(), "Antara", POList.getListedRecordsSubDD());
+			POList.clickgobutton();
+			Thread.sleep(3000);
+		 
+		 ListPageCount.PageCount(nameofCurrMethod,sheetname);
 		 Thread.sleep(4000);
 		 
 	 }
@@ -136,15 +188,18 @@ public class PO_List extends PO_List_Test{
 		 Frames.SubMenuFrame();
 		 POList.getPoLink();
 		 Frames.rightFrame();
-		 String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		 POList.getRopo();
+		 String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		 Thread.sleep(2000);
-		 WebElement comPath = POList.getCerCompany();
-		 String Company_Name = "Shrachi Developers";
-		 singleDD(comPath, Company_Name);
-		 comPath.sendKeys(Keys.ENTER);
-		 Thread.sleep(2000);
-		 ListPageCount.PageCount(nameofCurrMethod);
+		 singleDD(POList.getCerCompany(), sheet.getRow(0).getCell(1).getStringCellValue());
+		 
+			appInd.multiDD_withText(POList.getprojectClick(), POList.getentrProjectName(), "BURDWAN", POList.getListedRecordsDD());
+			Thread.sleep(3000);
+			appInd.multiDD_withText(POList.getsubprojectClick(), POList.getentrsubProjectName(), "Antara", POList.getListedRecordsSubDD());
+			POList.clickgobutton();
+			Thread.sleep(3000);
+		 
+		 ListPageCount.PageCount(nameofCurrMethod,sheetname);
 		 Thread.sleep(4000);
 		 
 	 }
@@ -153,15 +208,18 @@ public class PO_List extends PO_List_Test{
 		 Frames.SubMenuFrame();
 		 POList.getPoLink();
 		 Frames.rightFrame();
-		 String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		 POList.All();
+		 String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		 Thread.sleep(2000);
-		 WebElement comPath = POList.getCerCompany();
-		 String Company_Name = "Shrachi Developers";
-		 singleDD(comPath, Company_Name);
-		 comPath.sendKeys(Keys.ENTER);
-		 Thread.sleep(2000);
-		 ListPageCount.PageCount(nameofCurrMethod);
+		 singleDD(POList.getCerCompany(), sheet.getRow(0).getCell(1).getStringCellValue());
+		 
+			appInd.multiDD_withText(POList.getprojectClick(), POList.getentrProjectName(), "BURDWAN", POList.getListedRecordsDD());
+			Thread.sleep(3000);
+			appInd.multiDD_withText(POList.getsubprojectClick(), POList.getentrsubProjectName(), "Antara", POList.getListedRecordsSubDD());
+			POList.clickgobutton();
+			Thread.sleep(3000);
+		 
+		 ListPageCount.PageCount(nameofCurrMethod,sheetname);
 		 Thread.sleep(4000);
 		 
 	 }

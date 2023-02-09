@@ -16,6 +16,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import com.RE.Submodules.Engineering;
+import com.RE.Submodules.Purchase;
 
 public class DriverScript {
 	public static AppDependentMethods appDep;
@@ -35,6 +36,7 @@ public class DriverScript {
 	public static MainMenu mainMenu;
 	public static Engineering engg;
 	public static String strBrowser = "chrome";
+	public static Purchase purchase;
 
 	/************************************
 	 * Method Name : loadClassFiles() Purpose : to create Object to all class files

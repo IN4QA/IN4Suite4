@@ -1,7 +1,6 @@
 package com.RE.Engineering.Test;
 
 import org.testng.annotations.Test;
-
 import Utilities.DriverScript;
 import MenuClick.FullApplicationTestScripts;
 
@@ -19,5 +18,6 @@ public class Issue_List_Test extends DriverScript{
 		IssueList.MenuSubMenu();
 		IssueList.material();
 		IssueList.asset();
+		IssueList.matstatus();
 	}
 }

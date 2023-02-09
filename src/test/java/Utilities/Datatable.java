@@ -388,31 +388,39 @@ public class Datatable extends DriverScript {
 		sh.getRow(row).getCell(1).setCellValue(output);
 	}
 
-	static int row = 0;
+	static int row=0;
+    public static void writeExcel(String testname, String output, String sheetname) throws IOException{
 
-	public static void writeExcel(String testname, String output) throws IOException {
+        File file =    new File("D:\\myworkspace\\IN4Suite4\\test-output\\Output.xlsx");
 
-		File file = new File("D:\\myworkspace\\IN4Suite4\\test-output\\Output.xlsx");
-		FileInputStream inputStream = new FileInputStream(file);
-		Workbook Workbook = null;
-		Workbook = new XSSFWorkbook(inputStream);
-		Sheet sheet = Workbook.getSheet("Sheet1");
-		Row newRow = sheet.createRow(row);
-		String s[] = { testname, output };
-		for (int j = 0; j < 2; j++) {
+        FileInputStream inputStream = new FileInputStream(file);
 
-			Cell cell = newRow.createCell(j);
+        Workbook guru99Workbook = null;
 
-			cell.setCellValue(s[j]);
+        guru99Workbook = new XSSFWorkbook(inputStream);   
 
-		}
-		row++;
+    Sheet sheet = guru99Workbook.getSheet(sheetname);
 
-		inputStream.close();
-		FileOutputStream outputStream = new FileOutputStream(file);
-		Workbook.write(outputStream);
-		outputStream.close();
+    Row newRow = sheet.createRow(row);
+   
+    String s[] = {testname,output};
+    for(int j = 0; j < 2; j++){
+    	
+        Cell cell = newRow.createCell(j);
+        
+        cell.setCellValue(s[j]);
 
-	}
+    }
+    row++;
+
+    inputStream.close();
+
+    FileOutputStream outputStream = new FileOutputStream(file);
+
+    guru99Workbook.write(outputStream);
+
+    outputStream.close();
+	
+    }
 
 }

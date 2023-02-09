@@ -1,5 +1,7 @@
 package Utilities;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +17,12 @@ public class MainMenu extends DriverScript {
 		PageFactory.initElements(iDriver, this);
 	}
 		
+	@FindBy(xpath = "//table[@class = 'in4-table']/tbody/tr")
+	static List<WebElement> list;
+	public static List<WebElement> recordListed() {
+		return list;
+	}
+	
 	@FindBy(css = "td[class='HOME custom-css custom-cssHi']")
 	private WebElement home;
 	public WebElement getHome()
@@ -67,7 +75,7 @@ public class MainMenu extends DriverScript {
 	
 	
 	
-	@FindBy(css = "td[class='PURCHASE custom-css']")
+	@FindBy(xpath = "//span[text()='Purchase']")
 	private WebElement prchase;
 	public WebElement getPurchase()
 	{
@@ -189,7 +197,7 @@ public class MainMenu extends DriverScript {
 	public void clickPurchase() throws Exception
 	{
 		Frames.MainMenuFrame();
-		appInd.clickObject(mainMenu.getPurchase());		
+		appInd.clickObject(prchase);		
 	}
 	
 	public void clickLeads() throws Exception

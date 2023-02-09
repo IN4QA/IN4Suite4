@@ -1,5 +1,6 @@
 package com.RE.Engineering.ObjectRepository;
 
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 import com.RE.Engineering.Test.GRN_List_Test;
 import com.RE.Submodules.Engineering;
 
+import Utilities.Datatable;
 import Utilities.Frames;
 import Utilities.ListPageCount;
 import Utilities.MainMenu;
@@ -18,7 +20,10 @@ import Utilities.MainMenu;
 public class GRN_List extends GRN_List_Test{
 
 	public static WebDriver iDriver;
-	public static String Company_Name = "Shrachi Developers";
+	public static XSSFSheet sheet;
+	public static Datatable xml;
+//	public static String Company_Name = "Shrachi Developers";
+	public static String sheetname = "GRN_List";
 	public GRN_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
@@ -42,6 +47,12 @@ public class GRN_List extends GRN_List_Test{
 		return certiCompany;
 	}
 	
+	@FindBy(xpath = "//select[@id = 'ddlStatusList']")
+	private WebElement status;
+	public WebElement getStatus() {
+		return status;
+	}
+	
 	
 	@FindBy(id = "btnFilterGO")
 	private WebElement go;
@@ -59,6 +70,8 @@ public class GRN_List extends GRN_List_Test{
 	 Engineering en = new Engineering(iDriver);
 	 en.clickInventory();
 	 Thread.sleep(1000);
+	 xml = new Datatable();
+	 sheet = xml.excelData("GRN List");
 	 }
 	 	catch (Exception e)
 	 	{
@@ -68,10 +81,19 @@ public class GRN_List extends GRN_List_Test{
 	 	}
 }
 	
-	public static void singleDD(WebElement comPath, String Company_Name) {
+	public static void companyDD(WebElement comPath, String Company_Name) {
 		Select sct = new Select(comPath);
 		sct.selectByVisibleText(Company_Name);
  }
+	
+	public static void statusDD(WebElement statusPath, String selectStatus) {
+		Select sct = new Select(statusPath);
+		sct.selectByVisibleText(selectStatus);
+ }
+	
+	
+	
+	//------- Material category case ------//
 	
 	public static void material() throws Throwable {
 		
@@ -79,14 +101,15 @@ public class GRN_List extends GRN_List_Test{
 		Frames.rightFrame();
 		Thread.sleep(1000);
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
-		singleDD(GRNList.getCertiCompany(), Company_Name);
+		companyDD(GRNList.getCertiCompany(),sheet.getRow(0).getCell(1).getStringCellValue());
+//	    WebElement project=iDriver.findElement(By.name("txtProject"));
 		GRNList.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod);
+		ListPageCount.PageCount(nameofCurrMethod, sheetname);
 		Thread.sleep(2000);
-		
-	}
+		}
 	
+	//------- Asset category case ------//	
 	
 	public static void Asset() throws Throwable {
 		
@@ -96,11 +119,44 @@ public class GRN_List extends GRN_List_Test{
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		GRNList.getAsset();
 		Thread.sleep(1000);
-		singleDD(GRNList.getCertiCompany(), Company_Name);
+		companyDD(GRNList.getCertiCompany(),sheet.getRow(0).getCell(1).getStringCellValue());
 		GRNList.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod);
+		ListPageCount.PageCount(nameofCurrMethod, sheetname);
 		Thread.sleep(2000);
 		
 	}
+	
+	//-----Case 3: Material Category with status -----//
+
+	public static void materialwithstatus() throws Throwable {
+		Frames.SubMenuFrame();
+		GRNList.getGRN();
+		Frames.rightFrame();
+		Thread.sleep(1000);
+		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
+		companyDD(GRNList.getCertiCompany(),sheet.getRow(0).getCell(1).getStringCellValue());
+		statusDD(GRNList.getStatus(),sheet.getRow(1).getCell(1).getStringCellValue());
+		GRNList.getGo();
+		Thread.sleep(2000);
+		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		Thread.sleep(2000);
+		}
+
+	// Case 4: Asset Category with status ----//
+	
+	public static void assetwithstatus() throws Throwable {
+		Frames.SubMenuFrame();
+		GRNList.getGRN();
+		Frames.rightFrame();
+		Thread.sleep(1000);
+		GRNList.getAsset();
+		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
+		companyDD(GRNList.getCertiCompany(),sheet.getRow(0).getCell(1).getStringCellValue());
+		statusDD(GRNList.getStatus(),sheet.getRow(1).getCell(1).getStringCellValue());
+		GRNList.getGo();
+		Thread.sleep(2000);
+		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		Thread.sleep(2000);
+		}
 }

@@ -1,5 +1,6 @@
 package com.RE.Engineering.ObjectRepository;
 
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,14 +10,18 @@ import org.openqa.selenium.support.ui.Select;
 import com.RE.Engineering.Test.ServiceIndent_List_Test;
 import com.RE.Submodules.Engineering;
 
+import Utilities.Datatable;
 import Utilities.Frames;
 import Utilities.ListPageCount;
 import Utilities.MainMenu;
 
 public class ServiceIndent_List extends ServiceIndent_List_Test{
 
+	public static XSSFSheet sheet;
+	public static Datatable xml;
+	public static String sheetname = "ServiceInd_List";
 	public static WebDriver iDriver;
-	public static String Company_Name = "BURDWAN TOWNSHIP, Burdwan";
+	//public static String Project_Name = "BURDWAN TOWNSHIP, Burdwan";
 	public ServiceIndent_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
@@ -62,6 +67,8 @@ public class ServiceIndent_List extends ServiceIndent_List_Test{
 	 Engineering en = new Engineering(iDriver);
 	 en.clickInventory();
 	 Thread.sleep(1000);
+	 xml = new Datatable();
+	 sheet = xml.excelData("ServiceIndList");
 	 }
 	 	catch (Exception e)
 	 	{
@@ -82,10 +89,10 @@ public class ServiceIndent_List extends ServiceIndent_List_Test{
 		Frames.rightFrame();
 		Thread.sleep(1000);
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
-		singleDD(Ser_List.getproject(), Company_Name);
+		singleDD(Ser_List.getproject(),sheet.getRow(0).getCell(1).getStringCellValue());
 		Ser_List.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname);
 		Thread.sleep(2000);
 		
 	}
@@ -98,26 +105,25 @@ public class ServiceIndent_List extends ServiceIndent_List_Test{
 		Thread.sleep(1000);
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		Ser_List.getUnfulFilled();
-		singleDD(Ser_List.getproject(), Company_Name);
+		singleDD(Ser_List.getproject(),sheet.getRow(0).getCell(1).getStringCellValue());
 		Ser_List.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname);
 		Thread.sleep(2000);
 		
 	}
 	
 	public static void all() throws Throwable {
-		
 		Frames.SubMenuFrame();
 		Ser_List.getServiceIndent();
 		Frames.rightFrame();
 		Thread.sleep(1000);
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		Ser_List.getAll();
-		singleDD(Ser_List.getproject(), Company_Name);
+		singleDD(Ser_List.getproject(),sheet.getRow(0).getCell(1).getStringCellValue());
 		Ser_List.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname);
 		Thread.sleep(2000);
 		
 	}

@@ -3,14 +3,14 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="TEST(failed)">
     <classes>
-      <class name="com.RE.Engineering.Test.Indent_List_Test">
+      <class name="com.RE.Engineering.Test.Issue_List_Test">
         <methods>
           <include name="preRequisite"/>
+          <include name="IssueInventry"/>
           <include name="loadClassFiles"/>
           <include name="endTest"/>
-          <include name="runTset"/>
         </methods>
-      </class> <!-- com.RE.Engineering.Test.Indent_List_Test -->
+      </class> <!-- com.RE.Engineering.Test.Issue_List_Test -->
     </classes>
   </test> <!-- TEST(failed) -->
 </suite> <!-- Failed suite [Suite] -->
