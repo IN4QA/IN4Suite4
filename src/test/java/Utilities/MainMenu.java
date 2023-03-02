@@ -17,7 +17,7 @@ public class MainMenu extends DriverScript {
 		PageFactory.initElements(iDriver, this);
 	}
 		
-	@FindBy(xpath = "//table[@class = 'in4-table']/tbody/tr")
+	@FindBy(xpath = "//table[contains(@class , 'in4-table')]/tbody/tr")
 	static List<WebElement> list;
 	public static List<WebElement> recordListed() {
 		return list;
@@ -89,7 +89,7 @@ public class MainMenu extends DriverScript {
 		return leads;
 	}
 	
-	@FindBy(css ="td[class= 'SALES custom-css']")
+	@FindBy(xpath="//span[text()='Sales']")
 	private WebElement sales;
 	public WebElement getSales()
 	{
@@ -209,7 +209,7 @@ public class MainMenu extends DriverScript {
 	public void clickSales() throws Exception
 	{
 		Frames.MainMenuFrame();
-		appInd.clickObject(mainMenu.getSales());		
+		appInd.clickObject(sales);		
 	}
 	
 	public void clickFinance() throws Exception

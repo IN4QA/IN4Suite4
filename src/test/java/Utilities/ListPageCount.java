@@ -33,7 +33,7 @@ public class ListPageCount extends DriverScript {
 
 		try {
 			// To get ID of each page in case multiple pages
-			pagelistname = oBrowser.findElement(By.xpath("//table[@class='in4-table']//table")).getAttribute("id");
+			pagelistname = oBrowser.findElement(By.xpath("//table[contains(@class,'in4-table')]//table")).getAttribute("id"); 
 			System.out.println("----------------------------   " + pagelistname);
 		} catch (Exception e) {
 		}
@@ -85,12 +85,11 @@ public class ListPageCount extends DriverScript {
 				Datatable.writeExcel(testname, "No Records Found", sheetname);
 			} else {
 				List<WebElement> totalindentno = oBrowser
-						.findElements(By.xpath("//table[@class='in4-table']/tbody/tr/td[1]"));
+						.findElements(By.xpath("//table[contains(@class,'in4-table')]//tbody/tr/td[1]")); //table[@class='in4-table']/tbody/tr/td[1]
 				int size = totalindentno.size();
 				if (size > 0) {
 					System.out.println("Total Indents displayed in case of single page: " + size);
-				} else {
-					System.out.println("No records are displayed in case of single page: ");
+					Datatable.writeExcel(testname, "PASS", sheetname);
 				}
 			}
 		}

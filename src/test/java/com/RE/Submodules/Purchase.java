@@ -33,7 +33,26 @@ WebDriver iDriver;
 	{
 		return inventory;
 	}
-//	public static boolean clickInventory()
+	
+	@FindBy(xpath="//a[text()='Quotation ']")
+	private static WebElement quotation;
+	public WebElement getquotation() {
+		return quotation;
+	}
+	
+	@FindBy(xpath="//a[text()='Masters ']")
+	private static WebElement masters;
+	public WebElement getmasters() {
+		return masters;
+	}
+	
+	@FindBy(xpath="//a[text()='Search ']")
+	private static WebElement search;
+	public WebElement getsearch() {
+		return search;
+	}
+	
+	//	public static boolean clickInventory()
 	//{
 	//	try
 	//	{
@@ -64,5 +83,43 @@ WebDriver iDriver;
 			return false;
 		}
 	}
+	
+	public static boolean clickquotation()
+	{
+		try
+		{
+			Frames.SubMenuFrame();
+			appInd.clickObject(quotation);
+			return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+	}
+	public boolean clickmasters()
+	{
+		try {
+			
+			Frames.SubMenuFrame();
+			appInd.clickObject(masters);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	public boolean clicksearch() 
+	{
+		try {
+			//Frames.SubMenuFrame();
+			appInd.clickObject(search);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	
 
 }

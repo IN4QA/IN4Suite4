@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.RE.Engineering.Test.PO_List_Test">
+      <class name="com.RE.Engineering_Masters.Test.EstimationChargeType_List_Test">
         <methods>
           <include name="preRequisite"/>
           <include name="loadClassFiles"/>
           <include name="endTest"/>
-          <include name="PO_List"/>
+          <include name="estimationchargetype"/>
         </methods>
-      </class> <!-- com.RE.Engineering.Test.PO_List_Test -->
+      </class> <!-- com.RE.Engineering_Masters.Test.EstimationChargeType_List_Test -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

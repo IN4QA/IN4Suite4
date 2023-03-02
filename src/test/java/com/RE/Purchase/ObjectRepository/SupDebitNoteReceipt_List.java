@@ -75,11 +75,6 @@ public class SupDebitNoteReceipt_List extends SupDebitNoteReceipt_List_Test {
 		System.out.println("Module, Sub module click case Failed:"+e);
 	 	}
 }
-	// public static void singleDD(WebElement comPath, String project_Name) {
-		//	Select sct = new Select(comPath);
-		//	sct.selectByVisibleText(project_Name);
-
-	//}
 	 public void company() throws Throwable{
 		 String nameofCurrentmethod=new Throwable().getStackTrace()[0].getMethodName();
 		 SupRecList.getSupDebitNoteReceipt();

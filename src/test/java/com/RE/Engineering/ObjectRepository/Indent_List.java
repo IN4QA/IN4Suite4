@@ -600,7 +600,7 @@ public class Indent_List extends Indent_List_Test {
 			
 			appInd.seletDate(Indent_ListObj.selectfromdate(), fromdt);
 			appInd.seletDate(Indent_ListObj.selecttodate(), appInd.CurrentDateIn_MMM_DD_YYYY());
-			appInd.singleDD(Indent_ListObj.selectdebitable(), "Yes");
+			appInd.singleDropDown(Indent_ListObj.selectdebitable(), "Yes");
 			Thread.sleep(2000);
 			Indent_ListObj.clickgobutton();
 			Thread.sleep(2000);

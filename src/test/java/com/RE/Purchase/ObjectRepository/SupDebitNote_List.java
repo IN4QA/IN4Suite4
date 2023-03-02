@@ -32,6 +32,7 @@ public class SupDebitNote_List extends SupDebitNote_List_Test{
 	public void getcomp() {
 		comp.click();
 	}
+	
 	@FindBy(name="txtCertifyingCompPO")
 	private WebElement company;
 	public WebElement getcompany() {

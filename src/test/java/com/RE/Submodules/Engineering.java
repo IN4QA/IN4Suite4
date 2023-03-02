@@ -33,22 +33,22 @@ WebDriver iDriver;
 		return inventory;
 	}
 	
-	@FindBy(xpath="//a[text()='Tendering']")
-	private WebElement tendering;
+	@FindBy(xpath="//a[text()='Tendering ']")
+	private static WebElement tendering;
 	public WebElement getTendering()
 	{
-		return tendering;			
+		return tendering;		
 	}
 	
-	@FindBy(xpath="//a[text()='Contracting']")
-	private WebElement contracting;
+	@FindBy(xpath="//a[text()='Contracting ']")
+	private static WebElement contracting;
 	public WebElement getContracting()
 	{
 		return contracting;
 	}
 	
-	@FindBy(xpath="//a[text()='Site-Activity']")
-	private WebElement siteactivity;
+	@FindBy(xpath="//a[text()='Site-Activity ']")
+	private static WebElement siteactivity;
 	public WebElement getSiteActivity()
 	{
 		return siteactivity;
@@ -68,8 +68,8 @@ WebDriver iDriver;
 		return approvals;
 	}
 	
-	@FindBy(xpath="//a[text()='Modification']")
-	private WebElement modification;
+	@FindBy(xpath="//a[text()='Modification ']")
+	private static WebElement modification;
 	public WebElement getModification()
 	{
 		return modification;
@@ -82,15 +82,15 @@ WebDriver iDriver;
 		return reportingto;
 	}
 	
-	@FindBy(xpath="//a[text()='Checklist']")
-	private WebElement checklist;
+	@FindBy(xpath="//a[text()='Checklist ']")
+	private static WebElement checklist;
 	public WebElement getChecklist()
 	{
 		return checklist;
 	}
 	
-	@FindBy(xpath="//a[text()='Templates']")
-	private WebElement templates;
+	@FindBy(xpath="//a[text()='Templates ']")
+	private static WebElement templates;
 	public WebElement getTemplates()
 	{
 		return templates;
@@ -103,8 +103,8 @@ WebDriver iDriver;
 		return portal;
 	}
 	
-	@FindBy(xpath="//a(text()='Masters']")
-	private WebElement masters;
+	@FindBy(xpath="//a[text()='Masters ']")
+	private static WebElement masters;
 	public WebElement getMasters()
 	{
 		return masters;
@@ -156,7 +156,7 @@ WebDriver iDriver;
 		try
 		{
 			Frames.SubMenuFrame();
-			appInd.clickObject(engg.getTendering());
+			appInd.clickObject(tendering);
 			return true;
 		} catch(Exception e)
 		{
@@ -170,7 +170,7 @@ WebDriver iDriver;
 		try
 		{
 			Frames.SubMenuFrame();
-			appInd.clickObject(engg.getContracting());
+			appInd.clickObject(contracting);
 			return true;
 		}catch(Exception e)
 		{
@@ -183,7 +183,7 @@ WebDriver iDriver;
 		try
 		{
 			Frames.SubMenuFrame();
-			appInd.clickObject(engg.getSiteActivity());
+			appInd.clickObject(siteactivity);
 			return true;
 		}catch(Exception e)
 		{
@@ -223,7 +223,7 @@ WebDriver iDriver;
 		try
 		{
 			Frames.SubMenuFrame();
-			appInd.clickObject(engg.getModification());
+			appInd.clickObject(modification);
 			return true;
 		}catch(Exception e)
 		{
@@ -249,7 +249,7 @@ WebDriver iDriver;
 		try
 		{
 			Frames.SubMenuFrame();
-			appInd.clickObject(engg.getChecklist());
+			appInd.clickObject(checklist);
 			return true;
 		}catch(Exception e)
 		{
@@ -262,7 +262,7 @@ WebDriver iDriver;
 		try
 		{
 			Frames.SubMenuFrame();
-			appInd.clickObject(engg.getTemplates());
+			appInd.clickObject(templates);
 			return true;
 		}catch(Exception e)
 		{
@@ -287,7 +287,7 @@ WebDriver iDriver;
 		try
 		{
 			Frames.SubMenuFrame();
-			appInd.clickObject(engg.getMasters());
+			appInd.clickObject(masters);
 			return true;
 		}catch(Exception e)
 		{

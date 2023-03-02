@@ -616,27 +616,46 @@ public class AppIndependentMethods extends DriverScript{
 				 return currentDate;
 	        }
 	        
-	    	public static void singleDD(WebElement comPath, String Company_Name) {
+	    	public void singleDropDown(WebElement comPath, String Company_Name) {
 	    		Select sct = new Select(comPath);
 	    		sct.selectByVisibleText(Company_Name);
 	     }
 	        
-	        public void multiDD_withText(WebElement projectClick, WebElement entrProjectName, String projectname, List<WebElement> ListedRecordsDD) throws Throwable {
+	        
+ public void multiDD_withText(WebElement projectClick, WebElement entrProjectName, String projectname, List<WebElement> ListedRecordsDD) throws Throwable {
 	        	
 	    		JavascriptExecutor js = (JavascriptExecutor)oBrowser;
 	    		js.executeScript("arguments[0].click();", projectClick);
 	    		
 	    		Thread.sleep(1000);
 	    		entrProjectName.sendKeys(projectname);
-	    		Thread.sleep(3000);
 	    		for(WebElement e:ListedRecordsDD) {
-	    			e.getText();
-	    			if(e.getText().contains(projectname)) {
-	    				Thread.sleep(3000);
+	    			if(e.getText().contains("Select")) {
+	    				Thread.sleep(2000);
 	    				e.click();
+	    				break;
 	    			}
 	    		}
 	    		js.executeScript("arguments[0].click();", projectClick);
 	        }
+ 
+ public void multiDD_withText_SingleClick(WebElement projectClick, WebElement entrProjectName, String projectname, List<WebElement> ListedRecordsDD) throws Throwable {
+ 	
+		JavascriptExecutor js = (JavascriptExecutor)oBrowser;
+		js.executeScript("arguments[0].click();", projectClick);
+		
+		Thread.sleep(1000);
+		entrProjectName.sendKeys(projectname);
+		for(WebElement e:ListedRecordsDD) {
+			if(e.getText().contains("Select")) {
+				Thread.sleep(2000);
+				e.click();
+				break;
+			}
+		}
+		//js.executeScript("arguments[0].click();", projectClick);
+ }
+
+	        
 	        
 }
