@@ -17,11 +17,12 @@ import Utilities.MainMenu;
 public class Asset_List extends Asset_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "Asset_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public Asset_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Asset']")
@@ -53,9 +54,9 @@ public class Asset_List extends Asset_List_Test {
 	 Thread.sleep(2000);
 	 Engineering en = new Engineering(iDriver);
 	 en.clickMasters();
-	 Thread.sleep(1000);
+	 Thread.sleep(2000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("Asset List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -67,12 +68,13 @@ public class Asset_List extends Asset_List_Test {
 	
 		
 	public void Go() throws Throwable {
-		assetlist.AssetLinkclick();
-		Frames.rightFrame();
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
+		assetlist.AssetLinkclick();
+		Thread.sleep(2000);
+		Frames.rightFrame();
 		assetlist.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
@@ -89,7 +91,7 @@ public class Asset_List extends Asset_List_Test {
 		Thread.sleep(1000);
 		assetlist.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}

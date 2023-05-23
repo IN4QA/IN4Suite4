@@ -54,7 +54,7 @@ public class Contracting_Jobs_List extends Contracting_Jobs_List_Test{
 			en.clickContracting();
 			Thread.sleep(1000);
 			xml=new Datatable();
-			sheet=xml.excelData(sheetname);
+			sheet=xml.excelData(sheetname,Engineering.inputPath);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,7 +69,7 @@ public class Contracting_Jobs_List extends Contracting_Jobs_List_Test{
 		Frames.rightFrame();
 		jobslist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrrentMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 	}
 	
@@ -83,7 +83,7 @@ public class Contracting_Jobs_List extends Contracting_Jobs_List_Test{
 		Thread.sleep(1000);
 		jobslist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrrentMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 	}
 	public void lost() throws Throwable{
@@ -96,7 +96,7 @@ public class Contracting_Jobs_List extends Contracting_Jobs_List_Test{
 		Thread.sleep(1000);
 		jobslist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrrentMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 	}
 	public void open() throws Throwable{
@@ -109,7 +109,7 @@ public class Contracting_Jobs_List extends Contracting_Jobs_List_Test{
 		Thread.sleep(1000);
 		jobslist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrrentMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 	}
 	public void own() throws Throwable{
@@ -122,7 +122,7 @@ public class Contracting_Jobs_List extends Contracting_Jobs_List_Test{
 		Thread.sleep(1000);
 		jobslist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrrentMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 	}
 }

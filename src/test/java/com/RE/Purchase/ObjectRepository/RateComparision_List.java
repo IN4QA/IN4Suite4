@@ -1,14 +1,15 @@
 package com.RE.Purchase.ObjectRepository;
 
-import org.apache.poi.ss.usermodel.Sheet;
+
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.xmlbeans.impl.xb.xsdschema.ListDocument.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import com.RE.Purchase.Test.RateComparision_List_Test;
+import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
 import Utilities.Datatable;
 import Utilities.Frames;
@@ -20,11 +21,12 @@ public class RateComparision_List extends RateComparision_List_Test{
 	
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "RateComparision_List";
+	public static String Sheetname;
 	public static WebDriver iDriver;
 	public RateComparision_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		Sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Rate Comparison']")
@@ -57,7 +59,7 @@ public class RateComparision_List extends RateComparision_List_Test{
 			en.clickquotation();
 			Thread.sleep(1000);
 			xml = new Datatable();
-			sheet=xml.excelData("Rate Comparision List");
+			sheet=xml.excelData(Sheetname,Purchase.inputpath);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,7 +78,7 @@ public class RateComparision_List extends RateComparision_List_Test{
 		Thread.sleep(1000);
 		ratecomparisionlist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 		Thread.sleep(1000);
 	}
 	public static void company() throws Throwable{
@@ -89,7 +91,7 @@ public class RateComparision_List extends RateComparision_List_Test{
 		Thread.sleep(1000);
 		ratecomparisionlist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 		Thread.sleep(1000);
 		
 	}
@@ -105,7 +107,7 @@ public class RateComparision_List extends RateComparision_List_Test{
 		Thread.sleep(1000);
 		ratecomparisionlist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 			
 	}
 	

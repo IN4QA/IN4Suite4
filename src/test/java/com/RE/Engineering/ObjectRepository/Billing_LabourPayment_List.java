@@ -60,7 +60,7 @@ public class Billing_LabourPayment_List extends Billing_LabourPayment_List_Test{
 	 en.clickBilling();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData(sheetname);
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -75,7 +75,7 @@ public class Billing_LabourPayment_List extends Billing_LabourPayment_List_Test{
 		Frames.rightFrame();
 		labourpaymentlist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrentMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 		}
 	
@@ -88,7 +88,7 @@ public class Billing_LabourPayment_List extends Billing_LabourPayment_List_Test{
 		Thread.sleep(1000);
 		labourpaymentlist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrentMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 		}
 	
@@ -103,7 +103,7 @@ public class Billing_LabourPayment_List extends Billing_LabourPayment_List_Test{
 		Thread.sleep(1000);
 		labourpaymentlist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrentMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 		}
 }

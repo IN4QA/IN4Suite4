@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
@@ -90,6 +91,12 @@ public class DriverScript {
 			System.out.println(e);
 		}
 
+	}
+	
+	@AfterClass
+	public void end() {
+		oBrowser.navigate().to("http://auto1.in4velocity.com/Logout.asp");
+		oBrowser.close();
 	}
 
 	/************************************

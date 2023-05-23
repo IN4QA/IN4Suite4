@@ -18,11 +18,12 @@ public class TransferOrder_List extends TransferOrder_List_Test{
 	
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "TransferOrder_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public TransferOrder_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath = "//a[text()='Transfer Order']")
@@ -49,7 +50,7 @@ public class TransferOrder_List extends TransferOrder_List_Test{
 		 go.click();
 	}
 	
-	public static void MenuSubMenu()
+	public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -60,7 +61,7 @@ public class TransferOrder_List extends TransferOrder_List_Test{
 	 en.clickInventory();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("TransferOrder List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -76,7 +77,7 @@ public class TransferOrder_List extends TransferOrder_List_Test{
 }
 
 	//---case1: show transfer order for material----//
-	public static void material() throws Throwable {
+	public  void material() throws Throwable {
 		
 		TransferOrder.getTransferOrder();
 		Frames.rightFrame();
@@ -84,13 +85,13 @@ public class TransferOrder_List extends TransferOrder_List_Test{
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		Thread.sleep(1000);
 		TransferOrder.getGo();
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
 	
 	//---case2: show transfer order for asset---//
-    public static void asset() throws Throwable {
+    public  void asset() throws Throwable {
     	Frames.SubMenuFrame();
 		TransferOrder.getTransferOrder();
 		Frames.rightFrame();
@@ -98,12 +99,12 @@ public class TransferOrder_List extends TransferOrder_List_Test{
 		TransferOrder.getAsset();		
 		Thread.sleep(2000);
 		TransferOrder.getGo();
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
 	//---case3:show transfer order for material with from store selection----//
-	public static void materialwithfromstore() throws Throwable {
+	public  void materialwithfromstore() throws Throwable {
 		Frames.SubMenuFrame();
 		TransferOrder.getTransferOrder();
 		Frames.rightFrame();
@@ -112,12 +113,12 @@ public class TransferOrder_List extends TransferOrder_List_Test{
 		fromStoreDD(TransferOrder.getFromStore(), sheet.getRow(0).getCell(1).getStringCellValue());
 		Thread.sleep(1000);
 		TransferOrder.getGo();
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
 	//---case4: show transfer order for asset with from store selection----//
-	public static void assetwithfromstore() throws Throwable {
+	public  void assetwithfromstore() throws Throwable {
 		Frames.SubMenuFrame();
 		TransferOrder.getTransferOrder();
 		Frames.rightFrame();
@@ -127,7 +128,7 @@ public class TransferOrder_List extends TransferOrder_List_Test{
 		fromStoreDD(TransferOrder.getFromStore(), sheet.getRow(0).getCell(1).getStringCellValue());
 		Thread.sleep(1000);
 		TransferOrder.getGo();
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}

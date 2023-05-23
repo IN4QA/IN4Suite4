@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.RE.Purchase.Test.MaterialMasters_List_Test;
+import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
 import Utilities.Datatable;
 import Utilities.Frames;
@@ -19,12 +20,13 @@ public class MaterialMaster_List extends MaterialMasters_List_Test{
 	
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String SheetName="MaterialMaster_List";
+	public static String SheetName;
 	public static WebDriver iDriver;
 	public MaterialMaster_List(WebDriver oDriver) {
 		iDriver=oDriver;
 		PageFactory.initElements(iDriver, this);
-		
+		SheetName=this.getClass().getSimpleName();
+	
 	}
 	@FindBy(xpath="//a[text()='Materials']")
 	private WebElement materials;
@@ -59,7 +61,7 @@ public class MaterialMaster_List extends MaterialMasters_List_Test{
 				en.clickmasters();
 				Thread.sleep(1000);
 				xml=new Datatable();
-				sheet=xml.excelData("MaterialMaster List");
+				sheet=xml.excelData(SheetName,Purchase.inputpath);
 				
 			} catch (Exception e) {
 				
@@ -76,7 +78,7 @@ public class MaterialMaster_List extends MaterialMasters_List_Test{
 				Thread.sleep(1000);
 				materiallist.getgo();
 				Thread.sleep(1000);
-				ListPageCount.PageCount(nameofCurrentMethod, SheetName);
+				ListPageCount.PageCount(nameofCurrentMethod, SheetName,Purchase.path);
 				Thread.sleep(1000);
 			}
 			
@@ -95,7 +97,7 @@ public class MaterialMaster_List extends MaterialMasters_List_Test{
 				Thread.sleep(1000);
 				materiallist.getgo();
 				Thread.sleep(1000);
-				ListPageCount.PageCount(nameofCurrentMethod, SheetName);
+				ListPageCount.PageCount(nameofCurrentMethod, SheetName,Purchase.path);
 			
 			}
 }

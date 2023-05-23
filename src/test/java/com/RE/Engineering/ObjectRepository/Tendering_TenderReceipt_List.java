@@ -17,11 +17,12 @@ import Utilities.MainMenu;
 public class Tendering_TenderReceipt_List extends Tendering_TenderReceipt_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "TenderReceipt_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public Tendering_TenderReceipt_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Tender Receipt']")
@@ -42,7 +43,7 @@ public class Tendering_TenderReceipt_List extends Tendering_TenderReceipt_List_T
 	
 	
 	
-	public static void MenuSubMenu()
+	public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -53,7 +54,7 @@ public class Tendering_TenderReceipt_List extends Tendering_TenderReceipt_List_T
 	 en.clickTendering();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("TenderReceipt List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -68,7 +69,7 @@ public class Tendering_TenderReceipt_List extends Tendering_TenderReceipt_List_T
 	}
 	
 		
-	public static void go() throws Throwable {
+	public  void go() throws Throwable {
 		Frames.SubMenuFrame();		
 		Thread.sleep(1000);
 		tenderReceipt.getTenderReceiptlink();
@@ -77,7 +78,7 @@ public class Tendering_TenderReceipt_List extends Tendering_TenderReceipt_List_T
 		Thread.sleep(1000);
 		tenderReceipt.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
@@ -92,7 +93,7 @@ public class Tendering_TenderReceipt_List extends Tendering_TenderReceipt_List_T
 		Thread.sleep(1000);
 		tenderReceipt.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}*/

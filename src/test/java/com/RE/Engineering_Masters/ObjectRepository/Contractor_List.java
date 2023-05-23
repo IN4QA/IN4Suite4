@@ -17,11 +17,12 @@ import Utilities.MainMenu;
 public class Contractor_List extends Contractor_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "Contractor_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public Contractor_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Contractor']")
@@ -55,7 +56,7 @@ public class Contractor_List extends Contractor_List_Test {
 	 en.clickMasters();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("Contractor List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -72,7 +73,7 @@ public class Contractor_List extends Contractor_List_Test {
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		contractorlist.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
@@ -89,7 +90,7 @@ public class Contractor_List extends Contractor_List_Test {
 		Thread.sleep(1000);
 		contractorlist.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}

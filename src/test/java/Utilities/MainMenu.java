@@ -81,8 +81,7 @@ public class MainMenu extends DriverScript {
 	{
 		return prchase;
 	}
-	
-	@FindBy(css = "td[class='CALLCENTER custom-cssHi']")
+	@FindBy(xpath = "//span[text()= 'Leads']")
 	private WebElement leads;
 	public WebElement getLeads()
 	{
@@ -203,7 +202,7 @@ public class MainMenu extends DriverScript {
 	public void clickLeads() throws Exception
 	{
 		Frames.MainMenuFrame();
-		appInd.clickObject(mainMenu.getLeads());		
+		appInd.clickObject(leads);		
 	}
 	
 	public void clickSales() throws Exception

@@ -1,6 +1,9 @@
 package com.RE.Purchase.Test;
 
 import org.testng.annotations.Test;
+
+import com.RE.Purchase.ObjectRepository.Quotation_List;
+
 import MenuClick.FullApplicationTestScripts;
 import Utilities.DriverScript;
 
@@ -13,13 +16,13 @@ public class Quotation_Test_List extends DriverScript {
 		FullApplicationTestScripts login=new FullApplicationTestScripts();
 		login.loginTest();
 		Quotationlist=new com.RE.Purchase.ObjectRepository.Quotation_List(oBrowser);
-		Quotationlist.MenuSubMenu();
-		Quotationlist.WithRfq();
-		Quotationlist.withoutrfq();
-		Quotationlist.all();
-		Quotationlist.projectwithrfq();
-		Quotationlist.projectwithoutrfq();
-		Quotationlist.projectall();
+		Quotation_List.MenuSubMenu();
+		Quotation_List.WithRfq();
+		Quotation_List.withoutrfq();
+		Quotation_List.all();
+		Quotation_List.projectwithrfq();
+		Quotation_List.projectwithoutrfq();
+		Quotation_List.projectall();
 	}
 
 }

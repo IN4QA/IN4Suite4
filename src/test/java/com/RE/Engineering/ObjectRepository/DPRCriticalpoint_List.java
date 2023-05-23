@@ -17,13 +17,14 @@ import Utilities.MainMenu;
 public class DPRCriticalpoint_List extends DPRCriticalpoint_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "Criticalpoint_List";
+	public static String sheetname ;
 	public static WebDriver iDriver;
 	public static String fDate="Jan 01,2000";
 	
 	public DPRCriticalpoint_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Critical Point']")
@@ -63,8 +64,8 @@ public class DPRCriticalpoint_List extends DPRCriticalpoint_List_Test {
 	 Engineering en = new Engineering(iDriver);
 	 en.clickSiteActivity();
 	 Thread.sleep(1000);
-	 xml = new Datatable();
-	 sheet = xml.excelData("Critical List");	
+	 xml=new Datatable();
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -81,7 +82,7 @@ public class DPRCriticalpoint_List extends DPRCriticalpoint_List_Test {
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		criticalpointlist.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 	}
 	
@@ -93,7 +94,7 @@ public class DPRCriticalpoint_List extends DPRCriticalpoint_List_Test {
 		appInd.singleDropDown(getProjectDD(),sheet.getRow(0).getCell(1).getStringCellValue());
 		criticalpointlist.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
@@ -109,7 +110,7 @@ public class DPRCriticalpoint_List extends DPRCriticalpoint_List_Test {
 		Thread.sleep(1000);
 		criticalpointlist.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}

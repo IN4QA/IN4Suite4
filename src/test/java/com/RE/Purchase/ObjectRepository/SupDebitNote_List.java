@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.RE.Purchase.Test.SupDebitNote_List_Test;
+import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
 import Utilities.Datatable;
 import Utilities.Frames;
@@ -16,11 +17,12 @@ import Utilities.MainMenu;
 public class SupDebitNote_List extends SupDebitNote_List_Test{
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "SupDebitNote_List";
+	public static String Sheetname;
 	public static WebDriver iDriver;
 	public SupDebitNote_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		Sheetname=this.getClass().getSimpleName();
 	}
 	@FindBy(xpath="//a[text()='Supplier Debit Note']")
 	private WebElement suppdebitnote;
@@ -55,7 +57,7 @@ public class SupDebitNote_List extends SupDebitNote_List_Test{
 		Go.click();
 	}
 	
-	 public static void MenuSubMenu()
+	 public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -68,7 +70,7 @@ public class SupDebitNote_List extends SupDebitNote_List_Test{
 	 en.clickPayments();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("SupDebitNote List");
+	 sheet = xml.excelData(Sheetname,Purchase.inputpath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -96,7 +98,7 @@ public class SupDebitNote_List extends SupDebitNote_List_Test{
 		 company.sendKeys(Keys.ENTER);
 		 Thread.sleep(1000);
 		 SupDebitNote.getGo();
-		 ListPageCount.PageCount(nameofCurrentmethod,sheetname);
+		 ListPageCount.PageCount(nameofCurrentmethod,Sheetname,Purchase.path);
 		Thread.sleep(2000);
 		 
 	 }
@@ -115,7 +117,7 @@ public class SupDebitNote_List extends SupDebitNote_List_Test{
 		 project.sendKeys(Keys.ENTER);
 		 Thread.sleep(1000);
 		 SupDebitNote.getGo();
-		 ListPageCount.PageCount(nameofCurrentmethod,sheetname);
+		 ListPageCount.PageCount(nameofCurrentmethod,Sheetname,Purchase.path);
 		Thread.sleep(2000);
 	
 

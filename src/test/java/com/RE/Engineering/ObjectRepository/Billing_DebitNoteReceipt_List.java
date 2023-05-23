@@ -16,11 +16,12 @@ import Utilities.MainMenu;
 public class Billing_DebitNoteReceipt_List extends Billing_DebitNoteReceipt_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "DebitNoteReceipt_List";
+	public static String Sheetname;
 	public static WebDriver iDriver;
 	public Billing_DebitNoteReceipt_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		Sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Debit Note Receipt']")
@@ -46,7 +47,7 @@ public class Billing_DebitNoteReceipt_List extends Billing_DebitNoteReceipt_List
 	
 	
 	
-	public static void MenuSubMenu()
+	public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -57,7 +58,7 @@ public class Billing_DebitNoteReceipt_List extends Billing_DebitNoteReceipt_List
 	 en.clickBilling();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("DebitNoteReceipt List");	
+	 sheet = xml.excelData(Sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -72,7 +73,7 @@ public class Billing_DebitNoteReceipt_List extends Billing_DebitNoteReceipt_List
 	}
 	
 		
-	public static void companyandproject() throws Throwable {
+	public  void companyandproject() throws Throwable {
 		Frames.SubMenuFrame();		
 		Thread.sleep(1000);
 		DebitNoteReceipt.getDebitNoteReceipt();
@@ -84,7 +85,7 @@ public class Billing_DebitNoteReceipt_List extends Billing_DebitNoteReceipt_List
 		Thread.sleep(1000);
 		DebitNoteReceipt.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,Sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}

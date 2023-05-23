@@ -16,11 +16,12 @@ import Utilities.MainMenu;
 public class Abstract_List extends Abstract_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "Abstract_List";
+	public static String Sheetname;
 	public static WebDriver iDriver;
 	public Abstract_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		Sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Abstracts']")
@@ -46,7 +47,7 @@ public class Abstract_List extends Abstract_List_Test {
 	
 	
 	
-	public static void MenuSubMenu()
+	public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -57,7 +58,7 @@ public class Abstract_List extends Abstract_List_Test {
 	 en.clickSiteActivity();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("Abstract List");	
+	 sheet = xml.excelData(Sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -66,13 +67,13 @@ public class Abstract_List extends Abstract_List_Test {
 		System.out.println("Module, Sub module click case Failed: "+e);
 	 	}
 }
-	public static void singleDD(WebElement comPath, String project_Name) {
+	public  void singleDD(WebElement comPath, String project_Name) {
 		Select sct = new Select(comPath);
 		sct.selectByVisibleText(project_Name);
 	}
 	
 		
-	public static void project() throws Throwable {
+	public  void project() throws Throwable {
 		Frames.SubMenuFrame();		
 		Thread.sleep(2000);
 		Abstractlist.getAbstractlink();
@@ -83,25 +84,25 @@ public class Abstract_List extends Abstract_List_Test {
 		Thread.sleep(1000);
 		Abstractlist.getGo();
 		Thread.sleep(20000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,Sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
 	
 
-	public static void projectwithstatus() throws Throwable {
+	public  void projectwithstatus() throws Throwable {
 		Frames.SubMenuFrame();		
 		Thread.sleep(2000);
 		Abstractlist.getAbstractlink();
 		Frames.rightFrame();
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		Thread.sleep(1000);
-		singleDD(Abstractlist.getProject(), sheet.getRow(0).getCell(1).getStringCellValue());
+		appInd.singleDropDown(getProject(), sheet.getRow(0).getCell(1).getStringCellValue());
 		Thread.sleep(1000);
-		singleDD(Abstractlist.getStatus(), sheet.getRow(1).getCell(1).getStringCellValue());
+		appInd.singleDropDown(getStatus(), sheet.getRow(1).getCell(1).getStringCellValue());
 		Abstractlist.getGo();
 		Thread.sleep(20000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,Sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}

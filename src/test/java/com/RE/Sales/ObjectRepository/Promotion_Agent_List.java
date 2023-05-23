@@ -52,7 +52,7 @@ public class Promotion_Agent_List extends Promotion_Agent_List_Test {
 			en.clickAgent();
 			Thread.sleep(1000);
 			xml = new Datatable();
-			sheet = xml.excelData(sheetname);
+			sheet = xml.excelData(sheetname,Sales.inputPath);
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -67,7 +67,7 @@ public class Promotion_Agent_List extends Promotion_Agent_List_Test {
 		Thread.sleep(1000);
 		getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Sales.path);
 		Thread.sleep(4000);
 	}
 	
@@ -83,7 +83,7 @@ public class Promotion_Agent_List extends Promotion_Agent_List_Test {
 		Thread.sleep(1000);
 		getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Sales.path);
 		Thread.sleep(4000);
 	}
 }

@@ -2,6 +2,8 @@ package com.RE.Purchase.Test;
 
 import org.testng.annotations.Test;
 
+import com.RE.Purchase.ObjectRepository.RateComparision_List;
+
 import MenuClick.FullApplicationTestScripts;
 import Utilities.DriverScript;
 
@@ -16,9 +18,9 @@ public void RateComparisionList() throws Throwable{
 	login.loginTest();
 	ratecomparisionlist=new com.RE.Purchase.ObjectRepository.RateComparision_List(oBrowser);
 	
-	ratecomparisionlist.MenuSubMenu();
-	ratecomparisionlist.go();
-	ratecomparisionlist.company();
-	ratecomparisionlist.companywithproject();
+	RateComparision_List.MenuSubMenu();
+	RateComparision_List.go();
+	RateComparision_List.company();
+	RateComparision_List.companywithproject();
 }
 }

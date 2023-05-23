@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import com.RE.Engineering.Test.PendingIndent_List_Test;
+import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
 
 import Utilities.Datatable;
@@ -18,11 +19,12 @@ import Utilities.MainMenu;
 public class PendingIndent_List extends PendingIndent_List_Test{
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "PendingIndent_ListTest";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public PendingIndent_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
    @FindBy(xpath="//a[text()='Pending Indents']")
@@ -63,7 +65,7 @@ private WebElement project;
 		}
 	
 	
-	public static void MenuSubMenu()
+	public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -74,7 +76,7 @@ private WebElement project;
 	//en.clickInventory();
 	Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("Pending List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -98,7 +100,7 @@ private WebElement project;
 		Thread.sleep(1000);
 		Frames.rightFrame();
 		PendingIndents.getGo();
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
@@ -114,7 +116,7 @@ private WebElement project;
 		PendingIndents.getUnfulfilledIssue();
 		 Thread.sleep(1000);
 		PendingIndents.getGo();
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 	}
 	// Case 3 : Listing Pending Indents for Asset unfullfilledPO/To
@@ -128,7 +130,7 @@ private WebElement project;
 		PendingIndents.getAssetUnfulfilledPOTO();
 		Thread.sleep(1000);
 		PendingIndents.getGo();
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 	}
 	//  Case 4 :Listing Pending Indents for Asset UnfulfilledIssueAsset
@@ -143,7 +145,7 @@ private WebElement project;
 		PendingIndents.getUnfulfilledIssueAsset();
 		Thread.sleep(1000);
 		PendingIndents.getGo();
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 	}
 	
@@ -165,7 +167,7 @@ private WebElement project;
 		 project.sendKeys(Keys.ENTER);
 		 Thread.sleep(1000);
 		 PendingIndents.getGo();
-		 ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		 ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 	}
 

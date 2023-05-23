@@ -17,11 +17,12 @@ public class Ropo_List extends Ropo_List_Test{
 	
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "Ropo_List";
+	public static String sheetname ;
 	public static WebDriver iDriver;
 	public Ropo_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	@FindBy(xpath = "//a[text()='ROPO Mapping']")
 	private WebElement ropoMapping;
@@ -43,7 +44,7 @@ public class Ropo_List extends Ropo_List_Test{
 	public void getGo() {
 		go.click();
 	}
-	public static void MenuSubMenu()
+	public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -54,7 +55,7 @@ public class Ropo_List extends Ropo_List_Test{
 	 en.clickInventory();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("Ropo List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -67,7 +68,7 @@ public class Ropo_List extends Ropo_List_Test{
 		Select sct = new Select(comPath);
 		sct.selectByVisibleText(project_Name);
 }
-	public static void ropoproject() throws Throwable{
+	public  void ropoproject() throws Throwable{
 		RopoList.getropoMapping();
 		Frames.rightFrame();
 		Thread.sleep(1000);
@@ -75,13 +76,13 @@ public class Ropo_List extends Ropo_List_Test{
 		singleDD(RopoList.getproject(), sheet.getRow(0).getCell(1).getStringCellValue());
 		Thread.sleep(1000);
 		RopoList.getGo();
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 		
 	}
 	
-	public static void ropomaterial() throws Throwable {
+	public  void ropomaterial() throws Throwable {
 		Frames.SubMenuFrame();
 		RopoList.getropoMapping();
 		Frames.rightFrame();
@@ -90,7 +91,7 @@ public class Ropo_List extends Ropo_List_Test{
 		singleDD(RopoList.getmaterialtype(), sheet.getRow(1).getCell(1).getStringCellValue());
 		Thread.sleep(1000);
 		RopoList.getGo();
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 	}
 

@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
 import Utilities.Datatable;
 import Utilities.Frames;
@@ -21,6 +23,8 @@ public class MaterialRoleMapping_List extends MaterialRoleMapping_List_Test{
 	public MaterialRoleMapping_List(WebDriver oDriver) {
 		iDriver=oDriver;
 		PageFactory.initElements(iDriver, this);
+		SheetName=this.getClass().getSimpleName();
+
 		
 	}
 	@FindBy(xpath="//a[text()='Material Role Mapping']")
@@ -43,7 +47,7 @@ public class MaterialRoleMapping_List extends MaterialRoleMapping_List_Test{
 			en.clickmasters();
 			Thread.sleep(1000);
 			xml=new Datatable();
-			sheet=xml.excelData("MaterialRoleMapping List");
+			sheet=xml.excelData(SheetName , Purchase.inputpath);
 			
 		} catch (Exception e) {
 			
@@ -60,7 +64,7 @@ public class MaterialRoleMapping_List extends MaterialRoleMapping_List_Test{
 		Frames.rightFrame();
 		materialrolemappinglist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, SheetName);
+		ListPageCount.PageCount(nameofCurrentMethod, SheetName,Purchase.path);
 		Thread.sleep(1000);
 
 	}

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import com.RE.Purchase.Test.SupAdvance_List_Test;
+import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
 import Utilities.Datatable;
 import Utilities.Frames;
@@ -18,11 +19,12 @@ import Utilities.MainMenu;
 public class SupAdvance_List extends SupAdvance_List_Test{
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname="SuppAdvance_List";
+	public static String Sheetname="SuppAdvance_List";
 	public static WebDriver iDriver;
 	public SupAdvance_List (WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		Sheetname=this.getClass().getSimpleName();
 	}
 	@FindBy(xpath="//a[text()='Supplier Advances']")
 	private WebElement suppadvance;
@@ -59,7 +61,7 @@ public class SupAdvance_List extends SupAdvance_List_Test{
 	public void getarrow() {
 		arrow.click();
 	}
-	 public static void MenuSubMenu()
+	 public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -72,7 +74,7 @@ public class SupAdvance_List extends SupAdvance_List_Test{
 	 en.clickPayments();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("SuppAdvance List");
+	 sheet = xml.excelData(Sheetname,Purchase.inputpath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -101,14 +103,14 @@ public class SupAdvance_List extends SupAdvance_List_Test{
 		 Thread.sleep(1000);
 		 SuppAdvaList.getGo();
 		 Thread.sleep(1000);
-		// SuppAdvaList.getarrow();
 		 Thread.sleep(2000);
-		 ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		 ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 		 Thread.sleep(1000);
 	 }
 	 
 	 public void project() throws Throwable{
 		 String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
+		 Frames.SubMenuFrame();
 		 SuppAdvaList.getsuppadvance();
 		 Frames.rightFrame();
 		 SuppAdvaList.getpro();
@@ -121,9 +123,8 @@ public class SupAdvance_List extends SupAdvance_List_Test{
 		 Thread.sleep(1000);
 		 SuppAdvaList.getGo();
 		 Thread.sleep(1000);
-		// SuppAdvaList.getarrow();
 		 Thread.sleep(2000);
-		 ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		 ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 		 Thread.sleep(1000);
 	 }
 	

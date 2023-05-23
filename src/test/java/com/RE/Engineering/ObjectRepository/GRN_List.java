@@ -22,11 +22,11 @@ public class GRN_List extends GRN_List_Test{
 	public static WebDriver iDriver;
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-//	public static String Company_Name = "Shrachi Developers";
-	public static String sheetname = "GRN_List";
+	public static String sheetname;
 	public GRN_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath = "//a[text() = 'GRN']")
@@ -60,7 +60,7 @@ public class GRN_List extends GRN_List_Test{
 		 go.click();
 	}
 	
-	public static void MenuSubMenu()
+	public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -71,7 +71,7 @@ public class GRN_List extends GRN_List_Test{
 	 en.clickInventory();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("GRN List");
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -95,7 +95,7 @@ public class GRN_List extends GRN_List_Test{
 	
 	//------- Material category case ------//
 	
-	public static void material() throws Throwable {
+	public  void material() throws Throwable {
 		
 		GRNList.getGRN();
 		Frames.rightFrame();
@@ -105,13 +105,13 @@ public class GRN_List extends GRN_List_Test{
 //	    WebElement project=iDriver.findElement(By.name("txtProject"));
 		GRNList.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 		Thread.sleep(2000);
 		}
 	
 	//------- Asset category case ------//	
 	
-	public static void Asset() throws Throwable {
+	public  void Asset() throws Throwable {
 		
 		Frames.SubMenuFrame();
 		GRNList.getGRN();
@@ -122,14 +122,14 @@ public class GRN_List extends GRN_List_Test{
 		companyDD(GRNList.getCertiCompany(),sheet.getRow(0).getCell(1).getStringCellValue());
 		GRNList.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
 	
 	//-----Case 3: Material Category with status -----//
 
-	public static void materialwithstatus() throws Throwable {
+	public  void materialwithstatus() throws Throwable {
 		Frames.SubMenuFrame();
 		GRNList.getGRN();
 		Frames.rightFrame();
@@ -139,13 +139,13 @@ public class GRN_List extends GRN_List_Test{
 		statusDD(GRNList.getStatus(),sheet.getRow(1).getCell(1).getStringCellValue());
 		GRNList.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 		Thread.sleep(2000);
 		}
 
 	// Case 4: Asset Category with status ----//
 	
-	public static void assetwithstatus() throws Throwable {
+	public  void assetwithstatus() throws Throwable {
 		Frames.SubMenuFrame();
 		GRNList.getGRN();
 		Frames.rightFrame();
@@ -156,7 +156,7 @@ public class GRN_List extends GRN_List_Test{
 		statusDD(GRNList.getStatus(),sheet.getRow(1).getCell(1).getStringCellValue());
 		GRNList.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 		Thread.sleep(2000);
 		}
 }

@@ -72,7 +72,7 @@ public class Send_Email_SMS_List extends Send_Email_SMS_List_Test{
 			en.clickCommunication();
 			Thread.sleep(1000);
 			xml = new Datatable();
-			sheet = xml.excelData(sheetname);
+			sheet = xml.excelData(sheetname,Sales.inputPath);
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -87,13 +87,13 @@ public class Send_Email_SMS_List extends Send_Email_SMS_List_Test{
 		Frames.rightFrame();
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		Thread.sleep(1000);
-		appInd.singleDropDown(gettempName(), sheet.getRow(1).getCell(1).getStringCellValue());
+		appInd.singleDropDown(gettempName(), sheet.getRow(0).getCell(1).getStringCellValue());
 		Thread.sleep(2000);
 		appInd.singleDropDown(getProj(), sheet.getRow(2).getCell(1).getStringCellValue());
 		Thread.sleep(2000);
 		getSearch();
 		Thread.sleep(4000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Sales.path);
 		Thread.sleep(4000);
 	}
 	public void smsCount() throws Throwable {
@@ -105,13 +105,13 @@ public class Send_Email_SMS_List extends Send_Email_SMS_List_Test{
 		Thread.sleep(1000);
 		getSMS();
 		Thread.sleep(1000);
-		appInd.singleDropDown(gettempName(), sheet.getRow(1).getCell(2).getStringCellValue());
+		appInd.singleDropDown(gettempName(), sheet.getRow(1).getCell(1).getStringCellValue());
 		Thread.sleep(2000);
 		appInd.singleDropDown(getProj(), sheet.getRow(2).getCell(1).getStringCellValue());
 		Thread.sleep(2000);
 		getSearch();
 		Thread.sleep(4000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Sales.path);
 		Thread.sleep(4000);
 	}
 	public void whatsAppCount() throws Throwable {
@@ -130,7 +130,7 @@ public class Send_Email_SMS_List extends Send_Email_SMS_List_Test{
 		Thread.sleep(2000);
 		getSearch();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Sales.path);
 		Thread.sleep(4000);
 	}
 }

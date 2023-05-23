@@ -53,7 +53,7 @@ public class Contracting_Leads_List extends Contracting_Leads_List_Test{
 	 en.clickContracting();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData(sheetname);
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -72,7 +72,7 @@ public class Contracting_Leads_List extends Contracting_Leads_List_Test{
 		Thread.sleep(1000);
 		leadslist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 		
 	}
@@ -87,7 +87,7 @@ public class Contracting_Leads_List extends Contracting_Leads_List_Test{
 		Thread.sleep(2000);
 		leadslist.getgo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
@@ -102,7 +102,7 @@ public class Contracting_Leads_List extends Contracting_Leads_List_Test{
 		Thread.sleep(2000);
 		leadslist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 		Thread.sleep(2000);
 	}
 }

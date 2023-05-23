@@ -1,7 +1,6 @@
 package com.RE.Purchase.Test;
 
 import org.testng.annotations.Test;
-
 import Utilities.DriverScript;
 import MenuClick.FullApplicationTestScripts;
 

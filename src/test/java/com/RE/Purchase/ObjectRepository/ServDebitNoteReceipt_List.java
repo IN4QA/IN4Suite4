@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.RE.Purchase.Test.ServDebitNoteReceipt_List_Test;
+import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
 import Utilities.Datatable;
 import Utilities.Frames;
@@ -16,14 +17,15 @@ import Utilities.MainMenu;
 public class ServDebitNoteReceipt_List extends ServDebitNoteReceipt_List_Test{
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String SheetName="ServDebitNoteReceipt_List" ;
+	public static String SheetName;
 	public static WebDriver iDriver;
 	public  ServDebitNoteReceipt_List(WebDriver odriver) {
 		iDriver=odriver;
 		PageFactory.initElements(iDriver,this);
+		SheetName=this.getClass().getSimpleName();
 		
 	}
-	@FindBy(xpath="//a[text()='Service Debit Note Receipt']")
+	@FindBy(xpath="//a[text()='Service Provider Debit Note Receipt']")
 	public WebElement servdebnoterecipt;
 	public void getservdebnoterecipt() {
 		servdebnoterecipt.click();
@@ -54,7 +56,7 @@ public class ServDebitNoteReceipt_List extends ServDebitNoteReceipt_List_Test{
 		Go.click();
 	}
 	
-	 public static void MenuSubMenu()
+	 public void MenuSubMenu()
 	 {
 	try
 	{
@@ -62,12 +64,11 @@ public class ServDebitNoteReceipt_List extends ServDebitNoteReceipt_List_Test{
 	mm.clickPurchase();
 	 Thread.sleep(2000);
 	 Purchase en = new Purchase(iDriver);
-	// Frames.SubMenuFrame();
 	 Thread.sleep(2000);
 	 en.clickPayments();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("ServDebitNoteReceipt List");
+	 sheet = xml.excelData(SheetName,Purchase.inputpath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -97,7 +98,7 @@ public class ServDebitNoteReceipt_List extends ServDebitNoteReceipt_List_Test{
 		 project.sendKeys(Keys.ENTER);
 		 ServDebitNoteReceipt.getGo();
 		 Thread.sleep(1000);
-		 ListPageCount.PageCount(nameofCurrentmethod, SheetName);
+		 ListPageCount.PageCount(nameofCurrentmethod, SheetName,Purchase.path);
 		 Thread.sleep(1000);
 		 }
 	

@@ -17,13 +17,14 @@ import Utilities.MainMenu;
 public class Labour_List extends Labour_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "Labour_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public static String fDate="Jan 01,2000";
 	
 	public Labour_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Labour']")
@@ -64,7 +65,7 @@ public class Labour_List extends Labour_List_Test {
 	 en.clickSiteActivity();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("Labour List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -81,7 +82,7 @@ public class Labour_List extends Labour_List_Test {
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		labourList.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 	}
 	
@@ -96,7 +97,7 @@ public class Labour_List extends Labour_List_Test {
 		Thread.sleep(1000);
 		labourList.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}

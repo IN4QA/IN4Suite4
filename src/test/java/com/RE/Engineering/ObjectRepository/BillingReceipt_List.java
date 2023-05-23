@@ -73,7 +73,7 @@ public class BillingReceipt_List extends BillingReceipt_List_Test{
 		en.clickBilling();
 		Thread.sleep(1000);		
 		xml=new Datatable();
-		sheet=xml.excelData(sheetname);
+		sheet = xml.excelData(sheetname,Engineering.inputPath);
 	}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -86,13 +86,13 @@ public class BillingReceipt_List extends BillingReceipt_List_Test{
 		receiptlist.getreceiptlink();
 		Thread.sleep(1000);
 		Frames.rightFrame();
-		appInd.singleDropDown(getclientDD(), sheet.getRow(0).getCell(1).getStringCellValue());
+		appInd.singleDropDown(getprojectDD(), sheet.getRow(0).getCell(1).getStringCellValue());
 		Thread.sleep(1000);
-		appInd.singleDropDown(getprojectDD(), sheet.getRow(0).getCell(2).getStringCellValue());
+		appInd.singleDropDown(getclientDD(), sheet.getRow(1).getCell(1).getStringCellValue());
 		Thread.sleep(1000);
 		receiptlist.getgobutton();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrentMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 		
 	}
@@ -106,13 +106,13 @@ public class BillingReceipt_List extends BillingReceipt_List_Test{
 		Thread.sleep(1000);
 		appInd.seletDate(todatepicker, toDate);
 		Thread.sleep(1000);
-		appInd.singleDropDown(getclientDD(), sheet.getRow(0).getCell(1).getStringCellValue());
+		appInd.singleDropDown(getprojectDD(), sheet.getRow(0).getCell(1).getStringCellValue());
 		Thread.sleep(1000);
-		appInd.singleDropDown(getprojectDD(), sheet.getRow(0).getCell(2).getStringCellValue());
+		appInd.singleDropDown(getclientDD(), sheet.getRow(1).getCell(1).getStringCellValue());
 		Thread.sleep(1000);
 		receiptlist.getgobutton();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrentMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 		
 	}

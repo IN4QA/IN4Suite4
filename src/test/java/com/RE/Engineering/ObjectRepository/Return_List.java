@@ -17,11 +17,12 @@ public class Return_List extends Return_List_Test{
 	
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "Return_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public Return_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath = "//a[text()='Return Inventory']")
@@ -53,7 +54,7 @@ public class Return_List extends Return_List_Test{
 		asset.click();
 	}
 	
-	public static void MenuSubMenu()
+	public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -64,7 +65,7 @@ public class Return_List extends Return_List_Test{
 	 en.clickInventory();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("Return List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -84,7 +85,7 @@ public class Return_List extends Return_List_Test{
 }
 	
 	
-	public static void material() throws Throwable {
+	public  void material() throws Throwable {
 		
 		ReturnList.getReturnInventry();
 		Frames.rightFrame();
@@ -93,12 +94,12 @@ public class Return_List extends Return_List_Test{
 		projectDD(ReturnList.getproject(), sheet.getRow(0).getCell(1).getStringCellValue());
 		Thread.sleep(1000);
 		ReturnList.getGo();
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
 	
-	public static void asset() throws Throwable {
+	public  void asset() throws Throwable {
 		Frames.SubMenuFrame();
 		ReturnList.getReturnInventry();
 		Frames.rightFrame();
@@ -108,12 +109,12 @@ public class Return_List extends Return_List_Test{
 		Thread.sleep(2000);
 		projectDD(ReturnList.getproject(), sheet.getRow(0).getCell(1).getStringCellValue());
 		ReturnList.getGo();
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 	}
 
    
-public static void matwithstatus() throws Throwable {
+public  void matwithstatus() throws Throwable {
 		Frames.SubMenuFrame();
 		ReturnList.getReturnInventry();
 		Frames.rightFrame();
@@ -125,7 +126,7 @@ public static void matwithstatus() throws Throwable {
 		Thread.sleep(1000);
 		ReturnList.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
     }
 }

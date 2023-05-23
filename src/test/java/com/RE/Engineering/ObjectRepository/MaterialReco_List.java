@@ -18,11 +18,12 @@ public class MaterialReco_List extends MaterialReco_List_Test{
 	
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "MaterialReco_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public MaterialReco_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath = "//a[text()='Material Reconciliation']")
@@ -55,7 +56,7 @@ public class MaterialReco_List extends MaterialReco_List_Test{
 	}
 	
 		
-	public static void MenuSubMenu()
+	public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -66,7 +67,7 @@ public class MaterialReco_List extends MaterialReco_List_Test{
 	 en.clickInventory();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("MaterialReco List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -86,7 +87,7 @@ public class MaterialReco_List extends MaterialReco_List_Test{
 }
 	
 	
-	public static void company() throws Throwable {
+	public  void company() throws Throwable {
 		MaterialReco.getmaterialReco();
 		Frames.rightFrame();
 		Thread.sleep(1000);
@@ -95,13 +96,13 @@ public class MaterialReco_List extends MaterialReco_List_Test{
 		Thread.sleep(1000);
 		MaterialReco.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
 	
 	
-	public static void companywithstore() throws Throwable {
+	public  void companywithstore() throws Throwable {
 		Frames.SubMenuFrame();
 		MaterialReco.getmaterialReco();
 		Frames.rightFrame();
@@ -113,7 +114,7 @@ public class MaterialReco_List extends MaterialReco_List_Test{
 		Thread.sleep(1000);
 		MaterialReco.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
     }
 }

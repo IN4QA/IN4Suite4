@@ -14,14 +14,15 @@ import Utilities.Frames;
 import Utilities.ListPageCount;
 import Utilities.MainMenu;
 
-public class Tendering_ContractorResponse_List extends Tendering_ContractorResponse_List_Test {
+public class Tendering_ContrResponse_List extends Tendering_ContractorResponse_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "ContResponse_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
-	public Tendering_ContractorResponse_List(WebDriver oDriver) {
+	public Tendering_ContrResponse_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Contractor Response']")
@@ -42,7 +43,7 @@ public class Tendering_ContractorResponse_List extends Tendering_ContractorRespo
 	
 	
 	
-	public static void MenuSubMenu()
+	public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -53,7 +54,7 @@ public class Tendering_ContractorResponse_List extends Tendering_ContractorRespo
 	 en.clickTendering();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("ContResponse List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -68,7 +69,7 @@ public class Tendering_ContractorResponse_List extends Tendering_ContractorRespo
 	}
 	
 		
-	public static void go() throws Throwable {
+	public void go() throws Throwable {
 		Frames.SubMenuFrame();		
 		Thread.sleep(1000);
 		ContResponse.getContResponselink();
@@ -77,7 +78,7 @@ public class Tendering_ContractorResponse_List extends Tendering_ContractorRespo
 		Thread.sleep(1000);
 		ContResponse.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}

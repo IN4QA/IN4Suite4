@@ -17,11 +17,12 @@ import Utilities.MainMenu;
 public class Mbook_List extends Mbook_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "Mbook_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public Mbook_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='MBook']")
@@ -62,7 +63,7 @@ public class Mbook_List extends Mbook_List_Test {
 	 en.clickSiteActivity();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("Mbook List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -80,7 +81,7 @@ public class Mbook_List extends Mbook_List_Test {
 		appInd.singleDropDown(getProjectDD(),sheet.getRow(0).getCell(1).getStringCellValue());
 		Mbooklist.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 	}
 	
@@ -91,13 +92,15 @@ public class Mbook_List extends Mbook_List_Test {
 		Frames.rightFrame();
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		appInd.singleDropDown(getProjectDD(),sheet.getRow(0).getCell(1).getStringCellValue());
+		Thread.sleep(1000);
 		appInd.singleDropDown(getAbstractStatusDD(),sheet.getRow(1).getCell(1).getStringCellValue());
 		Thread.sleep(1000);
 		Mbooklist.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
+	
 	
 }

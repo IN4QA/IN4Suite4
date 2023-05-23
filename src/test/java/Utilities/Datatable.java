@@ -369,9 +369,9 @@ public class Datatable extends DriverScript {
 	}
 
 	// Read data from the excel
-	public XSSFSheet excelData(String sheetname) throws IOException {
+	public XSSFSheet excelData(String sheetname , String inputPath) throws IOException {
 
-		FileInputStream fis = new FileInputStream("D:\\myworkspace\\IN4Suite4\\Configuration\\Data.xlsx");
+		FileInputStream fis = new FileInputStream(inputPath);
 		XSSFWorkbook wb = new XSSFWorkbook(fis);
 		XSSFSheet sheet = wb.getSheet(sheetname);
 		return sheet;
@@ -389,9 +389,10 @@ public class Datatable extends DriverScript {
 	}
 
 	static int row=0;
-    public static void writeExcel(String testname, String output, String sheetname) throws IOException{
+    public static void writeExcel(String testname, String output, String sheetname,String path) throws IOException{
 
-        File file =    new File("D:\\myworkspace\\IN4Suite4\\test-output\\Output.xlsx");
+        File file =    new File(path);
+        
 
         FileInputStream inputStream = new FileInputStream(file);
 
@@ -424,3 +425,5 @@ public class Datatable extends DriverScript {
     }
 
 }
+
+

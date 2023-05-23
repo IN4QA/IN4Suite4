@@ -20,7 +20,7 @@ public class administrativeReceipts_List extends administrativeReceipts_List_Tes
 	public static XSSFSheet sheet;
 	public static Datatable xml;
 	public static WebDriver iDriver;
-	public static String sheetname;
+	public static String sheetname="administrativeReceipts_List";
 	public static String fDate = "Jan 01, 2000";
 	public administrativeReceipts_List(WebDriver oDriver) {
 		iDriver = oDriver;
@@ -59,9 +59,9 @@ public class administrativeReceipts_List extends administrativeReceipts_List_Tes
 			Thread.sleep(2000);
 			Sales en = new Sales(iDriver);
 			en.clickBilling();
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			xml = new Datatable();
-			sheet = xml.excelData(sheetname);
+			sheet = xml.excelData(sheetname,Sales.inputPath);
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -69,7 +69,7 @@ public class administrativeReceipts_List extends administrativeReceipts_List_Tes
 		}
 	}
 	
-	public void noFilter() throws Throwable {
+	public void S_Adminstrative_noFilter() throws Throwable {
 		getAdminReceiptsLink();
 		Thread.sleep(2000);
 		Frames.rightFrame();
@@ -78,11 +78,11 @@ public class administrativeReceipts_List extends administrativeReceipts_List_Tes
 		Thread.sleep(2000);
 		getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Sales.path);
 		Thread.sleep(4000);
 	}
 	
-	public void project() throws Throwable {
+	public void S_Adminstrative_project() throws Throwable {
 		Frames.SubMenuFrame();
 		getAdminReceiptsLink();
 		Thread.sleep(2000);
@@ -99,7 +99,7 @@ public class administrativeReceipts_List extends administrativeReceipts_List_Tes
 		Thread.sleep(2000);
 		getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Sales.path);
 		Thread.sleep(4000);
 	}
 }

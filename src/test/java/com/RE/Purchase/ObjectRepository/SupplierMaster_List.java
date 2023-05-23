@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.RE.Purchase.Test.SupplierMaster_List_Test;
+import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
 import Utilities.AppIndependentMethods;
 import Utilities.Datatable;
@@ -23,6 +24,7 @@ public class SupplierMaster_List extends SupplierMaster_List_Test{
 			public  SupplierMaster_List(WebDriver oDriver) {
 				iDriver = oDriver;
 				PageFactory.initElements(iDriver, this);
+				SheetName=this.getClass().getSimpleName();
 			}
 			
 			@FindBy(xpath="//a[text()='Supplier']")
@@ -42,7 +44,7 @@ public class SupplierMaster_List extends SupplierMaster_List_Test{
 				go.click();
 			}
 			
-			public static void  MenuSubMenu() {
+			public  void  MenuSubMenu() {
 				try {
 					MainMenu mm=new MainMenu(iDriver);
 					mm.clickPurchase();
@@ -51,7 +53,7 @@ public class SupplierMaster_List extends SupplierMaster_List_Test{
 					en.clickmasters();
 					Thread.sleep(1000);
 					xml =new Datatable();
-					sheet=xml.excelData("Supplier Master");
+					sheet=xml.excelData(SheetName,Purchase.inputpath);
 				} 
 				catch (Exception e) {
 					e.printStackTrace();
@@ -60,18 +62,18 @@ public class SupplierMaster_List extends SupplierMaster_List_Test{
 				}
 			}
 			
-			public static void go() throws Throwable{
+			public  void go() throws Throwable{
 				String nameofCurrentMethod=new Throwable().getStackTrace()[0].getMethodName();
 				suppliermaster.getsupplier();
 				Thread.sleep(1000);
 				Frames.rightFrame();
 				suppliermaster.getgo();
 				Thread.sleep(1000);
-				ListPageCount.PageCount(nameofCurrentMethod, SheetName);
+				ListPageCount.PageCount(nameofCurrentMethod, SheetName,Purchase.path);
 				Thread.sleep(1000);
 			}
 			
-			public static void status() throws Throwable{
+			public  void status() throws Throwable{
 				String nameofCurrentMethod=new Throwable().getStackTrace()[0].getMethodName();
 				Frames.SubMenuFrame();
 				suppliermaster.getsupplier();
@@ -81,7 +83,7 @@ public class SupplierMaster_List extends SupplierMaster_List_Test{
 				Thread.sleep(1000);
 				suppliermaster.getgo();
 				Thread.sleep(1000);
-				ListPageCount.PageCount(nameofCurrentMethod, SheetName);
+				ListPageCount.PageCount(nameofCurrentMethod, SheetName,Purchase.path);
 				Thread.sleep(1000);
 			}
 			

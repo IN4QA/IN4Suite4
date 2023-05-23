@@ -17,11 +17,12 @@ import Utilities.MainMenu;
 public class Tendering_FloatTendering_List extends Tendering_FloatTendering_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "FloatTendering_List";
+	public static String sheetname ;
 	public static WebDriver iDriver;
 	public Tendering_FloatTendering_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Float Tender']")
@@ -30,8 +31,8 @@ public class Tendering_FloatTendering_List extends Tendering_FloatTendering_List
 		floattender.click();
 	}
 	@FindBy(id="ddlProject")
-	private WebElement project;
-	public WebElement getProject() {
+	private static WebElement project;
+	public static WebElement getProject() {
 		return project;
 	}
 	@FindBy(id="btnGo")
@@ -53,7 +54,7 @@ public class Tendering_FloatTendering_List extends Tendering_FloatTendering_List
 	 en.clickTendering();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("FloatTendering List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -70,16 +71,18 @@ public class Tendering_FloatTendering_List extends Tendering_FloatTendering_List
 		
 		
     public static void project() throws Throwable {
+		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		Frames.SubMenuFrame();		
 		Thread.sleep(1000);
 		FloatTendering.getFloatTendlink();
+		Thread.sleep(1000);
 		Frames.rightFrame();
-		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
-		singleDD(FloatTendering.getProject(), sheet.getRow(0).getCell(1).getStringCellValue());
+		Thread.sleep(1000);
+		appInd.singleDropDown(getProject(), sheet.getRow(0).getCell(1).getStringCellValue());
 		Thread.sleep(1000);
 		FloatTendering.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}

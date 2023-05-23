@@ -19,7 +19,9 @@ public class Pur_Search_List_Test extends DriverScript{
 		searchsuppliercert.searchsuppcert();
 		searchsuppliercert.searchsuppadvance();
 		searchsuppliercert.searchpurchaseorders();
-	//	searchsuppliercert.searchTransferorders(); 4.0 UI issue exists in the list page
-	//	searchsuppliercert.searchsuppliers();  4.0 UI issue exists in the list page
+		searchsuppliercert.searchTransferorders();
+		searchsuppliercert.searchsuppliers();
 	}
 }
+
+

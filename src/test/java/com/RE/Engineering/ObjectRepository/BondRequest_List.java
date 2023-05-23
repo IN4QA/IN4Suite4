@@ -53,7 +53,7 @@ public class BondRequest_List extends BondRequest_List_Test{
 		en.clickContracting();
 		Thread.sleep(1000);		
 		xml=new Datatable();
-		sheet=xml.excelData(sheetname);
+		sheet=xml.excelData(sheetname,Engineering.inputPath);
 	}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -71,7 +71,7 @@ public class BondRequest_List extends BondRequest_List_Test{
 		Thread.sleep(1000);
 		bondrequestlist.getgobutton();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrentMethod, sheetname,Engineering.path);
 		
 	}
 

@@ -17,11 +17,12 @@ import Utilities.MainMenu;
 public class Modification_List extends Modification_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "Modification_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public Modification_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(id="ddlProject")
@@ -57,7 +58,7 @@ public class Modification_List extends Modification_List_Test {
 	
 	
 	
-	public static void MenuSubMenu()
+	public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -65,10 +66,10 @@ public class Modification_List extends Modification_List_Test {
 	 mm.clickEngineering();
 	 Thread.sleep(2000);
 	 Engineering en = new Engineering(iDriver);
-	 en.clickModifications();
+	 Engineering.clickModifications();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("Modification List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -83,23 +84,23 @@ public class Modification_List extends Modification_List_Test {
 	}
 	
 		
-	public static void projectandsubproject() throws Throwable {
+	public  void projectandsubproject() throws Throwable {
 		Frames.SubMenuFrame();		
 		Thread.sleep(1000);
 		Frames.rightFrame();
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		singleDD(modificationlist.getProject(), sheet.getRow(0).getCell(1).getStringCellValue());
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		singleDD(modificationlist.getSubProject(), sheet.getRow(1).getCell(1).getStringCellValue());
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		modificationlist.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
 	
-	public static void mandatorywithstatus() throws Throwable {
+	public  void mandatorywithstatus() throws Throwable {
 		Frames.SubMenuFrame();
 		clickmodificationlink();
 		Thread.sleep(1000);
@@ -113,7 +114,7 @@ public class Modification_List extends Modification_List_Test {
 		Thread.sleep(1000);
 		modificationlist.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}

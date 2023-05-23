@@ -1,17 +1,13 @@
 package com.RE.Purchase.ObjectRepository;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-
 import com.RE.Purchase.Test.UnpaidGRN_List_Test;
 import com.RE.Submodules.Purchase;
-
 import Utilities.Datatable;
 import Utilities.Frames;
 import Utilities.ListPageCount;
@@ -22,10 +18,11 @@ public class UnpaidGRN_List extends UnpaidGRN_List_Test{
 	public static WebDriver iDriver;
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "UnpaidGRN_List";
+	public static String SheetName = "UnpaidGRN_List";
 	public UnpaidGRN_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		SheetName=this.getClass().getSimpleName();
 	}
 	
 	
@@ -57,7 +54,7 @@ public class UnpaidGRN_List extends UnpaidGRN_List_Test{
 	 
 	 
 	 
-	public static void MenuSubMenu()
+	public void MenuSubMenu()
 	 {
 	try
 	{
@@ -65,7 +62,7 @@ public class UnpaidGRN_List extends UnpaidGRN_List_Test{
 	 mm.clickPurchase();
 	 Thread.sleep(2000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("UnpaidGRN List");
+	 sheet = xml.excelData(SheetName,Purchase.inputpath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -87,7 +84,7 @@ public class UnpaidGRN_List extends UnpaidGRN_List_Test{
 }
 	//------- case1: Project wise ------//
 	
-		public static void project() throws Throwable {
+		public void project() throws Throwable {
 			
 			Frames.SubMenuFrame();
 			UnpaidGRNList.getUnpaidGRN();
@@ -97,13 +94,13 @@ public class UnpaidGRN_List extends UnpaidGRN_List_Test{
 			projectDD(UnpaidGRNList.getProject(),sheet.getRow(0).getCell(1).getStringCellValue());
 			UnpaidGRNList.getGo();
 			Thread.sleep(2000);
-			ListPageCount.PageCount(nameofCurrMethod, sheetname);
+			ListPageCount.PageCount(nameofCurrMethod, SheetName,Purchase.path);
 			Thread.sleep(2000);
 			}
 		
 
   //---- case2: project wise with status----//
-        public static void projectwithstatus() throws Throwable {
+        public  void projectwithstatus() throws Throwable {
 	
         	Frames.SubMenuFrame();
         	UnpaidGRNList.getUnpaidGRN();
@@ -115,7 +112,7 @@ public class UnpaidGRN_List extends UnpaidGRN_List_Test{
         	statusDD(UnpaidGRNList.getStatus(),sheet.getRow(1).getCell(1).getStringCellValue());
         	UnpaidGRNList.getGo();
         	Thread.sleep(2000);
-        	ListPageCount.PageCount(nameofCurrMethod, sheetname);
+        	ListPageCount.PageCount(nameofCurrMethod, SheetName,Purchase.path);
         	Thread.sleep(2000);
         	}
     	}	

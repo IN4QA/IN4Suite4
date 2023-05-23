@@ -8,17 +8,17 @@ import Utilities.DriverScript;
 
 public class DocTemplate_List_Test extends DriverScript{
 	
-	public static com.RE.Engineering_Masters.ObjectRepository.DocTemplate_List assetlist = null;
+	public static com.RE.Engineering_Masters.ObjectRepository.DocTemplate_List DocTemplate = null;
 
 	@Test
 	public  void AssetList() throws Throwable {
 		
 		FullApplicationTestScripts login = new FullApplicationTestScripts();
 		login.loginTest();
-		assetlist = new com.RE.Engineering_Masters.ObjectRepository.DocTemplate_List(oBrowser);
+		DocTemplate = new com.RE.Engineering_Masters.ObjectRepository.DocTemplate_List(oBrowser);
 		
-		assetlist.MenuSubMenu();
-		assetlist.mandatoryfilters();
+		DocTemplate.MenuSubMenu();
+		DocTemplate.mandatoryfilters();
 		
 	}
 }

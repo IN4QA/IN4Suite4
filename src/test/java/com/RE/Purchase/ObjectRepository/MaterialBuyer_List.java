@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
 import Utilities.Datatable;
 import Utilities.Frames;
@@ -16,11 +18,12 @@ public class MaterialBuyer_List extends MaterialBuyer_List_Test{
 	
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String SheetName="MaterialBuyer_List";
+	public static String SheetName;
 	public static WebDriver iDriver;
 	public MaterialBuyer_List(WebDriver oDriver) {
 		iDriver=oDriver;
 		PageFactory.initElements(iDriver, this);
+		SheetName=this.getClass().getSimpleName();
 		
 	}
 	@FindBy(xpath="//a[text()='Material Buyer']")
@@ -61,7 +64,7 @@ public class MaterialBuyer_List extends MaterialBuyer_List_Test{
 			en.clickmasters();
 			Thread.sleep(1000);
 			xml=new Datatable();
-			sheet=xml.excelData("MaterialBuyer List");
+			sheet=xml.excelData(SheetName , Purchase.inputpath);
 			
 		} catch (Exception e) {
 			
@@ -77,7 +80,7 @@ public class MaterialBuyer_List extends MaterialBuyer_List_Test{
 		Frames.rightFrame();
 		materialbuyerlist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, SheetName);
+		ListPageCount.PageCount(nameofCurrentMethod, SheetName,Purchase.path);
 		Thread.sleep(1000);
 	}
 	
@@ -95,7 +98,7 @@ public class MaterialBuyer_List extends MaterialBuyer_List_Test{
 		Thread.sleep(1000);
 		materialbuyerlist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, SheetName);
+		ListPageCount.PageCount(nameofCurrentMethod, SheetName,Purchase.path);
 		Thread.sleep(1000);
 	}
 	

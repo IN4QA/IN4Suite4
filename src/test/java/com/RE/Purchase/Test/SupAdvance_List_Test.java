@@ -16,11 +16,9 @@ public class SupAdvance_List_Test extends DriverScript{
 		
 		SuppAdvaList.MenuSubMenu();
 		SuppAdvaList.company();	
-		SuppAdvaList.project();
-		
+		SuppAdvaList.project();	
 	}
 	
 	
 }
 
-//Total Records count is not listing in the first page so that pagecount method is not working 

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import com.RE.Submodules.Engineering;
+import com.RE.Submodules.Sales;
 
 public class ListPageCount extends DriverScript {
 	/*********************************
@@ -20,7 +21,7 @@ public class ListPageCount extends DriverScript {
 	public static String pagelistname;
 	public static int row = 0, col = 1;
 
-	public static void PageCount(String testname, String sheetname) throws Exception {
+	public static void PageCount(String testname, String sheetname, String path) throws Exception {
 
 		try {
 			// Total record count
@@ -69,27 +70,27 @@ public class ListPageCount extends DriverScript {
 			System.out.println("method name :" + testname);
 			if (records == (semiTotal + listedrecord)) {
 				try {
-					Datatable.writeExcel(testname, "PASS", sheetname);
+					Datatable.writeExcel(testname, "PASS", sheetname, path);
 					Assert.assertEquals(records, (semiTotal + listedrecord));
 				} catch (Exception e) {
 					System.out.println(e);
 				}
 			} else {
-				Datatable.writeExcel(testname, "FAIL", sheetname);
+				Datatable.writeExcel(testname, "FAIL", sheetname, path);
 			}
 			row++;
 
 		} else {
 			int emptyRecords = oBrowser.findElements(By.xpath("//td[text()='No Records Found.']")).size();
 			if (emptyRecords > 0) {
-				Datatable.writeExcel(testname, "No Records Found", sheetname);
+				Datatable.writeExcel(testname, "No Records Found", sheetname, path);
 			} else {
 				List<WebElement> totalindentno = oBrowser
 						.findElements(By.xpath("//table[contains(@class,'in4-table')]//tbody/tr/td[1]")); //table[@class='in4-table']/tbody/tr/td[1]
 				int size = totalindentno.size();
 				if (size > 0) {
-					System.out.println("Total Indents displayed in case of single page: " + size);
-					Datatable.writeExcel(testname, "PASS", sheetname);
+					System.out.println("Total Records displayed in case of single page: " + size);
+					Datatable.writeExcel(testname, "PASS", sheetname,path);
 				}
 			}
 		}

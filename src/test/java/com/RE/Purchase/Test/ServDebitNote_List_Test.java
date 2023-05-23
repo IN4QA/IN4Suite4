@@ -2,6 +2,9 @@ package com.RE.Purchase.Test;
 
 import Utilities.DriverScript;
 import org.testng.annotations.Test;
+
+import com.RE.Purchase.ObjectRepository.ServDebitNote_List;
+
 import MenuClick.FullApplicationTestScripts;
 
 public class ServDebitNote_List_Test extends DriverScript {

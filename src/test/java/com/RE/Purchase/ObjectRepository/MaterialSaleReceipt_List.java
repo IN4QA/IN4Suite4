@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
 import com.RE.Purchase.Test.MaterialSaleReceipt_List_Test;
 import Utilities.Datatable;
@@ -16,11 +18,12 @@ public class MaterialSaleReceipt_List extends MaterialSaleReceipt_List_Test{
 
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname="MaterialSaleReceipt_List";
+	public static String Sheetname;
 	public static WebDriver iDriver;
 	public MaterialSaleReceipt_List (WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		Sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Material Sales Receipt']")
@@ -49,12 +52,12 @@ public class MaterialSaleReceipt_List extends MaterialSaleReceipt_List_Test{
 	mm.clickPurchase();
 	 Thread.sleep(2000);
 	 Purchase en = new Purchase(iDriver);
-	// Frames.SubMenuFrame();
+	Frames.SubMenuFrame();
 	 Thread.sleep(2000);
 	 en.clickPayments();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("MaterialSaleReceipt List");
+	 sheet = xml.excelData(Sheetname , Purchase.inputpath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -70,7 +73,7 @@ public class MaterialSaleReceipt_List extends MaterialSaleReceipt_List_Test{
 	 		Frames.rightFrame();
 	 		MaterialSaleReceiptList.getgo();
 	 		Thread.sleep(1000);
-	 		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+	 		ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 			Thread.sleep(1000);
 	 	}
 	 	public void contarctor() throws Throwable{
@@ -83,7 +86,7 @@ public class MaterialSaleReceipt_List extends MaterialSaleReceipt_List_Test{
 	 		appInd.singleDropDown(MaterialSaleReceiptList.getBuyerType(), sheet.getRow(0).getCell(1).getStringCellValue());
 	 		Thread.sleep(1000);
 	 		MaterialSaleReceiptList.getgo();
-	 		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+	 		ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 			Thread.sleep(1000);
 	 		
 	 	}
@@ -97,7 +100,7 @@ public class MaterialSaleReceipt_List extends MaterialSaleReceipt_List_Test{
 	 		appInd.singleDropDown(MaterialSaleReceiptList.getBuyerType(), sheet.getRow(1).getCell(1).getStringCellValue());
 	 		Thread.sleep(1000);
 	 		MaterialSaleReceiptList.getgo();
-	 		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+	 		ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 			Thread.sleep(1000);
 	 	}
 	 	public void ThirdPartyBuyer() throws Throwable{
@@ -110,7 +113,7 @@ public class MaterialSaleReceipt_List extends MaterialSaleReceipt_List_Test{
 	 		appInd.singleDropDown(MaterialSaleReceiptList.getBuyerType(), sheet.getRow(2).getCell(1).getStringCellValue());
 	 		Thread.sleep(1000);
 	 		MaterialSaleReceiptList.getgo();
-	 		ListPageCount.PageCount(nameofCurrMethod, sheetname);
+	 		ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 			Thread.sleep(1000);
 	 	}
 	 	

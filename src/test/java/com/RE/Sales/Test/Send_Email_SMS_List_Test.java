@@ -19,6 +19,6 @@ public class Send_Email_SMS_List_Test extends DriverScript{
 		
 		Send_Email_SMS_List.emailCount();
 		Send_Email_SMS_List.smsCount();
-//		Send_Email_SMS_List.whatsAppCount();
+	//	Send_Email_SMS_List.whatsAppCount();
 	}
 }

@@ -5,10 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import com.RE.Engineering.Test.Billing_LabourAdvance_List_Test;
 import com.RE.Submodules.Engineering;
-
 import Utilities.Datatable;
 import Utilities.Frames;
 import Utilities.ListPageCount;
@@ -60,7 +58,8 @@ public class Billing_LabourAdvance_List extends Billing_LabourAdvance_List_Test{
 	 en.clickBilling();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData(sheetname);
+	 
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -75,7 +74,7 @@ public class Billing_LabourAdvance_List extends Billing_LabourAdvance_List_Test{
 		Frames.rightFrame();
 		labouradvancelist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrentMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 		}
 	
@@ -88,7 +87,7 @@ public class Billing_LabourAdvance_List extends Billing_LabourAdvance_List_Test{
 		Thread.sleep(1000);
 		labouradvancelist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrentMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 		}
 	
@@ -103,7 +102,7 @@ public class Billing_LabourAdvance_List extends Billing_LabourAdvance_List_Test{
 		Thread.sleep(1000);
 		labouradvancelist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrentMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 		}
 }

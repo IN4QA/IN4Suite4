@@ -6,13 +6,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import Utilities.AppIndependentMethods;
 import Utilities.DriverScript;
 import Utilities.Frames;
-
 public class Purchase extends DriverScript{
 WebDriver iDriver;
+
+public static String path="Purchase";
+public static String inputpath="Purchase";
+public static String InputCreatePath=appInd.readConfig("Purchasecreate");
+public static String OutputCreatePath=appInd.readConfig("PurchaseCreateOutput");
+//D:\myworkspace\IN4Suite4\test-output
 	
 	public Purchase(WebDriver oDriver)
 	{
@@ -52,6 +55,12 @@ WebDriver iDriver;
 		return search;
 	}
 	
+	@FindBy(xpath = "//a[text()='Approvals ']")
+	private static WebElement approavls;
+	public WebElement getapprovals() {
+		return approavls;
+	}
+	
 	//	public static boolean clickInventory()
 	//{
 	//	try
@@ -71,7 +80,7 @@ WebDriver iDriver;
 		return payments;
 	}
 	
-	public static boolean clickPayments()
+	public  boolean clickPayments()
 	{
 		try
 		{
@@ -84,7 +93,7 @@ WebDriver iDriver;
 		}
 	}
 	
-	public static boolean clickquotation()
+	public  boolean clickquotation()
 	{
 		try
 		{
@@ -120,6 +129,16 @@ WebDriver iDriver;
 		}
 	}
 	
+	public boolean clickapprovals()
+	{
+		try {
+			Frames.SubMenuFrame();
+			appInd.clickObject(approavls);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	
+	}
 
 }

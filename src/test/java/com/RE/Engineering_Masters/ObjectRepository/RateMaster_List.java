@@ -24,11 +24,12 @@ import Utilities.MainMenu;
 public class RateMaster_List extends RateMaster_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "RateMaster_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public RateMaster_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Rate Master']")
@@ -107,7 +108,7 @@ public class RateMaster_List extends RateMaster_List_Test {
 	 Engineering.clickMasters();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("RateMaster List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -136,7 +137,7 @@ public class RateMaster_List extends RateMaster_List_Test {
 		Thread.sleep(1000);
 		ratemasterlist.getGo();
 		Thread.sleep(3000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}

@@ -15,7 +15,7 @@ public static com.RE.Purchase.ObjectRepository.ServiceProviderMasters_List servi
 		login.loginTest();
 		serviceproviderlist=new com.RE.Purchase.ObjectRepository.ServiceProviderMasters_List(oBrowser);
 		serviceproviderlist.MenuSubMenu();
-		serviceproviderlist.go();
+		serviceproviderlist.nofilter();
 		//serviceproviderlist.getstatus();
 	}
 

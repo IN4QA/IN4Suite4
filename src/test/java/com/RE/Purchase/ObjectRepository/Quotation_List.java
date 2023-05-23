@@ -17,11 +17,12 @@ public class Quotation_List extends Quotation_Test_List {
 	
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "Quotation_List";
+	public static String Sheetname = "Quotation_List";
 	public static WebDriver iDriver;
 	public Quotation_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		Sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Quotation']")
@@ -62,12 +63,12 @@ public class Quotation_List extends Quotation_Test_List {
 	mm.clickPurchase();
 	 Thread.sleep(2000);
 	 Purchase en = new Purchase(iDriver);
-	// Frames.SubMenuFrame();
+	 Frames.SubMenuFrame();
 	 Thread.sleep(2000);
 	 en.clickquotation();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("Quotation List");
+	 sheet = xml.excelData(Sheetname,Purchase.inputpath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -90,7 +91,7 @@ public class Quotation_List extends Quotation_Test_List {
 		Thread.sleep(1000);
 		Quotationlist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,Sheetname,Purchase.path);
 		Thread.sleep(1000);
 	}
 	
@@ -105,7 +106,7 @@ public class Quotation_List extends Quotation_Test_List {
 	   Thread.sleep(1000);
 	   Quotationlist.getgo();
 	   Thread.sleep(1000);
-	   ListPageCount.PageCount(nameofCurrMethod, sheetname);
+	   ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 	   Thread.sleep(1000);
    }
    public static void all() throws Throwable{
@@ -119,7 +120,7 @@ public class Quotation_List extends Quotation_Test_List {
 	   Thread.sleep(1000);
 	   Quotationlist.getgo();
 	   Thread.sleep(1000);
-	   ListPageCount.PageCount(nameofCurrMethod, sheetname);
+	   ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 	   Thread.sleep(1000);
    }
    public static void projectwithrfq() throws Throwable{
@@ -130,7 +131,7 @@ public class Quotation_List extends Quotation_Test_List {
 	   singleDD(Quotationlist.getproject(), sheet.getRow(0).getCell(1).getStringCellValue());
 	   Quotationlist.getgo();
 	   Thread.sleep(1000);
-	   ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+	   ListPageCount.PageCount(nameofCurrentMethod, Sheetname,Purchase.path);
 	   Thread.sleep(1000);  
    }
    
@@ -145,7 +146,7 @@ public class Quotation_List extends Quotation_Test_List {
 	   Thread.sleep(1000);
 	   Quotationlist.getgo();
 	   Thread.sleep(1000);
-	   ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+	   ListPageCount.PageCount(nameofCurrentMethod, Sheetname,Purchase.path);
    }
    public static void projectall() throws Exception {
 	   String nameofCurrentMethod=new Throwable().getStackTrace()[0].getMethodName();
@@ -160,7 +161,7 @@ public class Quotation_List extends Quotation_Test_List {
 	   Thread.sleep(1000);
 	   Quotationlist.getgo();
 	   Thread.sleep(1000);
-	   ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+	   ListPageCount.PageCount(nameofCurrentMethod, Sheetname,Purchase.path);
 	   Thread.sleep(1000);
 	   
    }

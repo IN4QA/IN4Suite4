@@ -17,11 +17,12 @@ import Utilities.MainMenu;
 public class GatePass_List extends GatePass_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "GatePass_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public GatePass_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	@FindBy(xpath = "//a[text() = 'Gate Pass']")
 	private WebElement gatepass;
@@ -41,7 +42,7 @@ public class GatePass_List extends GatePass_List_Test {
 	
 	
 	
-	public static void MenuSubMenu()
+	public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -52,7 +53,7 @@ public class GatePass_List extends GatePass_List_Test {
 	 en.clickInventory();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("GatePass List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -66,7 +67,7 @@ public class GatePass_List extends GatePass_List_Test {
 		sct.selectByVisibleText(gatepass_type);
 	}
 		
-	public static void trasfer() throws Throwable {
+	public  void trasfer() throws Throwable {
 		Frames.SubMenuFrame();
 		GatePass.getgatepass();
 		Frames.rightFrame();
@@ -75,11 +76,11 @@ public class GatePass_List extends GatePass_List_Test {
 		GatePass.getGPType();
 		singleDD(GatePass.getGPType(), sheet.getRow(0).getCell(1).getStringCellValue());
 		GatePass.getGo();
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		}
 	
-	public static void returnable() throws Throwable {
+	public  void returnable() throws Throwable {
 		Frames.SubMenuFrame();
 		GatePass.getgatepass();
 		Frames.rightFrame();
@@ -88,10 +89,10 @@ public class GatePass_List extends GatePass_List_Test {
 		GatePass.getGPType();
 		singleDD(GatePass.getGPType(), sheet.getRow(1).getCell(1).getStringCellValue());
 		GatePass.getGo();
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		}
-	public static void nonreturnable() throws Throwable {
+	public  void nonreturnable() throws Throwable {
 		Frames.SubMenuFrame();
 		GatePass.getgatepass();
 		Frames.rightFrame();
@@ -100,9 +101,8 @@ public class GatePass_List extends GatePass_List_Test {
 		GatePass.getGPType();
 		singleDD(GatePass.getGPType(), sheet.getRow(2).getCell(1).getStringCellValue());
 		GatePass.getGo();
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
-	
 	
 }
 }

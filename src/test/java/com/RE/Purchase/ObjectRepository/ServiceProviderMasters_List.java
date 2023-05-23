@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.RE.Purchase.Test.ServiceProviderMasters_List_Test;
+import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
 import Utilities.AppIndependentMethods;
 import Utilities.Datatable;
@@ -22,6 +23,7 @@ public class ServiceProviderMasters_List extends ServiceProviderMasters_List_Tes
 	public   ServiceProviderMasters_List(WebDriver oDriver) {
 		iDriver=oDriver;
 		PageFactory.initElements(iDriver, this);
+		SheetName=this.getClass().getSimpleName();
 		
 	}
 	@FindBy(xpath="//a[text()='Service Provider']")
@@ -42,7 +44,7 @@ public class ServiceProviderMasters_List extends ServiceProviderMasters_List_Tes
 		return status;
 	}
 	
-	public static void  MenuSubMenu() {
+	public  void  MenuSubMenu() {
 		try {
 			MainMenu mm=new MainMenu(iDriver);
 			mm.clickPurchase();
@@ -51,7 +53,7 @@ public class ServiceProviderMasters_List extends ServiceProviderMasters_List_Tes
 			en.clickmasters();
 			Thread.sleep(1000);
 			xml =new Datatable();
-			sheet=xml.excelData("ServiceProviderMasters List");
+			sheet=xml.excelData(SheetName,Purchase.inputpath);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -60,7 +62,7 @@ public class ServiceProviderMasters_List extends ServiceProviderMasters_List_Tes
 		}
 	}
 	
-	public static void go() throws Throwable {
+	public  void nofilter() throws Throwable {
 		String nameofCurrentMethod=new Throwable().getStackTrace()[0].getMethodName();
 		Frames.SubMenuFrame();
 		serviceproviderlist.getserviceprovider();
@@ -69,7 +71,7 @@ public class ServiceProviderMasters_List extends ServiceProviderMasters_List_Tes
 		Thread.sleep(1000);
 		serviceproviderlist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, SheetName);
+		ListPageCount.PageCount(nameofCurrentMethod, SheetName,Purchase.path);
 		Thread.sleep(1000);
 		
 	}
@@ -84,7 +86,7 @@ public class ServiceProviderMasters_List extends ServiceProviderMasters_List_Tes
 		appInd.singleDropDown(serviceproviderlist.getstatus(), sheet.getRow(0).getCell(1).getStringCellValue());
 		serviceproviderlist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, SheetName);
+		ListPageCount.PageCount(nameofCurrentMethod, SheetName,Purchase.path);
 		Thread.sleep(1000);
 		
 	}

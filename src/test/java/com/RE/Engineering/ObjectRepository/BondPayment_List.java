@@ -53,7 +53,7 @@ public class BondPayment_List extends BondPayment_List_Test {
 	 			en.clickContracting();
 	 			Thread.sleep(1000);
 	 			xml = new Datatable();
-	 			sheet = xml.excelData(sheetname);
+	 			sheet = xml.excelData(sheetname,Engineering.inputPath);
 	 		}
 	 		catch (Exception e)
 	 		{
@@ -67,11 +67,11 @@ public class BondPayment_List extends BondPayment_List_Test {
 			bondpaymentlist.getbondpaymentlink();
 			Thread.sleep(1000);
 			Frames.rightFrame();
-			appInd.singleDropDown(getbanname(), sheet.getRow(0).getCell(1).getStringCellValue());
+			appInd.singleDropDown(getbanname(), sheet.getRow(1).getCell(1).getStringCellValue());
 			Thread.sleep(1000);
 			bondpaymentlist.getgo();
 			Thread.sleep(1000);
-			ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+			ListPageCount.PageCount(nameofCurrentMethod, sheetname,Engineering.path);
 			Thread.sleep(1000);	
 	}
 }

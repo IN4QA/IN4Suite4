@@ -58,7 +58,7 @@ public class BillingCreditNote_List extends BillingCreditNote_List_Test{
 		en.clickBilling();
 		Thread.sleep(1000);		
 		xml=new Datatable();
-		sheet=xml.excelData(sheetname);
+		sheet = xml.excelData(sheetname,Engineering.inputPath);
 	}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -75,7 +75,7 @@ public class BillingCreditNote_List extends BillingCreditNote_List_Test{
 		Thread.sleep(1000);
 		crditnotelist.getgobutton();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrentMethod, sheetname,Engineering.path);
 	}
 	public void projectwithstatus() throws Throwable {
 		String nameofCurrentMethod=new Throwable().getStackTrace()[0].getMethodName();
@@ -89,7 +89,7 @@ public class BillingCreditNote_List extends BillingCreditNote_List_Test{
 		Thread.sleep(1000);
 		crditnotelist.getgobutton();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrentMethod, sheetname,Engineering.path);
 	
 	}
 }

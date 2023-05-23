@@ -15,11 +15,12 @@ import Utilities.MainMenu;
 public class CheckList_List extends CheckList_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "CheckList_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public CheckList_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Checklist ']")
@@ -50,7 +51,7 @@ public class CheckList_List extends CheckList_List_Test {
 	
 	
 	
-	public static void MenuSubMenu()
+	public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -61,7 +62,7 @@ public class CheckList_List extends CheckList_List_Test {
 	 en.clickChecklist();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("CheckList List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -72,7 +73,7 @@ public class CheckList_List extends CheckList_List_Test {
 }
 	
 		
-	public static void mandatoryfilters() throws Throwable {
+	public  void mandatoryfilters() throws Throwable {
 		Frames.rightFrame();
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		appInd.singleDropDown(getProject(), sheet.getRow(0).getCell(1).getStringCellValue());
@@ -82,7 +83,7 @@ public class CheckList_List extends CheckList_List_Test {
 		appInd.singleDropDown(getFloorNo(), sheet.getRow(2).getCell(1).getStringCellValue());
 		checklist.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}

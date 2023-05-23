@@ -19,6 +19,6 @@ public class Tendering_TenderLinkToWO_List_Test extends DriverScript{
 		
 		LinkToWO.MenuSubMenu();
 		LinkToWO.go();
-		//tenderRatecomparison.project();
+	//	LinkToWO.project();
 	}
 }

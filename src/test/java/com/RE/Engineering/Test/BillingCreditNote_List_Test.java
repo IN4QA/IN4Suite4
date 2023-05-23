@@ -22,4 +22,3 @@ public static com.RE.Engineering.ObjectRepository.BillingCreditNote_List crditno
 	}
 }
 
-//Data is not listing in the project dropdown in auto server 

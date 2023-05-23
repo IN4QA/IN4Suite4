@@ -1,11 +1,11 @@
 package com.RE.Submodules;
 
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import Utilities.DriverScript;
 import Utilities.Frames;
 
@@ -13,6 +13,10 @@ public class Sales extends DriverScript {
 
 	
     WebDriver iDriver;
+	public static String path = "D:\\myworkspace\\IN4Suite4\\test-output\\SalesOutput.xlsx";
+	public static String inputPath = "D:\\myworkspace\\IN4Suite4\\Configuration\\SalesData.xlsx";
+	public static String CreatePath = "D:\\myworkspace\\IN4Suite4\\Configuration\\SalesCreateData.xlsx";
+	public static String OutPutCreatePath ="D:\\myworkspace\\IN4Suite4\\test-output\\SalesCreateOutput.xlsx";
 	
 	public Sales(WebDriver oDriver)
 	{
@@ -25,6 +29,13 @@ public class Sales extends DriverScript {
 	public  WebElement getBilling()
 	{
 		return Billing;
+	}
+	
+	@FindBy(xpath="//a[text()='Sales Stock']")
+	private static WebElement SalesStock;
+	public  WebElement getSalesStock()
+	{
+		return SalesStock;
 	}
 	
 	@FindBy(xpath="//a[text()='Marketing ']")
@@ -74,6 +85,46 @@ public class Sales extends DriverScript {
 	public  WebElement getAgent()
 	{
 		return Agent;
+	}
+	
+	@FindBy(xpath="//a[text()='Qualified']")
+	private static WebElement Qualified;
+	public  WebElement getQualified()
+	{
+		return Qualified;
+	}
+	@FindBy(xpath="//a[text()='Approvals ']")
+	private static WebElement approvals;
+	public  WebElement getapprovals()
+	{
+		return approvals;
+	}
+	
+	public boolean clickQualified()
+	{
+		try
+		{
+			Frames.SubMenuFrame();
+			appInd.clickObject(Qualified);
+			return true;
+		} catch(Exception e)
+		{
+			return false;
+		}	
+	}
+	
+	
+	public boolean clickSalesStock()
+	{
+		try
+		{
+			Frames.SubMenuFrame();
+			appInd.clickObject(SalesStock);
+			return true;
+		} catch(Exception e)
+		{
+			return false;
+		}	
 	}
 	
 	public boolean clickBilling()
@@ -178,5 +229,18 @@ public class Sales extends DriverScript {
 		{
 			return false;
 		}	
+	}
+
+	public boolean clickApprovals() {
+		try
+		{
+			Frames.SubMenuFrame();
+			appInd.clickObject(approvals);
+			return true;
+		} catch(Exception e)
+		{
+			return false;
+		}	
+		
 	}
 }

@@ -16,11 +16,12 @@ import Utilities.MainMenu;
 public class Billing_DebitNote_List extends Billing_DebitNote_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "DebitNote_List";
+	public static String Sheetname;
 	public static WebDriver iDriver;
 	public Billing_DebitNote_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		Sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Debit Note']")
@@ -46,7 +47,7 @@ public class Billing_DebitNote_List extends Billing_DebitNote_List_Test {
 	
 	
 	
-	public static void MenuSubMenu()
+	public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -57,7 +58,7 @@ public class Billing_DebitNote_List extends Billing_DebitNote_List_Test {
 	 en.clickBilling();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("DebitNote List");	
+	 sheet = xml.excelData(Sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -76,7 +77,7 @@ public class Billing_DebitNote_List extends Billing_DebitNote_List_Test {
 	}
 		
 		
-	public static void project() throws Throwable {
+	public  void project() throws Throwable {
 		Frames.SubMenuFrame();
 		
 		Thread.sleep(1000);
@@ -86,12 +87,12 @@ public class Billing_DebitNote_List extends Billing_DebitNote_List_Test {
 		projectDD(DebitNote.getProject(), sheet.getRow(0).getCell(1).getStringCellValue());
 		DebitNote.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,Sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
 
-	public static void projectandsubproject() throws Throwable {
+	public  void projectandsubproject() throws Throwable {
 		Frames.SubMenuFrame();
 		DebitNote.getDebitNote();
 		Frames.rightFrame();
@@ -101,7 +102,7 @@ public class Billing_DebitNote_List extends Billing_DebitNote_List_Test {
 		subprojectDD(DebitNote.getSubproject(), sheet.getRow(1).getCell(1).getStringCellValue());
 		DebitNote.getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,Sheetname,Engineering.path);
 		Thread.sleep(2000);
 	
 	}

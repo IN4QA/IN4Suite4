@@ -76,7 +76,7 @@ public class LabourCountMapping_List extends LabourCountMapping_List_Test{
 	 en.clickSiteActivity();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData(sheetname);
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -95,7 +95,7 @@ public class LabourCountMapping_List extends LabourCountMapping_List_Test{
 		Thread.sleep(1000);
 		labourcountmaplist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrentMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 		}
 	
@@ -110,7 +110,7 @@ public class LabourCountMapping_List extends LabourCountMapping_List_Test{
 		Thread.sleep(3000);
 		labourcountmaplist.getgo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrentMethod, sheetname,Engineering.path);
 		Thread.sleep(1000);
 		}
 }

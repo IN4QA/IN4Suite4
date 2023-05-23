@@ -17,11 +17,12 @@ import Utilities.MainMenu;
 public class Consultant_List extends Consultant_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "Consultant_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public Consultant_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Consultant']")
@@ -53,9 +54,9 @@ public class Consultant_List extends Consultant_List_Test {
 	 Thread.sleep(2000);
 	 Engineering en = new Engineering(iDriver);
 	 en.clickMasters();
-	 Thread.sleep(1000);
+	 Thread.sleep(2000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("Consultant List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -67,13 +68,14 @@ public class Consultant_List extends Consultant_List_Test {
 	
 		
 	public void Go() throws Throwable {
-		consultantlist.getConsultantLink();
-		Frames.rightFrame();
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
-		consultantlist.getGo();
-		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		consultantlist.getConsultantLink();
 		Thread.sleep(2000);
+		Frames.rightFrame();
+		consultantlist.getGo();
+		Thread.sleep(4000);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
+		Thread.sleep(4000);
 		
 	}
 	
@@ -89,7 +91,7 @@ public class Consultant_List extends Consultant_List_Test {
 		Thread.sleep(1000);
 		consultantlist.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.RE.Purchase.Test.SupCert_List_Test;
+import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
 import Utilities.Datatable;
 import Utilities.Frames;
@@ -17,11 +18,12 @@ public class SupCert_List extends SupCert_List_Test {
 
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "SuppCert_ListTest";
+	public static String Sheetname = "SuppCert_List";
 	public static WebDriver iDriver;
 	public SupCert_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		Sheetname=this.getClass().getSimpleName();
 	}
 
 	
@@ -57,7 +59,7 @@ public class SupCert_List extends SupCert_List_Test {
 	public void getGo() {
 		Go.click();
 	}
-	 public static void MenuSubMenu()
+	 public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -65,12 +67,11 @@ public class SupCert_List extends SupCert_List_Test {
 	mm.clickPurchase();
 	 Thread.sleep(2000);
 	 Purchase en = new Purchase(iDriver);
-	// Frames.SubMenuFrame();
 	 Thread.sleep(2000);
 	 en.clickPayments();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("Suppcert List");
+	 sheet = xml.excelData(Sheetname,Purchase.inputpath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -79,28 +80,19 @@ public class SupCert_List extends SupCert_List_Test {
 		System.out.println("Module, Sub module click case Failed:"+e);
 	 	}
 }
-	// public static void singleDD(WebElement comPath, String project_Name) {
-	//		Select sct = new Select(comPath);
-	//		sct.selectByVisibleText(project_Name);
-
-	//}
 	 public void company() throws Throwable{
-			//Frames.SubMenuFrame();
-			//Thread.sleep(1000);
 			String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 			Frames.rightFrame();
 			SupCertList.getcomp();
-			//Frames.rightFrame();
+			Thread.sleep(1000);
 			SupCertList.getCompany().sendKeys(sheet.getRow(0).getCell(1).getStringCellValue());
-//			System.out.println(sheet.getRow(0).getCell(1).getStringCellValue());
-//			project.sendKeys(sheet.getRow(0).getCell(1).getStringCellValue());
 			 Thread.sleep(1000);
 			 company.sendKeys(Keys.ARROW_DOWN);
 			 Thread.sleep(1000);
 			 company.sendKeys(Keys.ENTER);
 			 Thread.sleep(1000);
 			 SupCertList.getGo();
-			 ListPageCount.PageCount(nameofCurrMethod,sheetname);
+			 ListPageCount.PageCount(nameofCurrMethod,Sheetname,Purchase.path);
 			Thread.sleep(2000);
 		}
 	 public void project() throws Throwable{
@@ -116,7 +108,7 @@ public class SupCert_List extends SupCert_List_Test {
 			 project.sendKeys(Keys.ENTER);
 			 Thread.sleep(1000);
 			 SupCertList.getGo();
-			 ListPageCount.PageCount(nameofCurrMethod,sheetname);
+			 ListPageCount.PageCount(nameofCurrMethod,Sheetname,Purchase.path);
 			Thread.sleep(2000);
 	 }
 }

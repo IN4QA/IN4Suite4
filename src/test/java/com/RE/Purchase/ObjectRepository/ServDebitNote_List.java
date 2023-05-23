@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.RE.Purchase.Test.ServDebitNote_List_Test;
+import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
 import Utilities.Datatable;
 import Utilities.Frames;
@@ -17,14 +18,15 @@ import Utilities.MainMenu;
 public class ServDebitNote_List extends ServDebitNote_List_Test{
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String SheetName="ServDebitNote_List";
+	public static String SheetName;
 	public static WebDriver iDriver;
 	public ServDebitNote_List(WebDriver odriver) {
 		iDriver=odriver;
 		PageFactory.initElements(iDriver, this);
+		SheetName=this.getClass().getSimpleName();
 	}
 	
-	@FindBy(xpath="//a[text()='Service Debit Note']")
+	@FindBy(xpath="//a[text()='Service Provider Debit Note']")
 	private WebElement serdebitnote;
 	public void getserdebitnote() {
 		serdebitnote.click();
@@ -56,7 +58,7 @@ public class ServDebitNote_List extends ServDebitNote_List_Test{
 		Go.click();
 	}
 	
-	 public static void MenuSubMenu()
+	 public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -69,7 +71,7 @@ public class ServDebitNote_List extends ServDebitNote_List_Test{
 	 en.clickPayments();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("ServDebitNote List");
+	 sheet = xml.excelData(SheetName,Purchase.inputpath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -92,7 +94,7 @@ public class ServDebitNote_List extends ServDebitNote_List_Test{
 		 Thread.sleep(1000);
 		 ServDebitNoteList.getGo();
 		 Thread.sleep(1000);
-		 ListPageCount.PageCount(nameofCurrentmethod,SheetName);
+		 ListPageCount.PageCount(nameofCurrentmethod,SheetName,Purchase.path);
 		 Thread.sleep(1000);
 	 }
 	 
@@ -117,7 +119,7 @@ public class ServDebitNote_List extends ServDebitNote_List_Test{
 		 project.sendKeys(Keys.ENTER);
 		 Thread.sleep(1000);
 		 ServDebitNoteList.getGo();
-		 ListPageCount.PageCount(nameofCurrentmethod, SheetName);
+		 ListPageCount.PageCount(nameofCurrentmethod, SheetName,Purchase.path);
 		 Thread.sleep(1000);
 		 
 		 

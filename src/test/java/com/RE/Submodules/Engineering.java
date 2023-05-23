@@ -13,6 +13,11 @@ import Utilities.Frames;
 public class Engineering extends DriverScript{
 	
 WebDriver iDriver;
+
+public static String path = "Engineering";
+public static String inputPath="Engineering";
+public static String inputCreatePath="D:\\myworkspace\\IN4Suite4\\Configuration\\EngineeringCreateData.xlsx";
+public static String outputCreatePath="D:\\myworkspace\\IN4Suite4\\test-output\\EngineeringCreateOutput.xlsx";
 	
 	public Engineering(WebDriver oDriver)
 	{
@@ -61,8 +66,8 @@ WebDriver iDriver;
 		return billing;
 	}
 	
-	@FindBy(xpath="//a[text()='Approvals']")
-	private WebElement approvals;
+	@FindBy(xpath="//a[text()='Approvals ']")
+	private static WebElement approvals;
 	public WebElement getApprovals()
 	{
 		return approvals;
@@ -178,7 +183,7 @@ WebDriver iDriver;
 		}
 	}
 
-	public static boolean clickSiteActivity()
+	public  boolean clickSiteActivity()
 	{
 		try
 		{
@@ -191,7 +196,7 @@ WebDriver iDriver;
 		}
 	}
 	
-	public static boolean clickBilling()
+	public  boolean clickBilling()
 	{
 		try
 		{
@@ -209,7 +214,7 @@ WebDriver iDriver;
 		try
 		{
 			Frames.SubMenuFrame();
-			appInd.clickObject(engg.getApprovals());
+			appInd.clickObject(approvals);
 			return true;
 		}catch(Exception e)
 		{
@@ -334,6 +339,7 @@ WebDriver iDriver;
 		}
 	}
 }
+
 
 
 

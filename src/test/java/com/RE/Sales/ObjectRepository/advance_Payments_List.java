@@ -54,7 +54,7 @@ public class advance_Payments_List extends advance_Payments_List_Test{
 			en.clickBilling();
 			Thread.sleep(1000);
 			xml = new Datatable();
-			sheet = xml.excelData(sheetname);
+			sheet = xml.excelData(sheetname,Sales.inputPath);
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -66,10 +66,10 @@ public class advance_Payments_List extends advance_Payments_List_Test{
 		Thread.sleep(2000);
 		Frames.rightFrame();
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Sales.path);
 		Thread.sleep(4000);
 	}
 	
@@ -84,7 +84,7 @@ public class advance_Payments_List extends advance_Payments_List_Test{
 		Thread.sleep(2000);
 		getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Sales.path);
 		Thread.sleep(4000);
 	}
 }

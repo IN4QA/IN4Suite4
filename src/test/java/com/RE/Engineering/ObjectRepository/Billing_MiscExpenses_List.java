@@ -16,11 +16,12 @@ import Utilities.MainMenu;
 public class Billing_MiscExpenses_List extends Billing_MiscExpenses_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "MiscExpense_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public Billing_MiscExpenses_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Misc. Expenses']")
@@ -46,7 +47,7 @@ public class Billing_MiscExpenses_List extends Billing_MiscExpenses_List_Test {
 	
 	
 	
-	public static void MenuSubMenu()
+	public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -57,7 +58,7 @@ public class Billing_MiscExpenses_List extends Billing_MiscExpenses_List_Test {
 	 en.clickBilling();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("MiscExpenses List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -75,7 +76,7 @@ public class Billing_MiscExpenses_List extends Billing_MiscExpenses_List_Test {
 		sct.selectByVisibleText(select_Status);
 	}
 		
-	public static void go() throws Throwable {
+	public  void go() throws Throwable {
 		Frames.SubMenuFrame();		
 		Thread.sleep(1000);
 		MiscExpenses.getMiscExpenses();
@@ -83,12 +84,12 @@ public class Billing_MiscExpenses_List extends Billing_MiscExpenses_List_Test {
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		MiscExpenses.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
 	
-	public static void project() throws Throwable {
+	public  void project() throws Throwable {
 		Frames.SubMenuFrame();
 		
 		Thread.sleep(1000);
@@ -98,12 +99,12 @@ public class Billing_MiscExpenses_List extends Billing_MiscExpenses_List_Test {
 		projectDD(MiscExpenses.getProject(), sheet.getRow(0).getCell(1).getStringCellValue());
 		MiscExpenses.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
 
-	public static void projectwithstatus() throws Throwable {
+	public  void projectwithstatus() throws Throwable {
 		Frames.SubMenuFrame();
 		MiscExpenses.getMiscExpenses();
 		Frames.rightFrame();
@@ -113,7 +114,7 @@ public class Billing_MiscExpenses_List extends Billing_MiscExpenses_List_Test {
 		statusDD(MiscExpenses.getStatus(), sheet.getRow(1).getCell(1).getStringCellValue());
 		MiscExpenses.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 	
 	}

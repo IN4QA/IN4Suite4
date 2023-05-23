@@ -18,13 +18,13 @@ public class BankCredit_List extends BankCredit_List_Test{
 	
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname;
+	public static String Sheetname;
 	public static WebDriver iDriver;
 	
 	public BankCredit_List(WebDriver oDriver) {
 		iDriver=oDriver;
 		PageFactory.initElements(oDriver, this);
-		sheetname=this.getClass().getSimpleName();
+		Sheetname=this.getClass().getSimpleName();
 		}
 	
 	@FindBy(xpath="//a[text()='Bank Credit']")
@@ -54,7 +54,7 @@ public class BankCredit_List extends BankCredit_List_Test{
 			en.clickContracting();
 			Thread.sleep(1000);
 			xml=new Datatable();
-			sheet=xml.excelData(sheetname);
+			sheet=xml.excelData(Sheetname,Engineering.inputPath);
 				
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -74,7 +74,7 @@ public class BankCredit_List extends BankCredit_List_Test{
 		Thread.sleep(1000);
 		bankcreditlist.getgobutton();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, sheetname);
+		ListPageCount.PageCount(nameofCurrentMethod, Sheetname,Engineering.path);
 		
 	}
 

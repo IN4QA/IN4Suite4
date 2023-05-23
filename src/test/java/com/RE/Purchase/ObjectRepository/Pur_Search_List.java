@@ -5,10 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import com.RE.Purchase.Test.Pur_Search_List_Test;
 import com.RE.Submodules.Purchase;
-
 import Utilities.Datatable;
 import Utilities.Frames;
 import Utilities.ListPageCount;
@@ -18,11 +16,12 @@ public class Pur_Search_List extends Pur_Search_List_Test{
 	
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "Pur_Search_List";
+	public static String Sheetname;
 	public static WebDriver iDriver;
 	public Pur_Search_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		Sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(name = "ddlSearchList")
@@ -42,7 +41,7 @@ public class Pur_Search_List extends Pur_Search_List_Test{
 	public void getgo() {
 		go.click();
 	}
-	 public static void MenuSubMenu()
+	 public void MenuSubMenu()
 	 {
 	try
 	{
@@ -55,7 +54,7 @@ public class Pur_Search_List extends Pur_Search_List_Test{
 	 en.clicksearch();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("Purchase Search List");
+	 sheet = xml.excelData(Sheetname,Purchase.inputpath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -68,11 +67,11 @@ public class Pur_Search_List extends Pur_Search_List_Test{
 		 String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		 Frames.rightFrame();
 		 Thread.sleep(1000);
-		 appInd.singleDropDown(searchsuppliercert.getsearchfor(), sheet.getRow(0).getCell(1).getStringCellValue());
+		 appInd.singleDropDown(getsearchfor(), sheet.getRow(0).getCell(1).getStringCellValue());
 		 Thread.sleep(1000);
 		 searchsuppliercert.getgo();
 		 Thread.sleep(1000);
-		 ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		 ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 		 Thread.sleep(1000);
 	 }
 	 
@@ -80,12 +79,12 @@ public class Pur_Search_List extends Pur_Search_List_Test{
 		 String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		 Frames.rightFrame();
 		 Thread.sleep(1000);
-		 appInd.singleDropDown(searchsuppliercert.getsearchfor(), sheet.getRow(0).getCell(1).getStringCellValue());
+		 appInd.singleDropDown(getsearchfor(), sheet.getRow(0).getCell(1).getStringCellValue());
 		 searchsuppliercert.getadvancecert();
 		 Thread.sleep(1000);
 		 searchsuppliercert.getgo();
 		 Thread.sleep(1000);
-		 ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		 ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 		 Thread.sleep(1000);
 	 }
 	 
@@ -93,11 +92,11 @@ public class Pur_Search_List extends Pur_Search_List_Test{
 		 String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		 Frames.rightFrame();
 		 Thread.sleep(1000);
-		 appInd.singleDropDown(searchsuppliercert.getsearchfor(), sheet.getRow(1).getCell(1).getStringCellValue());
+		 appInd.singleDropDown(getsearchfor(), sheet.getRow(1).getCell(1).getStringCellValue());
 		 Thread.sleep(1000);
 		 searchsuppliercert.getgo();
 		 Thread.sleep(1000);
-		 ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		 ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 		 Thread.sleep(1000);
 	 }
 	 
@@ -105,22 +104,22 @@ public class Pur_Search_List extends Pur_Search_List_Test{
 		 String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		 Frames.rightFrame();
 		 Thread.sleep(1000);
-		 appInd.singleDropDown(searchsuppliercert.getsearchfor(), sheet.getRow(2).getCell(1).getStringCellValue());
+		 appInd.singleDropDown(getsearchfor(), sheet.getRow(2).getCell(1).getStringCellValue());
 		 Thread.sleep(1000);
 		 searchsuppliercert.getgo();
 		 Thread.sleep(1000);
-		 ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		 ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 		 Thread.sleep(1000);
 	 }
 	 public void searchsuppliers() throws Throwable{
 		 String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		 Frames.rightFrame();
 		 Thread.sleep(1000);
-		 appInd.singleDropDown(searchsuppliercert.getsearchfor(), sheet.getRow(3).getCell(1).getStringCellValue());
+		 appInd.singleDropDown(getsearchfor(), sheet.getRow(3).getCell(1).getStringCellValue());
 		 Thread.sleep(1000);
 		 searchsuppliercert.getgo();
 		 Thread.sleep(1000);
-		 ListPageCount.PageCount(nameofCurrMethod, sheetname);
+		 ListPageCount.PageCount(nameofCurrMethod, Sheetname,Purchase.path);
 		 Thread.sleep(1000);
 	 }
 	 

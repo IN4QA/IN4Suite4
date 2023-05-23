@@ -53,7 +53,7 @@ public class agent_Debit_Note_List extends agent_Debit_Note_List_Test{
 			en.clickBilling();
 			Thread.sleep(1000);
 			xml = new Datatable();
-			sheet = xml.excelData(sheetname);
+			sheet = xml.excelData(sheetname,Sales.inputPath);
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -68,7 +68,7 @@ public class agent_Debit_Note_List extends agent_Debit_Note_List_Test{
 		Thread.sleep(1000);
 		getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Sales.path);
 		Thread.sleep(4000);
 	}
 	
@@ -83,7 +83,7 @@ public class agent_Debit_Note_List extends agent_Debit_Note_List_Test{
 		Thread.sleep(2000);
 		getGo();
 		Thread.sleep(2000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Sales.path);
 		Thread.sleep(4000);
 	}
 }

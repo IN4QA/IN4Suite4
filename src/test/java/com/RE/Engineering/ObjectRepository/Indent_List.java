@@ -29,13 +29,14 @@ public class Indent_List extends Indent_List_Test {
 
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "Indent_List";
+	public static String sheetname;
 	public static String fromdt = "Jan 01, 2001";
 	public static WebDriver iDriver;
 
 	public Indent_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 
 	// Declaring and Initializing Web Elements of Indent list page
@@ -189,7 +190,7 @@ public class Indent_List extends Indent_List_Test {
 
 	// Click on Engineering and Inventory Link
 
-	public static void MenuSubMenu() {
+	public  void MenuSubMenu() {
 		try {
 			MainMenu mm = new MainMenu(iDriver);
 			mm.clickEngineering();
@@ -198,7 +199,7 @@ public class Indent_List extends Indent_List_Test {
 			en.clickInventory();
 			Thread.sleep(1000);
 			xml = new Datatable();
-			sheet = xml.excelData("Indent List");
+			sheet = xml.excelData(sheetname,Engineering.inputPath);
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -208,7 +209,7 @@ public class Indent_List extends Indent_List_Test {
 
 	// ************Case1*************//
 
-	public static void UnfullfilledPOTO() {
+	public  void UnfullfilledPOTO() {
 		try {
 			Indent_ListObj.getindlink();
 			Frames.rightFrame();
@@ -225,7 +226,7 @@ public class Indent_List extends Indent_List_Test {
 			Thread.sleep(1000);
 			Indent_ListObj.clickgobutton();
 			Thread.sleep(2000);
-			ListPageCount.PageCount(nameofCurrMethod, sheetname);
+			ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 			Thread.sleep(4000);
 			System.out.println("Unfullfilled POTO case Passed");
 		} catch (Exception e) {
@@ -236,7 +237,7 @@ public class Indent_List extends Indent_List_Test {
 	}
 
 	// ************Case2*************//
-	public static void Unfullfilledissue() {
+	public  void Unfullfilledissue() {
 		try {
 			Frames.SubMenuFrame();
 			Indent_ListObj.getindlink();
@@ -255,7 +256,7 @@ public class Indent_List extends Indent_List_Test {
 			Thread.sleep(1000);
 			Indent_ListObj.clickgobutton();
 			Thread.sleep(2000);
-			ListPageCount.PageCount(nameofCurrMethod, sheetname);
+			ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 			Thread.sleep(4000);
 			System.out.println("Unfullfilled issue case passed");
 		} catch (Exception e) {
@@ -267,7 +268,7 @@ public class Indent_List extends Indent_List_Test {
 
 	// ************Case3************//
 
-	public static void FulfilledPOTO() throws Throwable {
+	public  void FulfilledPOTO() throws Throwable {
 		try {
 			Frames.SubMenuFrame();
 			Indent_ListObj.getindlink();
@@ -286,7 +287,7 @@ public class Indent_List extends Indent_List_Test {
 			Thread.sleep(1000);
 			Indent_ListObj.clickgobutton();
 			Thread.sleep(2000);
-			ListPageCount.PageCount(nameofCurrMethod, sheetname);
+			ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 			Thread.sleep(4000);
 			System.out.println("Unfullfilled issue case passed");
 		} catch (Exception e) {
@@ -296,7 +297,7 @@ public class Indent_List extends Indent_List_Test {
 		}
 	}
 
-	public static void FulfilledIssue() throws Throwable {
+	public  void FulfilledIssue() throws Throwable {
 		try {
 			Frames.SubMenuFrame();
 			Indent_ListObj.getindlink();
@@ -315,7 +316,7 @@ public class Indent_List extends Indent_List_Test {
 			Thread.sleep(1000);
 			Indent_ListObj.clickgobutton();
 			Thread.sleep(2000);
-			ListPageCount.PageCount(nameofCurrMethod, sheetname);
+			ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 			Thread.sleep(4000);
 			System.out.println("Unfullfilled issue case passed");
 		} catch (Exception e) {
@@ -325,7 +326,7 @@ public class Indent_List extends Indent_List_Test {
 		}
 	}
 
-	public static void All() {
+	public  void All() {
 		try {
 			Frames.SubMenuFrame();
 			Indent_ListObj.getindlink();
@@ -344,7 +345,7 @@ public class Indent_List extends Indent_List_Test {
 			Thread.sleep(1000);
 			Indent_ListObj.clickgobutton();
 			Thread.sleep(2000);
-			ListPageCount.PageCount(nameofCurrMethod, sheetname);
+			ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 			Thread.sleep(4000);
 			System.out.println("All radio case passed");
 		} catch (Exception e) {
@@ -355,7 +356,7 @@ public class Indent_List extends Indent_List_Test {
 	}
 
 	// ************Case4*************//
-	public static void SubProject() {
+	public  void SubProject() {
 		try {
 			Frames.SubMenuFrame();
 			Indent_ListObj.getindlink();
@@ -381,7 +382,7 @@ public class Indent_List extends Indent_List_Test {
 			Thread.sleep(1000);
 			Indent_ListObj.clickgobutton();
 			Thread.sleep(2000);
-			ListPageCount.PageCount(nameofCurrMethod, sheetname);
+			ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 			Thread.sleep(4000);
 			System.out.println("Subproject case passed");
 		} catch (Exception e) {
@@ -392,7 +393,7 @@ public class Indent_List extends Indent_List_Test {
 	}
 
 	// ************Case5*************//
-	public static void Status() {
+	public  void Status() {
 		try {
 			Frames.SubMenuFrame();
 			Indent_ListObj.getindlink();
@@ -420,7 +421,7 @@ public class Indent_List extends Indent_List_Test {
 			Thread.sleep(1000);
 			Indent_ListObj.clickgobutton();
 			Thread.sleep(2000);
-			ListPageCount.PageCount(nameofCurrMethod, sheetname);
+			ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 			Thread.sleep(4000);
 			System.out.println("Status case passed");
 		} catch (Exception e) {
@@ -431,7 +432,7 @@ public class Indent_List extends Indent_List_Test {
 	}
 
 	// ************Case6*************//
-	public static void Contractor() {
+	public  void Contractor() {
 		try {
 			Frames.SubMenuFrame();
 			Indent_ListObj.getindlink();
@@ -449,7 +450,7 @@ public class Indent_List extends Indent_List_Test {
 			project1.sendKeys(Keys.ENTER);
 			Thread.sleep(1000);
 			WebElement contractor = Indent_ListObj.selectcontractor();
-			contractor.sendKeys("Windor Aluminium Pvt. Ltd.");
+			contractor.sendKeys("Calcutta Power Construction Co.");
 			Thread.sleep(2000);
 			contractor.sendKeys(Keys.ARROW_DOWN);
 			Thread.sleep(1000);
@@ -457,7 +458,7 @@ public class Indent_List extends Indent_List_Test {
 			Thread.sleep(1000);
 			Indent_ListObj.clickgobutton();
 			Thread.sleep(2000);
-			ListPageCount.PageCount(nameofCurrMethod, sheetname);
+			ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 			Thread.sleep(4000);
 			System.out.println("Contractor case passed");
 		} catch (Exception e) {
@@ -468,7 +469,7 @@ public class Indent_List extends Indent_List_Test {
 	}
 
 	// ************Case7*************//
-	public static void Date() {
+	public  void Date() {
 		try {
 			Frames.SubMenuFrame();
 			Indent_ListObj.getindlink();
@@ -491,7 +492,7 @@ public class Indent_List extends Indent_List_Test {
 
 			Thread.sleep(2000);
 			Indent_ListObj.clickgobutton();
-			ListPageCount.PageCount(nameofCurrMethod, sheetname);
+			ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 			Thread.sleep(4000);
 			System.out.println("Dates cases passed");
 
@@ -503,7 +504,7 @@ public class Indent_List extends Indent_List_Test {
 	}
 
 	// ************Case8*************//
-	public static void WorkCategory() {
+	public  void WorkCategory() {
 		try {
 			Frames.SubMenuFrame();
 			Indent_ListObj.getindlink();
@@ -532,7 +533,7 @@ public class Indent_List extends Indent_List_Test {
 			Thread.sleep(1000);
 			Indent_ListObj.clickgobutton();
 			Thread.sleep(2000);
-			ListPageCount.PageCount(nameofCurrMethod, sheetname);
+			ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 			Thread.sleep(4000);
 			System.out.println("Work Category case passed");
 		} catch (Exception e) {
@@ -543,7 +544,7 @@ public class Indent_List extends Indent_List_Test {
 	}
 
 	// ************Case9*************//
-	public static void TypeOfIndent() {
+	public  void TypeOfIndent() {
 		try {
 			Frames.SubMenuFrame();
 			Indent_ListObj.getindlink();
@@ -570,7 +571,7 @@ public class Indent_List extends Indent_List_Test {
 			Thread.sleep(1000);
 			Indent_ListObj.clickgobutton();
 			Thread.sleep(2000);
-			ListPageCount.PageCount(nameofCurrMethod, sheetname);
+			ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 			Thread.sleep(2000);
 		} catch (Exception e) {
 
@@ -580,7 +581,7 @@ public class Indent_List extends Indent_List_Test {
 	}
 
 	// ************Case10*************//
-	public static void Debitable() {
+	public  void Debitable() {
 		try {
 			Frames.SubMenuFrame();
 			Indent_ListObj.getindlink();
@@ -604,7 +605,7 @@ public class Indent_List extends Indent_List_Test {
 			Thread.sleep(2000);
 			Indent_ListObj.clickgobutton();
 			Thread.sleep(2000);
-			ListPageCount.PageCount(nameofCurrMethod, sheetname);
+			ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 			Thread.sleep(2000);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -613,7 +614,7 @@ public class Indent_List extends Indent_List_Test {
 	}
 
 	// ************Case11*************//
-	public static void MaterialType() {
+	public  void MaterialType() {
 		try {
 			Frames.SubMenuFrame();
 			Indent_ListObj.getindlink();
@@ -640,7 +641,7 @@ public class Indent_List extends Indent_List_Test {
 			Thread.sleep(2000);
 			Indent_ListObj.clickgobutton();
 			Thread.sleep(2000);
-			ListPageCount.PageCount(nameofCurrMethod, sheetname);
+			ListPageCount.PageCount(nameofCurrMethod, sheetname,Engineering.path);
 			Thread.sleep(2000);
 		} catch (Exception e) {
 			e.printStackTrace();

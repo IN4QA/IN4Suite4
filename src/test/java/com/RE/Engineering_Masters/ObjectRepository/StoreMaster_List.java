@@ -17,11 +17,12 @@ import Utilities.MainMenu;
 public class StoreMaster_List extends StoreMaster_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "StoreMaster_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public StoreMaster_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Store Master']")
@@ -59,7 +60,7 @@ public class StoreMaster_List extends StoreMaster_List_Test {
 	 en.clickMasters();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("StoreMaster List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -79,7 +80,7 @@ public class StoreMaster_List extends StoreMaster_List_Test {
 		Thread.sleep(1000);
 		Storelist.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
@@ -101,7 +102,7 @@ public class StoreMaster_List extends StoreMaster_List_Test {
 		Thread.sleep(1000);
 		Storelist.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}

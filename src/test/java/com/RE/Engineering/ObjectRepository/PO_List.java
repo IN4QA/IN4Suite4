@@ -24,10 +24,11 @@ public class PO_List extends PO_List_Test{
 	public static XSSFSheet sheet;
 	public static Datatable xml;
 	public static WebDriver iDriver;
-	public static String sheetname = "PO_List";
+	public static String sheetname;
 	public PO_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath = "//a[text() = 'Purchase Orders']")
@@ -132,7 +133,7 @@ public class PO_List extends PO_List_Test{
 	 en.clickInventory();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("PO List");
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -159,7 +160,7 @@ public class PO_List extends PO_List_Test{
 			POList.clickgobutton();
 			Thread.sleep(3000);
 		 
-		 ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		 ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		 Thread.sleep(4000);
 		 
 	 }
@@ -179,7 +180,7 @@ public class PO_List extends PO_List_Test{
 			POList.clickgobutton();
 			Thread.sleep(3000);
 		 
-		 ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		 ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		 Thread.sleep(4000);
 		 
 	 }
@@ -199,7 +200,7 @@ public class PO_List extends PO_List_Test{
 			POList.clickgobutton();
 			Thread.sleep(3000);
 		 
-		 ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		 ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		 Thread.sleep(4000);
 		 
 	 }
@@ -219,7 +220,7 @@ public class PO_List extends PO_List_Test{
 			POList.clickgobutton();
 			Thread.sleep(3000);
 		 
-		 ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		 ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		 Thread.sleep(4000);
 		 
 	 }

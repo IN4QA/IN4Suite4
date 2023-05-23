@@ -17,13 +17,14 @@ import Utilities.MainMenu;
 public class DPRWorkexecution_List extends DPRWorkexecution_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "Workexecution_List";
+	public static String sheetname ;
 	public static WebDriver iDriver;
 	public static String fDate="Jan 01,2000";
 	
 	public DPRWorkexecution_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(xpath="//a[text()='Work Execution']")
@@ -64,7 +65,7 @@ public class DPRWorkexecution_List extends DPRWorkexecution_List_Test {
 	 en.clickSiteActivity();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("Workexecution List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -81,7 +82,7 @@ public class DPRWorkexecution_List extends DPRWorkexecution_List_Test {
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		executionlist.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 	}
 	
@@ -93,7 +94,7 @@ public class DPRWorkexecution_List extends DPRWorkexecution_List_Test {
 		appInd.singleDropDown(getProjectDD(),sheet.getRow(0).getCell(1).getStringCellValue());
 		executionlist.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}
@@ -101,7 +102,6 @@ public class DPRWorkexecution_List extends DPRWorkexecution_List_Test {
 	
 	public void projectwithdate() throws Throwable {
 		Frames.SubMenuFrame();		
-		executionlist.workexecLinkClick();
 		Frames.rightFrame();
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		appInd.singleDropDown(getProjectDD(),sheet.getRow(0).getCell(1).getStringCellValue());
@@ -109,7 +109,7 @@ public class DPRWorkexecution_List extends DPRWorkexecution_List_Test {
 		Thread.sleep(1000);
 		executionlist.getGo();
 		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrMethod,sheetname);
+		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
 		
 	}

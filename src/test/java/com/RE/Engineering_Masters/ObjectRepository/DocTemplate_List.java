@@ -17,11 +17,12 @@ import Utilities.MainMenu;
 public class DocTemplate_List extends DocTemplate_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "DocTemp_List";
+	public static String sheetname;
 	public static WebDriver iDriver;
 	public DocTemplate_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		sheetname=this.getClass().getSimpleName();
 	}
 	
 	@FindBy(id="ddlProjectList")
@@ -53,9 +54,9 @@ public class DocTemplate_List extends DocTemplate_List_Test {
 	 Thread.sleep(2000);
 	 Engineering en = new Engineering(iDriver);
 	 en.clickTemplates();
-	 Thread.sleep(1000);
+	 Thread.sleep(2000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("DocTemp List");	
+	 sheet = xml.excelData(sheetname,Engineering.inputPath);	
 	 }
 	 	catch (Exception e)
 	 	{
@@ -71,12 +72,12 @@ public class DocTemplate_List extends DocTemplate_List_Test {
 			String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 			Thread.sleep(1000);
 			appInd.singleDropDown(getProject(),sheet.getRow(0).getCell(1).getStringCellValue());
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			appInd.singleDropDown(getSubproject(),sheet.getRow(1).getCell(1).getStringCellValue());
 			Thread.sleep(1000);
-			assetlist.getGo();
+			DocTemplate.getGo();
 			Thread.sleep(1000);
-			ListPageCount.PageCount(nameofCurrMethod,sheetname);
+			ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 			Thread.sleep(2000);
 		
 	}

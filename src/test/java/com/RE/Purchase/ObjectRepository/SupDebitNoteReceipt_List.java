@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.RE.Purchase.Test.SupDebitNoteReceipt_List_Test;
+import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
 import Utilities.Datatable;
 import Utilities.Frames;
@@ -16,11 +17,12 @@ import Utilities.MainMenu;
 public class SupDebitNoteReceipt_List extends SupDebitNoteReceipt_List_Test {
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String sheetname = "SupDebitNoteReceipt_List";
+	public static String Sheetname = "SupDebitNoteReceipt_List";
 	public static WebDriver iDriver;
 	public SupDebitNoteReceipt_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
+		Sheetname=this.getClass().getSimpleName();
 	}
 	@FindBy(xpath="//a[text()='Supplier Debit Note Receipt']")
 	private WebElement SupDebitNoteReceipt;
@@ -53,7 +55,7 @@ public class SupDebitNoteReceipt_List extends SupDebitNoteReceipt_List_Test {
 		Go.click();
 	}
 	
-	 public static void MenuSubMenu()
+	 public  void MenuSubMenu()
 	 {
 	try
 	{
@@ -66,7 +68,7 @@ public class SupDebitNoteReceipt_List extends SupDebitNoteReceipt_List_Test {
 	 en.clickPayments();
 	 Thread.sleep(1000);
 	 xml = new Datatable();
-	 sheet = xml.excelData("SupDebitNoteRec List");
+	 sheet = xml.excelData(Sheetname,Purchase.inputpath);
 	 }
 	 	catch (Exception e)
 	 	{
@@ -98,7 +100,7 @@ public class SupDebitNoteReceipt_List extends SupDebitNoteReceipt_List_Test {
 		 Thread.sleep(1000);
 		 SupRecList.getGo();
 		 Thread.sleep(1000);
-		 ListPageCount.PageCount(nameofCurrentmethod, sheetname);
+		 ListPageCount.PageCount(nameofCurrentmethod, Sheetname,Purchase.path);
 		 Thread.sleep(2000);
 
 	 }
