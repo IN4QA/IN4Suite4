@@ -256,8 +256,8 @@ public class Frames extends DriverScript {
 	public static boolean iFrame() {
 		try {
 			rightFrame();
-			if (oBrowser.findElements(By.cssSelector("iframe[class*= 'Iframe']")).size() > 0) {
-				oBrowser.switchTo().frame(oBrowser.findElement(By.cssSelector("iframe[class*= 'Iframe']")));
+			if (oBrowser.findElements(By.cssSelector("iframe[id= 'addEditDialog']")).size() > 0) {
+				w2.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("addEditDialog"));
 				return true;
 			} else {
 				return false;
@@ -267,4 +267,49 @@ public class Frames extends DriverScript {
 			return false;
 		}
 	}
+	public static boolean bookingAccountFrame() {
+		try {
+			if (oBrowser.findElements(By.cssSelector("frame[name='AccountDetails']")).size() > 0) {
+				w2.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("AccountDetails"));
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+
+	}
+	public static boolean bookingAccountTabFrame() {
+		try {
+			if (oBrowser.findElements(By.cssSelector("frame[name='AccountTabFrame']")).size() > 0) {
+				w2.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("AccountTabFrame"));
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+
+	}
+	public static boolean myMainFrame() {
+        try {
+            if (oBrowser.findElements(By.cssSelector("frame[name='mymainFrame']")).size() > 0) {
+                w2.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("mymainFrame"));
+
+ 
+
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+
+ 
+
+    }
+
 }

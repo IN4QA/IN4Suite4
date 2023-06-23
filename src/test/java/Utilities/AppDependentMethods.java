@@ -31,7 +31,7 @@ public class AppDependentMethods extends DriverScript {
 				oBrowser.manage().window().maximize();
 
 			} else if (br.equalsIgnoreCase("IE")) {
-				System.setProperty("webdriver.ie.driver", appInd.readConfig("iepath"));
+				WebDriverManager.iedriver().setup();
 				oBrowser = new InternetExplorerDriver();
 				oBrowser.manage().window().maximize();
 			}

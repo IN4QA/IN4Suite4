@@ -31,12 +31,18 @@ public static String outputCreatePath="D:\\myworkspace\\IN4Suite4\\test-output\\
 		return list;
 	}
 	
+	@FindBy(xpath = "//a[text()='Projects']")
+    private static WebElement ProjectsLink;
+    public WebElement getProjectsLink() {
+        return ProjectsLink;
+    }
 	@FindBy(xpath="//a[text()='Inventory ']")
 	private static  WebElement inventory;
 	public  WebElement getInventory()
 	{
 		return inventory;
 	}
+	
 	
 	@FindBy(xpath="//a[text()='Tendering ']")
 	private static WebElement tendering;

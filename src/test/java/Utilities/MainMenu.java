@@ -58,7 +58,7 @@ public class MainMenu extends DriverScript {
 		return liaison;
 	}
 	
-	@FindBy(css = "td[class='PROJECT custom-css']")
+	@FindBy(xpath = "//span[text()='Projects']")
 	private WebElement project;
 	public WebElement getProject()
 	{
@@ -95,14 +95,14 @@ public class MainMenu extends DriverScript {
 		return sales;
 	}
 	
-	@FindBy(css ="td[class='FINANCE custom-css']")
+	@FindBy(xpath = "//span[text()='Finance']")
 	private WebElement finance;
 	public WebElement getFINANCE()
 	{
 		return finance;
 	}
 	
-	@FindBy(css ="td[class='EXPENSES custom-css']")
+	@FindBy(xpath = "//span[text()='Expenses']")
 	private WebElement expense;
 	public WebElement getExpense()
 	{
@@ -116,7 +116,7 @@ public class MainMenu extends DriverScript {
 		return assets;
 	}
 	
-	@FindBy(css = "td[class='HR custom-css']")
+	@FindBy(xpath = "//span[text()='HR']")
 	private WebElement hr;
 	public WebElement getHr()
 	{
@@ -184,7 +184,7 @@ public class MainMenu extends DriverScript {
 	public void clickProjects() throws Exception
 	{
 		Frames.MainMenuFrame();
-		appInd.clickObject(mainMenu.getProject());
+		appInd.clickObject(project);
 	}
 	
 	public void clickEngineering() throws Exception
@@ -214,14 +214,14 @@ public class MainMenu extends DriverScript {
 	public void clickFinance() throws Exception
 	{
 		Frames.MainMenuFrame();
-		appInd.clickObject(mainMenu.getFINANCE());			
+		appInd.clickObject(finance);			
 	}
 	
 	public void clickExpenses() throws Exception
 	{
 	
 			Frames.MainMenuFrame();
-			appInd.clickObject(mainMenu.getExpense());
+			appInd.clickObject(expense);
 	}
 	
 	public void clickAssets() throws Exception
@@ -234,7 +234,7 @@ public class MainMenu extends DriverScript {
 	public void clickHR() throws Exception
 	{
 		    Frames.MainMenuFrame();
-			appInd.clickObject(mainMenu.getHr());	
+			appInd.clickObject(hr);	
 	}
 	
 	public void clckRentals() throws Exception

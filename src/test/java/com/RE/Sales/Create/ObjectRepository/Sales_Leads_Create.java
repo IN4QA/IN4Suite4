@@ -9,8 +9,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import com.RE.Sales.Create.Test.Sales_Leads_Create_Test;
 import com.RE.Submodules.Sales;
+
 import Utilities.Datatable;
 import Utilities.Frames;
 import Utilities.MainMenu;
@@ -76,6 +78,12 @@ public class Sales_Leads_Create extends Sales_Leads_Create_Test {
 
 	public WebElement getCountryCode() {
 		return CountryCode;
+	}
+	
+	@FindBy(css = "select#cboCustomerGrade")
+	private WebElement CategoryGrade;
+	public WebElement getCategoryGrade() {
+		return CategoryGrade;
 	}
 
 	@FindBy(css = "input#txtPrefContact")
@@ -229,6 +237,7 @@ public class Sales_Leads_Create extends Sales_Leads_Create_Test {
 				lastNameIndividual = appInd.getCurrentDateTime();
 				getLastName(lastNameIndividual);
 				appInd.singleDropDown(getTypeCategory(), sheet.getRow(i).getCell(2).getStringCellValue());
+				appInd.singleDropDown(getCategoryGrade(), "Regular");
 				appInd.singleDropDown(getAssignTo(), sheet.getRow(i).getCell(3).getStringCellValue());
 				appInd.multiDD_withText(getEnquirySource(), getEnterEnquirySource(), sheet.getRow(i).getCell(4).getStringCellValue(), getListEnquirySource());
 				getPermanentEMail1(sheet.getRow(i).getCell(1).getStringCellValue(), i);
@@ -250,12 +259,12 @@ public class Sales_Leads_Create extends Sales_Leads_Create_Test {
 						sale.clickLeads();
 					}
 				} else {
-					Datatable.writeExcel((sheet.getRow(i).getCell(1).getStringCellValue()+" " + lastNameIndividual), "Not Created exception", sheetname, Sales.OutPutCreatePath);
+					Datatable.writeExcel((sheet.getRow(i).getCell(1).getStringCellValue()+" " + lastNameIndividual), "Not Created ", sheetname, Sales.OutPutCreatePath);
 					Frames.SubMenuFrame();
 					sale.clickLeads();
 				}
 			} catch (Exception e) {
-				Datatable.writeExcel((sheet.getRow(i).getCell(1).getStringCellValue()+" " + lastNameIndividual), "Not Created", sheetname, Sales.OutPutCreatePath);
+				Datatable.writeExcel((sheet.getRow(i).getCell(1).getStringCellValue()+" " + lastNameIndividual), "Not Created exception", sheetname, Sales.OutPutCreatePath);
 				Frames.SubMenuFrame();
 				sale.clickLeads();
 			}

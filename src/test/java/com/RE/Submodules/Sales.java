@@ -99,6 +99,12 @@ public class Sales extends DriverScript {
 	{
 		return approvals;
 	}
+	@FindBy(xpath="//a[text()='Project Master']")
+	private static WebElement ProjectMaster;
+	public  WebElement getProjectMaster()
+	{
+		return ProjectMaster;
+	}
 	
 	public boolean clickQualified()
 	{
@@ -242,5 +248,17 @@ public class Sales extends DriverScript {
 			return false;
 		}	
 		
+	}
+	public boolean clickProjectMaster()
+	{
+		try
+		{
+			Frames.SubMenuFrame();
+			appInd.clickObject(ProjectMaster);
+			return true;
+		} catch(Exception e)
+		{
+			return false;
+		}	
 	}
 }

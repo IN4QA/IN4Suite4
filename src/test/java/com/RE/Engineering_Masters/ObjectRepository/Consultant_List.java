@@ -19,12 +19,16 @@ public class Consultant_List extends Consultant_List_Test {
 	public static Datatable xml;
 	public static String sheetname;
 	public static WebDriver iDriver;
+	
+	//// Java Concept – Constructor 
 	public Consultant_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
 		sheetname=this.getClass().getSimpleName();
 	}
-	
+		// Java Concept – Encapsulation
+		// Selenium – page Factory
+		//Inspecting 'Consultant' link
 	@FindBy(xpath="//a[text()='Consultant']")
 	private WebElement consultant;
 	public void getConsultantLink() {

@@ -3,13 +3,15 @@
 <suite name="Failed suite [Command line suite]">
   <test thread-count="5" name="Command line test(failed)">
     <classes>
-      <class name="RoughClass.RoughClass">
+      <class name="com.RE.Engineering.Test.GRN_List_Test">
         <methods>
-          <include name="driverSetUP"/>
-          <include name="chrome"/>
-          <include name="loginTest"/>
+          <include name="preRequisite"/>
+          <include name="GRN_List"/>
+          <include name="loadClassFiles"/>
+          <include name="endTest"/>
+          <include name="end"/>
         </methods>
-      </class> <!-- RoughClass.RoughClass -->
+      </class> <!-- com.RE.Engineering.Test.GRN_List_Test -->
     </classes>
   </test> <!-- Command line test(failed) -->
 </suite> <!-- Failed suite [Command line suite] -->

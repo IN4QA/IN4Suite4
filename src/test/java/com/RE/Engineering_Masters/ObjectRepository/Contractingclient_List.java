@@ -20,12 +20,16 @@ public class Contractingclient_List extends Contractingclient_List_Test {
 	public static Datatable xml;
 	public static String sheetname;
 	public static WebDriver iDriver;
+	
+	// Java Concept – Constructor 
 	public Contractingclient_List(WebDriver oDriver) {
 		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
 		sheetname=this.getClass().getSimpleName();
 	}
-	
+		// Java Concept – Encapsulation
+		// Selenium – page Factory
+		//Inspecting 'Contracting client' link
 	@FindBy(xpath="//a[text()='Contracting Client']")
 	private WebElement contractingclient;
 	public void getContClientLink() {

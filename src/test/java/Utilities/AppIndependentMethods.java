@@ -3,6 +3,8 @@ package Utilities;
 import java.io.File;
 import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Properties;
@@ -14,6 +16,9 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
@@ -530,6 +535,7 @@ public class AppIndependentMethods extends DriverScript {
 		}catch(Exception e) {
 			System.out.println(e);
 		}
+		try {
 		w2.until(ExpectedConditions.elementToBeClickable(entrProjectName));
 		entrProjectName.sendKeys(projectname);
 		for (WebElement e : ListedRecordsDD) {
@@ -538,6 +544,9 @@ public class AppIndependentMethods extends DriverScript {
 				e.click();
 				break;
 			}
+		}
+		}catch(Exception e) {
+			System.out.println(e);
 		}
 		try {
 		js.executeScript("arguments[0].click();", projectClick);
@@ -564,6 +573,26 @@ public class AppIndependentMethods extends DriverScript {
 		}
 		// js.executeScript("arguments[0].click();", projectClick);
 	}
+	
+	public void createMultiDD_withText(WebElement projectClick, WebElement entrProjectName, String projectname,
+            List<WebElement> ListedRecordsDD) throws Throwable {
+        JavascriptExecutor js = (JavascriptExecutor) oBrowser;
+        w2.until(ExpectedConditions.elementToBeClickable(entrProjectName));
+        entrProjectName.sendKeys(projectname);
+        for (WebElement e : ListedRecordsDD) {
+            if (e.getText().contains("Select")) {
+                Thread.sleep(2000);
+                e.click();
+                break;
+            }
+        }
+        try {
+            js.executeScript("arguments[0].click();", projectClick);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        clickOutside();
+    }
 	public void clickOutside() {
 		Actions action = new Actions(oBrowser);
 		action.moveByOffset(0, 0).click().build().perform();
@@ -577,6 +606,17 @@ public class AppIndependentMethods extends DriverScript {
 		String[] time = dateAndTime[1].split(":");
 		return date[0] + "" + date[1] + "" + time[0] + "" + time[1] + "" + time[2];
 	}
+	
+	public String getBackDatedDate(int n) {
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime then = now.minusDays(n);
+
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd, yyyy");                  
+        String backDate = String.format(then.format(format));
+        return backDate;               
+
+}
 	public String alertText() {
 		w2.until(ExpectedConditions.alertIsPresent());
 		return oBrowser.switchTo().alert().getText();
@@ -626,7 +666,26 @@ public class AppIndependentMethods extends DriverScript {
 			return Code;
 
 		}
-	
+		public String RandomNoAsSpecified(int n) {
+			Random r = new Random();
+			String Code = "";
+			for (int i = 0; i <n; i++) {
+				int y = r.nextInt(9);
+				Code = Code + y;
+			}
+			return Code;
+
+		}
+//		public String RandomNoAsSpecified(int n) {
+//			Random r = new Random();
+//			String PCode = "";
+//			for (int i = 0; i < n; i++) {
+//				int y = r.nextInt(9);
+//				PCode = PCode + y;
+//			}
+//			return PCode;
+//		}
+//	
 public boolean AlertPresent() {
 	try {
 		oBrowser.switchTo().alert();
@@ -635,11 +694,15 @@ public boolean AlertPresent() {
 		return false;
 	}
 }
-public String switchToChildWindow(WebElement onClick) {
+public String switchToChildWindow(WebElement onClick) throws Throwable {
 	
 	String parent = oBrowser.getWindowHandle();
-	onClick.click();
+	if(onClick != null) {
+		onClick.click();
+	}
+	Thread.sleep(3000);
 	Set<String> childs = oBrowser.getWindowHandles();
+    Thread.sleep(3000);
 	for(String e : childs) {
 		
 		if(!e.equals(parent)) {
@@ -649,9 +712,62 @@ public String switchToChildWindow(WebElement onClick) {
 	return parent;
 }
 
-public void switchToParentWindow(String parent) {
+public void switchToParentWindow(String parent) throws Throwable {
+	Thread.sleep(3000);
 //	oBrowser.close();
 	oBrowser.switchTo().window(parent);
+	Thread.sleep(3000);
+}
+
+public String convertCellToString(XSSFSheet sheet, int rowNo, int columnNo) {
+    DataFormatter formatter = new DataFormatter(); 
+    Cell cell = sheet.getRow(rowNo).getCell(columnNo);
+    return formatter.formatCellValue(cell);
+}
+public String RandomStrAsSpecified(int n, String Case) {
+    String characters = "";
+    for (int i = 0; i < n; i++) {
+        Random r = new Random();
+        int in = r.nextInt(26);
+        if(Case.equalsIgnoreCase("LowerCase")) {
+            characters = characters + ((char) (in + 'a'));
+        }else {
+            characters = characters + ((char) (in + 'A'));
+        }
+    }
+    return characters;
+}
+
+public String CurrentFrame() {
+    JavascriptExecutor curFrame = (JavascriptExecutor)oBrowser;
+    return (String) curFrame.executeScript("return self.name");
+}
+
+public String getDateAsSpecified(int n) {
+
+
+
+    LocalDateTime now = LocalDateTime.now();
+    LocalDateTime then = now.minusDays(n);
+
+
+
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd, yyyy");                  
+    String backDate = String.format(then.format(format));
+    return backDate;               
+}
+
+public void clickWebelement(WebElement element) {
+    JavascriptExecutor click = (JavascriptExecutor) oBrowser;
+    click.executeScript("arguments[0].click();", element);
+}
+
+public String ifAlertPresentText() {
+    try {
+        return oBrowser.switchTo().alert().getText();
+    } catch (NoAlertPresentException Ex) {
+        return null;
+    }
 }
 }
 

@@ -4,13 +4,16 @@ import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import com.RE.Sales.Create.Test.Leads_Create_Test;
 import com.RE.Submodules.Sales;
+
 import Utilities.Datatable;
 import Utilities.Frames;
 import Utilities.MainMenu;
@@ -169,11 +172,12 @@ public class Leads_Create extends Leads_Create_Test {
 		Update.click();
 	}
 
-	@FindBy(css = "input#txtPermanentEMail1")
+	@FindBy(css = "input#txtEmail")
 	private WebElement PermanentEMail1;
-	public void getPermanentEMail1(String mail, int i) {
-		PermanentEMail1.sendKeys(mail + appInd.getCurrentDateTime() + "@gmail.com");
+	public WebElement getPermanentEMail1() {
+		return PermanentEMail1;
 	}
+	
 
 	public void MenuSubMenu() {
 		try {
@@ -209,6 +213,7 @@ public class Leads_Create extends Leads_Create_Test {
 				getFirstName().sendKeys(sheet.getRow(i).getCell(1).getStringCellValue());
 				lastName = appInd.getCurrentDateTime();
 				getLastName(lastName);
+				getPermanentEMail1().sendKeys(sheet.getRow(i).getCell(1).getStringCellValue()+ appInd.getCurrentDateTime() + "@gmail.com");
 				appInd.singleDropDown(getCountryCode(), sheet.getRow(i).getCell(2).getStringCellValue());
 				getPrefferedContactNo();
 				appInd.multiDD_withText(getEnquirySource(), getEnterEnquirySource(), sheet.getRow(i).getCell(3).getStringCellValue(), getListEnquirySource());
@@ -239,7 +244,6 @@ public class Leads_Create extends Leads_Create_Test {
 		appInd.singleDropDown(getTypeCategory(), sheet.getRow(num).getCell(6).getStringCellValue());
 		appInd.singleDropDown(getCustomerGradeCategory(), sheet.getRow(num).getCell(7).getStringCellValue());
 		appInd.seletDate(getFollowUpDate(), appInd.CurrentDateIn_MMM_DD_YYYY());
-		getPermanentEMail1(sheet.getRow(num).getCell(1).getStringCellValue(), num);
 		getUpdate();
 		w2.until(ExpectedConditions.alertIsPresent());
 		appInd.isAlertPresent();
@@ -249,4 +253,6 @@ public class Leads_Create extends Leads_Create_Test {
 			Datatable.writeExcel(nameofCurrMethod, "FAIL", sheetname, Sales.OutPutCreatePath);
 		}
 	}
+
+
 }
