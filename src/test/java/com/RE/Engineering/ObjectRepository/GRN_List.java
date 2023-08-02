@@ -135,7 +135,7 @@ public class GRN_List extends GRN_List_Test{
 		Frames.rightFrame();
 		Thread.sleep(1000);
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
-		companyDD(GRNList.getCertiCompany(),sheet.getRow(0).getCell(1).getStringCellValue());
+		companyDD(GRNList.getCertiCompany(),sheet.getRow(0).getCell(10).getStringCellValue());
 		statusDD(GRNList.getStatus(),sheet.getRow(1).getCell(1).getStringCellValue());
 		GRNList.getGo();
 		Thread.sleep(2000);

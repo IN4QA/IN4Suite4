@@ -86,7 +86,8 @@ public class Contractor_List extends Contractor_List_Test {
 		Frames.rightFrame();		
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		Thread.sleep(1000);
-		appInd.singleDropDown(getStatus(),sheet.getRow(0).getCell(1).getStringCellValue());
+		appInd.singleDropDown(getStatus(),"Approved");
+		//appInd.singleDropDown(getStatus(),sheet.getRow(0).getCell(1).getStringCellValue());
 		Thread.sleep(1000);
 		contractorlist.getGo();
 		Thread.sleep(1000);

@@ -16,6 +16,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+import org.zaproxy.clientapi.core.ApiResponse;
+import org.zaproxy.clientapi.core.ClientApi;
+import org.zaproxy.clientapi.core.ClientApiException;
+
 import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
 
@@ -44,6 +48,9 @@ public class DriverScript {
 	 * Author : Sachin Reviewer : Ganesh Example : loadClassFiles();
 	 * ***********************************
 	 */
+	
+	
+
 	@BeforeSuite
 	public void loadClassFiles() {
 		try {
@@ -74,6 +81,12 @@ public class DriverScript {
 		}
 
 	}
+	
+	
+	
+	
+	
+	
 
 	/************************************
 	 * Method Name : runTset() Purpose : to run the test dynamically Author : Sachin
@@ -101,10 +114,11 @@ public class DriverScript {
 
 	/************************************
 	 * Method Name : endTest() Purpose : after test activity Author : Sachin
-	 * Reviewer : Ganesh Example : endTest(); ***********************************
+	 * Reviewer : Ganesh Example : endTest(); 
+	 * @throws ClientApiException ***********************************
 	 */
 	@AfterSuite
-	public void endTest() {
+	public void endTest() throws ClientApiException {
 		appDep.closeDriver();
 		appInd.moveFileZipandMail(System.getProperty("user.dir") + "\\ExecutionController",
 				sceenShotPath.substring(0, sceenShotPath.indexOf("\\screenShots")));
@@ -114,5 +128,27 @@ public class DriverScript {
 		datatable = null;
 		omap = null;
 		oBrowser = null;
+		//teardown();
 	}
+	
+	
+//	//ZAP - Web Security Testing 
+//		public void teardown() throws ClientApiException    {
+//			ClientApi api = MyGlobalEntity.Entity.api;
+//
+//			if(api != null) {
+//				String title="IN4Suite Zap Security Report";
+//				String template="traditional-html";
+//				String description="This is In4Suite Zap security test report";
+//				String reportfilename="IN4Suite-zap-report.html";
+//				String targetFolder=System.getProperty("user.dir");
+//		
+//				
+//				ApiResponse response=api.reports.generate(title, template, null, description, null, null, null,
+//							null, null, reportfilename, null, targetFolder, null);
+//					System.out.println(" In4Suite ZAP report generated at this location   "+response.toString());
+//				}
+//				
+//			
+//		}
 }

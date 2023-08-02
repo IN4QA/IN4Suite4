@@ -138,20 +138,20 @@ public class SuppPayment_Create extends SuppPayment_Create_Test {
 	private WebElement SuppCertSearchPO;
 	public void getSuppCertSearchPO() {
 		w2.until(ExpectedConditions.elementToBeClickable(SuppCertSearchPO));
-		 SuppCertSearchPO.click();;
+		 SuppCertSearchPO.click();
 	}
 	
 	@FindBy(xpath = "//table[@class='in4-table mt-5']//tr[2]//input")
 	private WebElement SuppCertSelcetPOcheck;
 	public void getSuppCertSelcetPOcheck() {
 		w2.until(ExpectedConditions.elementToBeClickable(SuppCertSelcetPOcheck));
-		 SuppCertSelcetPOcheck.click();;
+		 SuppCertSelcetPOcheck.click();
 	}
 	@FindBy(xpath = "//a[text()='Accept Selected']")
 	private WebElement SuppCertPOAcceptSelected;
 	public void getSuppCertPOAcceptSelected() {
 		w2.until(ExpectedConditions.elementToBeClickable(SuppCertPOAcceptSelected));
-		 SuppCertPOAcceptSelected.click();;
+		 SuppCertPOAcceptSelected.click();
 	}
 	@FindBy(css = "input#txtInvoiceNo")
 	private WebElement SuppCertInvoiceNO;
@@ -366,7 +366,7 @@ public class SuppPayment_Create extends SuppPayment_Create_Test {
 	}
 	@FindBy(xpath = "//a[text()='Supplier Cert.']")
 	private static WebElement FinPurSuppCert;
-	public void getFinPurSuppCertv() {
+	public void getFinPurSuppCert() {
 		w2.until(ExpectedConditions.elementToBeClickable(FinPurSuppCert));
 		FinPurSuppCert.click();
 	}
@@ -390,6 +390,7 @@ public class SuppPayment_Create extends SuppPayment_Create_Test {
 		w2.until(ExpectedConditions.elementToBeClickable(FinPurSuppCertGo));
 		FinPurSuppCertGo.click();
 	}
+
 	@FindBy(xpath = "//table[@class='in4-table']//tr[2]//td[2]//a")
 	private static WebElement FinCertNoclick;
 	public void getFinCertNoclick() {
@@ -454,14 +455,20 @@ public class SuppPayment_Create extends SuppPayment_Create_Test {
 		Frames.rightFrame();
 		getCreateSuppCertButton();
 		appInd.singleDropDown(getSuppCertCompDD(), sheet.getRow(i).getCell(0).getStringCellValue());
-		SuppCertMultiproject();
+		getSuppCertProjectDD().click();
+		Thread.sleep(1000);
+		appInd.createMultiDD_withText(getSuppCertProjectDD(), getSuppCertEnterProject(), sheet.getRow(i).getCell(1).getStringCellValue(), getSuppCertProjectList());
+		getSuppCertSubProjectDD().click();
+		Thread.sleep(1000);
+		appInd.createMultiDD_withText(getSuppCertSubProjectDD(), getSuppCertEnterSubProject(), sheet.getRow(i).getCell(3).getStringCellValue(), getSuppCertSubProjectList());
 	//	appInd.singleDropDown(getSuppPayCompDD(), sheet.getRow(i).getCell(2).getStringCellValue());
-		SuppCertMultiSubproject();
 		appInd.singleDropDown(getSuppCertSupplierDD(), sheet.getRow(i).getCell(4).getStringCellValue());
 		appInd.singleDropDown(getSuppCertPOTypeDD(), sheet.getRow(i).getCell(5).getStringCellValue());
 		String ParentSelectPO=appInd.switchToChildWindow(SuppCertSelecttPOLink);
-		SuppCertMultiPO();
-		Thread.sleep(2000);
+		getSuppCertPODD().click();
+		Thread.sleep(1000);
+		appInd.createMultiDD_withText(getSuppCertPODD(), getSuppCertEnterPO(), sheet.getRow(i).getCell(6).getStringCellValue(), getSuppCertPOList());
+		Thread.sleep(1000);
 		getSuppCertSearchPO();
 		getSuppCertSelcetPOcheck();
 		getSuppCertPOAcceptSelected();
@@ -523,18 +530,44 @@ public class SuppPayment_Create extends SuppPayment_Create_Test {
 		Thread.sleep(3000);
 		getSuppCertCreate();
 		Thread.sleep(3000);
-	 SupperCertNo=getsuppcetNo();
+		
 		if (appInd.AlertPresent()) {
-			Datatable.writeExcel("Supplier Certificate ",  "is Not Created", sheetname, Purchase.OutputCreatePath);
-		} else {
-			
+			if(appInd.ifAlertPresentText().equalsIgnoreCase("Vendor does not have GSTIN and the certificate does not have RCM taxes. Do you want to proceed?")) {
+				appInd.isAlertPresent();
+				Thread.sleep(3000);
+				SupperCertNo=getsuppcetNo();
+				System.out.println(SupperCertNo+"  Supplier Certificate is Created");
 			Datatable.writeExcel("Certificate No. "+SupperCertNo,  "is Created", sheetname, Purchase.OutputCreatePath);
+			count++;	
+			}else {
+				Datatable.writeExcel("Supplier Certificate ",  "is Not Created", sheetname, Purchase.OutputCreatePath);
+			}
+			
+		}else {
+			Datatable.writeExcel("Supplier Certificate ",  "is Created", sheetname, Purchase.OutputCreatePath);
+			
+			SupperCertNo=getsuppcetNo();
+			System.out.println(SupperCertNo+"  Supplier Certificate is Created");
 			count++;
 		}
+			
+		
+	 
+//	 if(appInd.ifAlertPresentText().equalsIgnoreCase("Vendor does not have GSTIN and the certificate does not have RCM taxes. Do you want to proceed?")) {
+//		 appInd.isAlertPresent();
+//		 Thread.sleep(1000);
+//		
+//		 Datatable.writeExcel("Certificate No. ",  "is Created", sheetname, Purchase.OutputCreatePath);
+//			count++;
+//			
+//	 }else {
+//		 Datatable.writeExcel("Supplier Certificate ",  "is Not Created", sheetname, Purchase.OutputCreatePath);
+//	 }
 		}catch (Exception e) {
 			Datatable.writeExcel("Supplier Certificate ",  "is Not Created-Exception", sheetname, Purchase.OutputCreatePath);
 		}
 		try {
+		
 		getSuppCertModify();
 		Thread.sleep(2000);
 		
@@ -569,12 +602,24 @@ public class SuppPayment_Create extends SuppPayment_Create_Test {
 		Thread.sleep(2000);
 		getSuppCertUpdate();
 		Thread.sleep(5000);
-		
 		if (appInd.AlertPresent()) {
-			Datatable.writeExcel("Supplier Certificate ",  "is Not Updated", sheetname, Purchase.OutputCreatePath);
-		} else {
+			if(appInd.ifAlertPresentText().equalsIgnoreCase("Vendor does not have GSTIN and the certificate does not have RCM taxes. Do you want to proceed?")) {
+				appInd.isAlertPresent();
+				Thread.sleep(3000);
+				SupperCertNo=getsuppcetNo();
+				System.out.println(SupperCertNo+"  Supplier Certificate is Updated");
 			Datatable.writeExcel("Certificate No. "+SupperCertNo,  "is Updated", sheetname, Purchase.OutputCreatePath);
-			updatecount++;
+			count++;	
+			}else {
+				Datatable.writeExcel("Supplier Certificate ",  "is Not Updated", sheetname, Purchase.OutputCreatePath);
+			}
+			
+		}else {
+			Datatable.writeExcel("Supplier Certificate ",  "is Updated", sheetname, Purchase.OutputCreatePath);
+
+			SupperCertNo=getsuppcetNo();
+			System.out.println(SupperCertNo+"  Supplier Certificate is Updated");
+			count++;
 		}
 		}catch (Exception e) {
 			Datatable.writeExcel("Supplier Certificate ",  "is Not Updated-Exception", sheetname, Purchase.OutputCreatePath);
@@ -607,9 +652,7 @@ public class SuppPayment_Create extends SuppPayment_Create_Test {
 		}else {
 			Datatable.writeExcel("Supplier Payment Update", "FAIL", sheetname, Purchase.OutputCreatePath);
 		}
-		
-		
-		
+	
 	}
 	public void SupplierPayment() throws Throwable{
 		try {
@@ -628,7 +671,7 @@ public class SuppPayment_Create extends SuppPayment_Create_Test {
 		Frames.SubMenuFrame();
 		getFinPurApprovals();
 		Frames.tabFrame();
-		getFinPurSuppCertv();
+		getFinPurSuppCert();
 		try {
 		Frames.innerFrame();
 		WebElement searchcompny=SuppPaymentCreate.getFinCertCompany();
@@ -672,92 +715,5 @@ public class SuppPayment_Create extends SuppPayment_Create_Test {
 			System.out.println("PAYMENT STATUS ---"+SupperCertNo+" "+ getSupppaymentstatus());
 	}
 	}
-	
-	public void SuppCertMultiproject() throws Throwable {
-		JavascriptExecutor js = (JavascriptExecutor) oBrowser;
-		try {
-		js.executeScript("arguments[0].click();", getSuppCertProjectDD());
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		w2.until(ExpectedConditions.elementToBeClickable(getSuppCertEnterProject()));
-		getSuppCertEnterProject().sendKeys(sheet.getRow(i).getCell(1).getStringCellValue());
-		for (WebElement e : getSuppCertProjectList()) {
-			if (e.getText().contains("Select")) {
-				Thread.sleep(2000);
-				e.click();
-				break;
-			}
-		}
-		try {
-		js.executeScript("arguments[0].click();", getSuppCertEnterProject());
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		try {
-			js.executeScript("arguments[0].click();", getSuppCertProjectDD());
-			}catch(Exception e) {
-				System.out.println(e);
-			}
-			appInd.clickOutside();
-	}
-	public void SuppCertMultiSubproject() throws Throwable {
-		JavascriptExecutor js = (JavascriptExecutor) oBrowser;
-		try {
-		js.executeScript("arguments[0].click();", getSuppCertSubProjectDD());
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		w2.until(ExpectedConditions.elementToBeClickable(getSuppCertEnterSubProject()));
-		getSuppCertEnterSubProject().sendKeys(sheet.getRow(i).getCell(3).getStringCellValue());
-		for (WebElement e : getSuppCertSubProjectList()) {
-			if (e.getText().contains("Select")) {
-				Thread.sleep(2000);
-				e.click();
-				break;
-			}
-		}
-		try {
-		js.executeScript("arguments[0].click();", getSuppCertEnterSubProject());
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		try {
-			js.executeScript("arguments[0].click();", getSuppCertSubProjectDD());
-			}catch(Exception e) {
-				System.out.println(e);
-			}
-			appInd.clickOutside();
-	}
-	public void SuppCertMultiPO() throws Throwable {
-		JavascriptExecutor js = (JavascriptExecutor) oBrowser;
-		try {
-		js.executeScript("arguments[0].click();", getSuppCertPODD());
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		w2.until(ExpectedConditions.elementToBeClickable(getSuppCertEnterPO()));
-		getSuppCertEnterPO().sendKeys(sheet.getRow(i).getCell(6).getStringCellValue());
-		for (WebElement e : getSuppCertPOList()) {
-			if (e.getText().contains("Select")) {
-				Thread.sleep(2000);
-				e.click();
-				break;
-			}
-		}
-		try {
-		js.executeScript("arguments[0].click();", getSuppCertEnterPO());
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		try {
-			js.executeScript("arguments[0].click();", getSuppCertPODD());
-			}catch(Exception e) {
-				System.out.println(e);
-			}
-			appInd.clickOutside();
-	}
-	
-
-
 }
+

@@ -11,8 +11,10 @@ import Utilities.Frames;
 public class Purchase extends DriverScript{
 WebDriver iDriver;
 
-public static String path="Purchase";
-public static String inputpath="Purchase";
+//public static String path="Purchase";
+//public static String inputpath="Purchase";
+public static String path="D:\\myworkspace\\IN4Suite4\\test-output\\PurchaseOutput.xlsx";
+public static String inputpath="D:\\myworkspace\\IN4Suite4\\Configuration\\PurchaseData.xlsx";
 public static String InputCreatePath=appInd.readConfig("Purchasecreate");
 public static String OutputCreatePath=appInd.readConfig("PurchaseCreateOutput");
 //D:\myworkspace\IN4Suite4\test-output

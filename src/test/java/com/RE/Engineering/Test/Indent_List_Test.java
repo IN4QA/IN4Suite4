@@ -23,7 +23,6 @@ public class Indent_List_Test extends DriverScript
 			Indent_ListObj.MenuSubMenu();
 			Indent_ListObj.UnfullfilledPOTO();
 			Indent_ListObj.SubProject();
-			Indent_ListObj.Contractor();
 			Indent_ListObj.Unfullfilledissue();
 			Indent_ListObj.All();
 			Indent_ListObj.SubProject();

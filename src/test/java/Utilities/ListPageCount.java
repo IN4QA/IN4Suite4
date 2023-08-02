@@ -2,11 +2,13 @@ package Utilities;
 
 import java.util.List;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Sales;
+import com.codeborne.selenide.impl.JavaScript;
 
 public class ListPageCount extends DriverScript {
 	/*********************************
@@ -49,23 +51,32 @@ public class ListPageCount extends DriverScript {
 
 		// To check if single or multi page
 		if (multi > 0) {
-
+			Thread.sleep(3000);
 			oBrowser.findElement(By.xpath("//input[contains(@id,'lastButton')]")).click();
+
+
 //			 w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//input[contains(@id,'lastButton')]")));
 //			 oBrowser.findElement(By.xpath("//input[contains(@id,'lastButton')]")).click();
-			Thread.sleep(20000);
+			
 			// To count Total no. of pages
 			List<WebElement> totalpage = oBrowser
 					.findElements(By.xpath("//table[@id = '" + pagelistname + "']//tr[2]//a"));
+			Thread.sleep(3000);
 			int pageNo = totalpage.size();
+			Thread.sleep(3000);
+			System.out.println("pageNo  "+pageNo);
 			String text = oBrowser
 					.findElement(By.xpath("//table[@id = '" + pagelistname + "']//tr[2]//a[" + pageNo + "]")).getText();
+			Thread.sleep(3000);
 			int ActualPage = Integer.parseInt(text);
+			Thread.sleep(3000);
+			System.out.println("ACTUAL PAGE  "+ActualPage);
 			// Record count in each page
 			int semiTotal = ActualPage * 30;
+			Thread.sleep(3000);
 			// Total records in last page
 			int listedrecord = (MainMenu.recordListed().size()) - 2;
-
+			System.out.println("listed record in last page "+listedrecord);
 			System.out.println("Total number of records displayed : " + (semiTotal + listedrecord));
 			System.out.println("method name :" + testname);
 			if (records == (semiTotal + listedrecord)) {

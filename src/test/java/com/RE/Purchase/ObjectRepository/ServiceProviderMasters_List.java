@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import com.RE.Purchase.Test.ServiceProviderMasters_List_Test;
 import com.RE.Submodules.Engineering;
 import com.RE.Submodules.Purchase;
@@ -14,81 +16,93 @@ import Utilities.Frames;
 import Utilities.ListPageCount;
 import Utilities.MainMenu;
 
-public class ServiceProviderMasters_List extends ServiceProviderMasters_List_Test{
+public class ServiceProviderMasters_List extends ServiceProviderMasters_List_Test {
 
 	public static XSSFSheet sheet;
 	public static Datatable xml;
-	public static String SheetName="ServiceProviderMasters_List";
+	public static String SheetName = "ServiceProviderMasters_List";
 	public static WebDriver iDriver;
-	public   ServiceProviderMasters_List(WebDriver oDriver) {
-		iDriver=oDriver;
+
+	public ServiceProviderMasters_List(WebDriver oDriver) {
+		iDriver = oDriver;
 		PageFactory.initElements(iDriver, this);
-		SheetName=this.getClass().getSimpleName();
-		
+		SheetName = this.getClass().getSimpleName();
+
 	}
-	@FindBy(xpath="//a[text()='Service Provider']")
+
+	@FindBy(xpath = "//a[text()='Service Provider']")
 	private WebElement serviceprovider;
+
 	public void getserviceprovider() {
+		w2.until(ExpectedConditions.elementToBeClickable(serviceprovider));
 		serviceprovider.click();
 	}
-	
+
 	@FindBy(name = "Button1")
 	private WebElement go;
+
 	public void getgo() {
+		w2.until(ExpectedConditions.elementToBeClickable(go));
 		go.click();
 	}
-	
-	@FindBy(id="ddlStatus")
+
+	@FindBy(id = "ddlStatus")
 	private WebElement status;
+
 	public WebElement getstatus() {
+		w2.until(ExpectedConditions.elementToBeClickable(status));
 		return status;
 	}
-	
-	public  void  MenuSubMenu() {
+
+	public void MenuSubMenu() {
 		try {
-			MainMenu mm=new MainMenu(iDriver);
+			MainMenu mm = new MainMenu(iDriver);
 			mm.clickPurchase();
 			Thread.sleep(2000);
-			Purchase en=new Purchase(iDriver);
+			Purchase en = new Purchase(iDriver);
 			en.clickmasters();
 			Thread.sleep(1000);
-			xml =new Datatable();
-			sheet=xml.excelData(SheetName,Purchase.inputpath);
-		} 
-		catch (Exception e) {
+			xml = new Datatable();
+			sheet = xml.excelData(SheetName, Purchase.inputpath);
+		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Module, Sub module click case Failed:"+e);
-			
+			System.out.println("Module, Sub module click case Failed:" + e);
+
 		}
 	}
-	
-	public  void nofilter() throws Throwable {
-		String nameofCurrentMethod=new Throwable().getStackTrace()[0].getMethodName();
-		Frames.SubMenuFrame();
-		serviceproviderlist.getserviceprovider();
-		Thread.sleep(1000);
-		Frames.rightFrame();
-		Thread.sleep(1000);
-		serviceproviderlist.getgo();
-		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, SheetName,Purchase.path);
-		Thread.sleep(1000);
-		
+
+	public void nofilter() throws Throwable {
+		String nameofCurrentMethod = new Throwable().getStackTrace()[0].getMethodName();
+		try {
+			Frames.SubMenuFrame();
+			serviceproviderlist.getserviceprovider();
+			Thread.sleep(1000);
+			Frames.rightFrame();
+			Thread.sleep(1000);
+			serviceproviderlist.getgo();
+			Thread.sleep(1000);
+			ListPageCount.PageCount(nameofCurrentMethod, SheetName, Purchase.path);
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			Datatable.writeExcel(nameofCurrentMethod, "Exception FAIL", SheetName, Purchase.path);
+		}
 	}
-	
+
 	public static void status() throws Throwable {
-		String nameofCurrentMethod=new Throwable().getStackTrace()[0].getMethodName();
-		Frames.SubMenuFrame();
-		Thread.sleep(1000);
-		serviceproviderlist.getserviceprovider();
-		Thread.sleep(1000);
-		Frames.rightFrame();
-		appInd.singleDropDown(serviceproviderlist.getstatus(), sheet.getRow(0).getCell(1).getStringCellValue());
-		serviceproviderlist.getgo();
-		Thread.sleep(1000);
-		ListPageCount.PageCount(nameofCurrentMethod, SheetName,Purchase.path);
-		Thread.sleep(1000);
-		
+		String nameofCurrentMethod = new Throwable().getStackTrace()[0].getMethodName();
+		try {
+			Frames.SubMenuFrame();
+			Thread.sleep(1000);
+			serviceproviderlist.getserviceprovider();
+			Thread.sleep(1000);
+			Frames.rightFrame();
+			appInd.singleDropDown(serviceproviderlist.getstatus(), sheet.getRow(0).getCell(1).getStringCellValue());
+			serviceproviderlist.getgo();
+			Thread.sleep(1000);
+			ListPageCount.PageCount(nameofCurrentMethod, SheetName, Purchase.path);
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			Datatable.writeExcel(nameofCurrentMethod, "Exception FAIL", SheetName, Purchase.path);
+		}
 	}
 }
-

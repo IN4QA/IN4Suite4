@@ -11,7 +11,6 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.Set;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -23,22 +22,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import Utilities.DriverScript;
-import net.sourceforge.htmlunit.corejs.javascript.JavaScriptException;
-
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -192,13 +188,8 @@ public class AppIndependentMethods extends DriverScript {
 				return true;
 
 			} else {
-				if (checkcrash() == 500) {
-					return true;
-				} else {
-
-					appInd.captureScreenShot();
-					return false;
-				}
+				appInd.captureScreenShot();
+				return false;
 			}
 		} catch (Exception e) {
 
@@ -306,29 +297,28 @@ public class AppIndependentMethods extends DriverScript {
 
 		// * //This will handle the complete authentication
 
-		Session session = Session.getDefaultInstance(props,
+		Session session = Session.getDefaultInstance(props,	new javax.mail.Authenticator() {
 
-				new javax.mail.Authenticator() {
+					protected PasswordAuthentication getPasswordAuthentication() 
+					{
 
-					protected PasswordAuthentication getPasswordAuthentication() {
-
-						return new PasswordAuthentication("Sachin.Shetty@in4velocity.com", "Velocity!234");
+						return new PasswordAuthentication("alert@in4velocity.com", "Velocity!@#$");
 
 					}
 
 				});
 
 		Message message = new MimeMessage(session);
-		message.setFrom(new InternetAddress("Sachin.Shetty@in4velocity.com"));
-		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("dhanshri.balpande@in4velocity.com"));
+		message.setFrom(new InternetAddress("alert@in4velocity.com"));
+		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("ramachandran.l@in4velocity.com"));
 		message.setSubject(" Test Reports");
 
 		// Create object of MimeMessage class
 		Message message1 = new MimeMessage(session);
-		message.setFrom(new InternetAddress("Sachin.Shetty@in4velocity.com"));
+		message.setFrom(new InternetAddress("alert@in4velocity.com"));
 
 		// Set the recipient address
-		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("dhanshri.balpande@in4velocity.com"));
+		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("ramachandran.l@in4velocity.com"));
 
 		// Add the subject link
 		message.setSubject("Testing Subject");
@@ -428,6 +418,15 @@ public class AppIndependentMethods extends DriverScript {
 		}
 	}
 
+	public boolean AlertPresent() {
+		try {
+			oBrowser.switchTo().alert();
+			return true;
+		} catch (NoAlertPresentException Ex) {
+			return false;
+		}
+	}
+
 	public void serverError() {
 		String error = oBrowser.findElement(By.xpath("html/body//h1[contains(text(), 'Error ')]")).getText();
 		if (error.contains("Error")) {
@@ -508,9 +507,18 @@ public class AppIndependentMethods extends DriverScript {
 		osel.selectByIndex(string);
 	}
 
-	public void seletDate(WebElement ele, String date) {
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+
+	public void seletDate(WebElement ele, String date) throws InterruptedException   {
 		JavascriptExecutor js = (JavascriptExecutor) oBrowser;
 		js.executeScript("arguments[0].value = arguments[1]", ele, date);
+		Thread.sleep(1000);
 	}
 
 	public String CurrentDateIn_MMM_DD_YYYY() {
@@ -527,6 +535,220 @@ public class AppIndependentMethods extends DriverScript {
 		sct.selectByVisibleText(Company_Name);
 	}
 
+	public void createMultiDD_withText(WebElement projectClick, WebElement entrProjectName, String projectname,
+            List<WebElement> ListedRecordsDD) throws Throwable {
+        JavascriptExecutor js = (JavascriptExecutor) oBrowser;
+        w2.until(ExpectedConditions.elementToBeClickable(entrProjectName));
+        entrProjectName.sendKeys(projectname);
+        for (WebElement e : ListedRecordsDD) {
+            if (e.getText().contains("Select")) {
+                Thread.sleep(2000);
+                e.click();
+                break;
+            }
+        }
+        try {
+            js.executeScript("arguments[0].click();", projectClick);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        clickOutside();
+    }
+    
+	public String getCurrentDateTime() {
+		String dT = appInd.getDateTime("dd-MM-yy hh:mm:ss");
+		String[] dateAndTime = dT.split(" ");
+		String[] date = dateAndTime[0].split("-");
+		String[] time = dateAndTime[1].split(":");
+		return date[0] + "" + date[1] + "" + time[0] + "" + time[1] + "" + time[2];
+	}
+
+	public void clickOutside() {
+		Actions action = new Actions(oBrowser);
+		action.moveByOffset(0, 0).click().build().perform();
+
+	}
+
+	public String alertText() {
+		w2.until(ExpectedConditions.alertIsPresent());
+		return oBrowser.switchTo().alert().getText();
+	}
+	
+	public String PanNumber() {
+		char c;
+		Random r = new Random();
+		String pan="", pannum="";
+		for (int i = 0; i < 5; i++) {
+			c = (char) (r.nextInt(26) + 'a');
+			pan = pan + c;
+		}
+		for (int i = 0; i < 4; i++) {
+			int y = r.nextInt(9);
+			pannum = pannum + y;
+		}
+		c = (char) (r.nextInt(26) + 'a');
+		String lastchar = String.valueOf(c);
+		return pan.toUpperCase() + pannum + lastchar.toUpperCase();		
+	}
+
+
+	public String gstinNumber() {
+	String gst= "37"+PanNumber()+"1Z2";
+	return gst;
+	}
+	
+	public String RandomNoAsSpecified(int n) {
+		
+		Random r= new Random();
+		String Pcode="";
+		for(int i=0;i<n;i++) {
+		int y=r.nextInt(9);
+		Pcode= Pcode+y;
+		}
+		return Pcode;
+	}
+	
+	public String RandomNumbers(int n) {
+		
+		Random r= new Random();
+		String Pcode="";
+		for(int i=0;i<n;i++) {
+		int y=r.nextInt(9);
+		Pcode= Pcode+y;
+		}
+		return Pcode;
+	}
+	
+	public String convertCellToString(XSSFSheet sheet, int rowNo, int columnNo) {
+		DataFormatter formatter = new DataFormatter(); 
+		Cell cell = sheet.getRow(rowNo).getCell(columnNo);
+		return formatter.formatCellValue(cell);
+	}
+	public String switchToChildWindow(WebElement onClick) throws Throwable {
+		
+		String parent = oBrowser.getWindowHandle();
+		if(onClick != null) {
+			onClick.click();
+		}
+		Thread.sleep(3000);
+		Set<String> childs = oBrowser.getWindowHandles();
+	    Thread.sleep(3000);
+		for(String e : childs) {
+			
+			if(!e.equals(parent)) {
+				oBrowser.switchTo().window(e);
+			}
+		}
+		return parent;
+	}
+
+	public void switchToParentWindow(String parent) throws Throwable {
+		Thread.sleep(3000);
+//		oBrowser.close();
+		oBrowser.switchTo().window(parent);
+		Thread.sleep(3000);
+	}
+	
+	public String PostalCode() {
+		Random r = new Random();
+		String PCode = "";
+		for (int i = 0; i < 6; i++) {
+			int y = r.nextInt(9);
+			PCode = PCode + y;
+		}
+		return PCode;
+
+	}
+	
+	public String getDateAsSpecified(int n) {
+		
+		    LocalDateTime now = LocalDateTime.now();
+            LocalDateTime then = now.minusDays(n);
+            
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd, yyyy");                  
+            String backDate = String.format(then.format(format));
+            return backDate;               
+            
+	}
+	
+	
+	
+	public String getBackDatedDate(int n) {
+		
+	    LocalDateTime now = LocalDateTime.now();
+        LocalDateTime then = now.minusDays(n);
+        
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd, yyyy");                  
+        String backDate = String.format(then.format(format));
+        return backDate;               
+        
+}
+
+	
+	public String CurrentFrame() {
+		JavascriptExecutor curFrame = (JavascriptExecutor)oBrowser;
+		return (String) curFrame.executeScript("return self.name");
+	}
+
+	public String RandomStrAsSpecified(int n, String Case) {
+        String characters = "";
+        for (int i = 0; i < n; i++) {
+            Random r = new Random();
+            int in = r.nextInt(26);                     
+            if(Case.equalsIgnoreCase("LowerCase")) {
+                characters = characters + ((char) (in + 'a'));
+            }else {
+                characters = characters + ((char) (in + 'A'));
+            }
+        }        
+        return characters;
+       
+    }
+	
+	@SuppressWarnings("unused")
+	public void extentReport(String nameofCurrMethod, int PassFail) {
+		
+		ExtentSparkReporter spark = new ExtentSparkReporter("D:\\Logu\\Automation\\IN4Suite\\test-output\\ExtentReportResults.html");
+		ExtentReports extent = new ExtentReports();
+		extent.attachReporter(spark);
+		ExtentTest test1 = extent.createTest(nameofCurrMethod, "test to validate search box ");
+		if(PassFail == 1) {
+			test1.log(Status.PASS, nameofCurrMethod);
+			test1.pass(nameofCurrMethod);
+		} else {
+			test1.log(Status.FAIL, nameofCurrMethod);
+			test1.fail(nameofCurrMethod);
+		}
+
+		extent.flush();
+		
+	}
+
+	public String ifAlertPresentText() {
+	    try {
+	        return oBrowser.switchTo().alert().getText();
+	    } catch (NoAlertPresentException Ex) {
+	        return null;
+	    }
+	}
+	
+	public void multiDD_withText_SingleClick(WebElement projectClick, WebElement entrProjectName, String projectname,
+			List<WebElement> ListedRecordsDD) throws Throwable {
+
+		JavascriptExecutor js = (JavascriptExecutor) oBrowser;
+		js.executeScript("arguments[0].click();", projectClick);
+
+		Thread.sleep(1000);
+		entrProjectName.sendKeys(projectname);
+		for (WebElement e : ListedRecordsDD) {
+			if (e.getText().contains("Select")) {
+				Thread.sleep(2000);
+				e.click();
+				break;
+			}
+		}
+		// js.executeScript("arguments[0].click();", projectClick);
+	}
 	public void multiDD_withText(WebElement projectClick, WebElement entrProjectName, String projectname,List<WebElement> ListedRecordsDD) throws Throwable {
 
 		JavascriptExecutor js = (JavascriptExecutor) oBrowser;
@@ -555,224 +777,11 @@ public class AppIndependentMethods extends DriverScript {
 		}
 		clickOutside();
 	}
-
-	public void multiDD_withText_SingleClick(WebElement projectClick, WebElement entrProjectName, String projectname,
-			List<WebElement> ListedRecordsDD) throws Throwable {
-
-		JavascriptExecutor js = (JavascriptExecutor) oBrowser;
-		js.executeScript("arguments[0].click();", projectClick);
-
-		Thread.sleep(1000);
-		entrProjectName.sendKeys(projectname);
-		for (WebElement e : ListedRecordsDD) {
-			if (e.getText().contains("Select")) {
-				Thread.sleep(2000);
-				e.click();
-				break;
-			}
-		}
-		// js.executeScript("arguments[0].click();", projectClick);
+	public void clickWebelement(WebElement element) {
+	    JavascriptExecutor click = (JavascriptExecutor) oBrowser;
+	    click.executeScript("arguments[0].click();", element);
 	}
-	
-	public void createMultiDD_withText(WebElement projectClick, WebElement entrProjectName, String projectname,
-            List<WebElement> ListedRecordsDD) throws Throwable {
-        JavascriptExecutor js = (JavascriptExecutor) oBrowser;
-        w2.until(ExpectedConditions.elementToBeClickable(entrProjectName));
-        entrProjectName.sendKeys(projectname);
-        for (WebElement e : ListedRecordsDD) {
-            if (e.getText().contains("Select")) {
-                Thread.sleep(2000);
-                e.click();
-                break;
-            }
-        }
-        try {
-            js.executeScript("arguments[0].click();", projectClick);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        clickOutside();
-    }
-	public void clickOutside() {
-		Actions action = new Actions(oBrowser);
-		action.moveByOffset(0, 0).click().build().perform();
-
-	}
-	
-	public String getCurrentDateTime() {
-		String dT = appInd.getDateTime("dd-MM-yy hh:mm:ss");
-		String[] dateAndTime = dT.split(" ");
-		String[] date = dateAndTime[0].split("-");
-		String[] time = dateAndTime[1].split(":");
-		return date[0] + "" + date[1] + "" + time[0] + "" + time[1] + "" + time[2];
-	}
-	
-	public String getBackDatedDate(int n) {
-
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime then = now.minusDays(n);
-
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd, yyyy");                  
-        String backDate = String.format(then.format(format));
-        return backDate;               
-
-}
-	public String alertText() {
-		w2.until(ExpectedConditions.alertIsPresent());
-		return oBrowser.switchTo().alert().getText();
-	}
-	
-	public String PanNumber() {
-		char c;
-		Random r = new Random();
-		String pan = "", pannum = "";
-		for (int i = 0; i < 5; i++) {
-			c = (char) (r.nextInt(26) + 'a');
-			pan = pan + c;
-		}
-		for (int i = 0; i < 4; i++) {
-			int y = r.nextInt(9);
-			pannum = pannum + y;
-		}
-		c = (char) (r.nextInt(26) + 'a');
-		String lastchar = String.valueOf(c);
-		return pan.toUpperCase() + pannum + lastchar.toUpperCase();
-	}
-	
-	public String gstinNumber() {
-		String gst = PanNumber();
-		 return ("16"+gst+"1Z5");
-		}
-	
-	
-		public String PostalCode() {
-			Random r = new Random();
-			String PCode = "";
-			for (int i = 0; i < 6; i++) {
-				int y = r.nextInt(9);
-				PCode = PCode + y;
-			}
-			return PCode;
-
-		}
-		
-		public String RandomNumbers(int n) {
-			Random r = new Random();
-			String Code = "";
-			for (int i = 0; i <n; i++) {
-				int y = r.nextInt(9);
-				Code = Code + y;
-			}
-			return Code;
-
-		}
-		public String RandomNoAsSpecified(int n) {
-			Random r = new Random();
-			String Code = "";
-			for (int i = 0; i <n; i++) {
-				int y = r.nextInt(9);
-				Code = Code + y;
-			}
-			return Code;
-
-		}
-//		public String RandomNoAsSpecified(int n) {
-//			Random r = new Random();
-//			String PCode = "";
-//			for (int i = 0; i < n; i++) {
-//				int y = r.nextInt(9);
-//				PCode = PCode + y;
-//			}
-//			return PCode;
-//		}
-//	
-public boolean AlertPresent() {
-	try {
-		oBrowser.switchTo().alert();
-		return true;
-	} catch (NoAlertPresentException Ex) {
-		return false;
-	}
-}
-public String switchToChildWindow(WebElement onClick) throws Throwable {
-	
-	String parent = oBrowser.getWindowHandle();
-	if(onClick != null) {
-		onClick.click();
-	}
-	Thread.sleep(3000);
-	Set<String> childs = oBrowser.getWindowHandles();
-    Thread.sleep(3000);
-	for(String e : childs) {
-		
-		if(!e.equals(parent)) {
-			oBrowser.switchTo().window(e);
-		}
-	}
-	return parent;
-}
-
-public void switchToParentWindow(String parent) throws Throwable {
-	Thread.sleep(3000);
-//	oBrowser.close();
-	oBrowser.switchTo().window(parent);
-	Thread.sleep(3000);
-}
-
-public String convertCellToString(XSSFSheet sheet, int rowNo, int columnNo) {
-    DataFormatter formatter = new DataFormatter(); 
-    Cell cell = sheet.getRow(rowNo).getCell(columnNo);
-    return formatter.formatCellValue(cell);
-}
-public String RandomStrAsSpecified(int n, String Case) {
-    String characters = "";
-    for (int i = 0; i < n; i++) {
-        Random r = new Random();
-        int in = r.nextInt(26);
-        if(Case.equalsIgnoreCase("LowerCase")) {
-            characters = characters + ((char) (in + 'a'));
-        }else {
-            characters = characters + ((char) (in + 'A'));
-        }
-    }
-    return characters;
-}
-
-public String CurrentFrame() {
-    JavascriptExecutor curFrame = (JavascriptExecutor)oBrowser;
-    return (String) curFrame.executeScript("return self.name");
-}
-
-public String getDateAsSpecified(int n) {
-
-
-
-    LocalDateTime now = LocalDateTime.now();
-    LocalDateTime then = now.minusDays(n);
-
-
-
-    DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd, yyyy");                  
-    String backDate = String.format(then.format(format));
-    return backDate;               
-}
-
-public void clickWebelement(WebElement element) {
-    JavascriptExecutor click = (JavascriptExecutor) oBrowser;
-    click.executeScript("arguments[0].click();", element);
-}
-
-public String ifAlertPresentText() {
-    try {
-        return oBrowser.switchTo().alert().getText();
-    } catch (NoAlertPresentException Ex) {
-        return null;
-    }
-}
-}
-
 
 	
-
-
-
+	
+}

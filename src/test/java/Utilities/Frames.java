@@ -11,6 +11,7 @@ package Utilities;
  */
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Frames extends DriverScript {
@@ -293,6 +294,9 @@ public class Frames extends DriverScript {
 		}
 
 	}
+
+	
+	
 	public static boolean myMainFrame() {
         try {
             if (oBrowser.findElements(By.cssSelector("frame[name='mymainFrame']")).size() > 0) {

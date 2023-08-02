@@ -90,6 +90,7 @@ public class ServiceIndent_List extends ServiceIndent_List_Test{
 		Thread.sleep(1000);
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		singleDD(Ser_List.getproject(),sheet.getRow(0).getCell(1).getStringCellValue());
+		Thread.sleep(2000);
 		Ser_List.getGo();
 		Thread.sleep(2000);
 		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
@@ -105,7 +106,9 @@ public class ServiceIndent_List extends ServiceIndent_List_Test{
 		Thread.sleep(1000);
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		Ser_List.getUnfulFilled();
+		Thread.sleep(1000);
 		singleDD(Ser_List.getproject(),sheet.getRow(0).getCell(1).getStringCellValue());
+		Thread.sleep(2000);
 		Ser_List.getGo();
 		Thread.sleep(2000);
 		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
@@ -120,7 +123,9 @@ public class ServiceIndent_List extends ServiceIndent_List_Test{
 		Thread.sleep(1000);
 		String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		Ser_List.getAll();
+		Thread.sleep(1000);
 		singleDD(Ser_List.getproject(),sheet.getRow(0).getCell(1).getStringCellValue());
+		Thread.sleep(2000);
 		Ser_List.getGo();
 		Thread.sleep(2000);
 		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);

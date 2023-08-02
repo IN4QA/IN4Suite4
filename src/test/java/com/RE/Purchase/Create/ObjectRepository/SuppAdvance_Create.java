@@ -1,3 +1,8 @@
+/*
+ * Author: Sathwik_K
+ * */
+
+
 package com.RE.Purchase.Create.ObjectRepository;
 
 import java.awt.Robot;
@@ -453,14 +458,19 @@ public class SuppAdvance_Create extends SuppAdvance_Create_Test{
 		getCreateSuppAdvButton();
 		appInd.singleDropDown(getAdvCompanyDD(), sheet.getRow(i).getCell(0).getStringCellValue());
 		Thread.sleep(1000);
-		Multiproject();
-		MultiSubProject();
-		//multiDDspecific(getAdvprojectDD(),  getAdvEnterProjDD(),  sheet.getRow(i).getCell(1).getStringCellValue(),getAdvListofProj());
+		getAdvprojectDD().click();
 		Thread.sleep(1000);
-		//multiDDspecific(getAdvSubprojectDD(),  getAdvEnterSubProjDD(),  sheet.getRow(i).getCell(3).getStringCellValue(),getAdvListofSubProj());
+		appInd.createMultiDD_withText(getAdvprojectDD(), getAdvEnterProjDD(), sheet.getRow(i).getCell(1).getStringCellValue(), getAdvListofProj());
+		Thread.sleep(1000);
+		getAdvSubprojectDD().click();
+		Thread.sleep(1000);
+		appInd.createMultiDD_withText(getAdvSubprojectDD(), getAdvEnterSubProjDD(), sheet.getRow(i).getCell(3).getStringCellValue(), getAdvListofSubProj());
+		Thread.sleep(1000);
 		String parentPOSelect=appInd.switchToChildWindow(SelectPOlink);
-		MultiPOSelect();
-		//multiDDspecific(getPO_NumDD(),  getEnterAdvPO(),  sheet.getRow(i).getCell(4).getStringCellValue(),getEnterAdvListOfPO());
+		getPO_NumDD().click();
+		Thread.sleep(1000);
+		appInd.createMultiDD_withText(getPO_NumDD(), getEnterAdvPO(), sheet.getRow(i).getCell(4).getStringCellValue(), getEnterAdvListOfPO());
+		Thread.sleep(1000);
 		Thread.sleep(2000);
 		getSearchAdvPO();
 		getAdvPORadio();
@@ -609,7 +619,7 @@ public class SuppAdvance_Create extends SuppAdvance_Create_Test{
 		Thread.sleep(2000);
 		getAdvUpdateStatus();
 		Thread.sleep(1000);
-		
+		AdvPayment();
 	}
 		if(count==sheet.getLastRowNum()) {
 			Datatable.writeExcel(nameofCurrMethod, "PASS", sheetname, Purchase.OutputCreatePath);
@@ -618,137 +628,14 @@ public class SuppAdvance_Create extends SuppAdvance_Create_Test{
 		}
 
 		if(updatecount==sheet.getLastRowNum()) {
-			Datatable.writeExcel("Supplier Advance Edit & Upudate", "PASS", sheetname, Purchase.OutputCreatePath);
+			Datatable.writeExcel("Supplier Advance Edit & Update", "PASS", sheetname, Purchase.OutputCreatePath);
 		}else {
-			Datatable.writeExcel("Supplier Advance Edit & Upudate", "FAIL", sheetname, Purchase.OutputCreatePath);
+			Datatable.writeExcel("Supplier Advance Edit & Update", "FAIL", sheetname, Purchase.OutputCreatePath);
 		}
-		AdvPayment(); //Supplier Payment Process From Finance Module
+		 //Supplier Payment Process From Finance Module
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public void Multiproject() throws Throwable {
-		JavascriptExecutor js = (JavascriptExecutor) oBrowser;
-		try {
-		js.executeScript("arguments[0].click();", getAdvprojectDD());
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		w2.until(ExpectedConditions.elementToBeClickable(getAdvEnterProjDD()));
-		getAdvEnterProjDD().sendKeys(sheet.getRow(i).getCell(1).getStringCellValue());
-		for (WebElement e : getAdvListofProj()) {
-			if (e.getText().contains("Select")) {
-				Thread.sleep(2000);
-				e.click();
-				break;
-			}
-		}
-		try {
-		js.executeScript("arguments[0].click();", getAdvEnterProjDD());
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		try {
-			js.executeScript("arguments[0].click();", getAdvSubprojectDD());
-			}catch(Exception e) {
-				System.out.println(e);
-			}
-			appInd.clickOutside();
-	}
-	
-	public void MultiSubProject() throws Throwable {
-		JavascriptExecutor js = (JavascriptExecutor) oBrowser;
-		try {
-		js.executeScript("arguments[0].click();", getAdvSubprojectDD());
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		w2.until(ExpectedConditions.elementToBeClickable(getAdvEnterSubProjDD()));
-		getAdvEnterSubProjDD().sendKeys(sheet.getRow(i).getCell(3).getStringCellValue());
-		for (WebElement e : getAdvListofSubProj()) {
-			if (e.getText().contains("Select")) {
-				Thread.sleep(2000);
-				e.click();
-				break;
-			}
-		}
-		try {
-		js.executeScript("arguments[0].click();", getAdvEnterSubProjDD());
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		try {
-			js.executeScript("arguments[0].click();", getAdvSubprojectDD());
-			}catch(Exception e) {
-				System.out.println(e);
-			}
-			appInd.clickOutside();
-	}
-	public void MultiPOSelect() throws Throwable {
-		JavascriptExecutor js = (JavascriptExecutor) oBrowser;
-		try {
-		js.executeScript("arguments[0].click();", getPO_NumDD());
-		}catch(Exception e) {
-			System.out.println("PO Select Exception -----"+e);
-		}
-		w2.until(ExpectedConditions.elementToBeClickable(getEnterAdvPO()));
-		getEnterAdvPO().sendKeys(sheet.getRow(i).getCell(4).getStringCellValue());
-		for (WebElement e : getEnterAdvListOfPO()) {
-			if (e.getText().contains("Select")) {
-				Thread.sleep(2000);
-				e.click();
-				break;
-			}
-		}
-		try {
-		js.executeScript("arguments[0].click();", getEnterAdvPO());
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		try {
-			js.executeScript("arguments[0].click();", getPO_NumDD());
-			}catch(Exception e) {
-				System.out.println(e);
-			}
-			appInd.clickOutside();
-	}
-	public void multiDDspecific(WebElement projectClick, WebElement entrProjectName, String projectname,List<WebElement> ListedRecordsDD) throws Throwable {
 
-		JavascriptExecutor js = (JavascriptExecutor) oBrowser;
-		try {
-		js.executeScript("arguments[0].click();", projectClick);
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		try {
-		w2.until(ExpectedConditions.elementToBeClickable(entrProjectName));
-		entrProjectName.sendKeys(projectname);
-		for (WebElement e : ListedRecordsDD) {
-			if (e.getText().contains("Select")) {
-				Thread.sleep(2000);
-				e.click();
-				break;
-			}
-		}
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		try {
-		js.executeScript("arguments[0].click();", projectClick);
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		appInd.clickOutside();
-	}
-	
 	public void AdvPayment() throws Throwable{
 		try {
 			MainMenu mm=new MainMenu(iDriver);

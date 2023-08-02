@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -122,7 +123,7 @@ public class PO_List extends PO_List_Test{
 	public void clickgobutton() {
 		gobutton.click();
 	}
-	 public static void MenuSubMenu()
+	 public void MenuSubMenu()
 	 {
 	try
 	{
@@ -147,16 +148,17 @@ public class PO_List extends PO_List_Test{
 			sct.selectByVisibleText(Company_Name);
 	 }
 	 
-	 public static void Unfullfilled() throws Throwable {
+	 public  void Unfullfilled() throws Throwable {
 		 POList.getPoLink();
 		 Frames.rightFrame();
 		 Thread.sleep(2000);
 		 String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		 singleDD(POList.getCerCompany(), sheet.getRow(0).getCell(1).getStringCellValue());
-		 
-			appInd.multiDD_withText(POList.getprojectClick(), POList.getentrProjectName(), "BURDWAN", POList.getListedRecordsDD());
+		 Thread.sleep(2000);
+			appInd.multiDD_withText(POList.getprojectClick(), POList.getentrProjectName(), sheet.getRow(1).getCell(1).getStringCellValue(), POList.getListedRecordsDD());
 			Thread.sleep(3000);
-			appInd.multiDD_withText(POList.getsubprojectClick(), POList.getentrsubProjectName(), "Antara", POList.getListedRecordsSubDD());
+			appInd.multiDD_withText(POList.getsubprojectClick(), POList.getentrsubProjectName(), sheet.getRow(2).getCell(1).getStringCellValue(), POList.getListedRecordsSubDD());
+			Thread.sleep(2000);
 			POList.clickgobutton();
 			Thread.sleep(3000);
 		 
@@ -165,7 +167,7 @@ public class PO_List extends PO_List_Test{
 		 
 	 }
 	 
-	 public static void fullFilled() throws Throwable {
+	 public  void fullFilled() throws Throwable {
 		 Frames.SubMenuFrame();
 		 POList.getPoLink();
 		 Frames.rightFrame();
@@ -174,9 +176,9 @@ public class PO_List extends PO_List_Test{
 		 String nameofCurrMethod = new Throwable().getStackTrace()[0].getMethodName();
 		 singleDD(POList.getCerCompany(), sheet.getRow(0).getCell(1).getStringCellValue());
 		 
-			appInd.multiDD_withText(POList.getprojectClick(), POList.getentrProjectName(), "BURDWAN", POList.getListedRecordsDD());
+			appInd.multiDD_withText(POList.getprojectClick(), POList.getentrProjectName(), sheet.getRow(1).getCell(1).getStringCellValue(), POList.getListedRecordsDD());
 			Thread.sleep(3000);
-			appInd.multiDD_withText(POList.getsubprojectClick(), POList.getentrsubProjectName(), "Antara", POList.getListedRecordsSubDD());
+			appInd.multiDD_withText(POList.getsubprojectClick(), POList.getentrsubProjectName(),sheet.getRow(2).getCell(1).getStringCellValue(), POList.getListedRecordsSubDD());
 			POList.clickgobutton();
 			Thread.sleep(3000);
 		 
@@ -185,7 +187,7 @@ public class PO_List extends PO_List_Test{
 		 
 	 }
 	
-	 public static void ROPO() throws Throwable {
+	 public  void ROPO() throws Throwable {
 		 Frames.SubMenuFrame();
 		 POList.getPoLink();
 		 Frames.rightFrame();
@@ -194,9 +196,9 @@ public class PO_List extends PO_List_Test{
 		 Thread.sleep(2000);
 		 singleDD(POList.getCerCompany(), sheet.getRow(0).getCell(1).getStringCellValue());
 		 
-			appInd.multiDD_withText(POList.getprojectClick(), POList.getentrProjectName(), "BURDWAN", POList.getListedRecordsDD());
+			appInd.multiDD_withText(POList.getprojectClick(), POList.getentrProjectName(), sheet.getRow(1).getCell(1).getStringCellValue(), POList.getListedRecordsDD());
 			Thread.sleep(3000);
-			appInd.multiDD_withText(POList.getsubprojectClick(), POList.getentrsubProjectName(), "Antara", POList.getListedRecordsSubDD());
+			appInd.multiDD_withText(POList.getsubprojectClick(), POList.getentrsubProjectName(), sheet.getRow(2).getCell(1).getStringCellValue(), POList.getListedRecordsSubDD());
 			POList.clickgobutton();
 			Thread.sleep(3000);
 		 
@@ -205,7 +207,7 @@ public class PO_List extends PO_List_Test{
 		 
 	 }
 	 
-	 public static void All_Radio() throws Throwable {
+	 public  void All_Radio() throws Throwable {
 		 Frames.SubMenuFrame();
 		 POList.getPoLink();
 		 Frames.rightFrame();
@@ -214,9 +216,9 @@ public class PO_List extends PO_List_Test{
 		 Thread.sleep(2000);
 		 singleDD(POList.getCerCompany(), sheet.getRow(0).getCell(1).getStringCellValue());
 		 
-			appInd.multiDD_withText(POList.getprojectClick(), POList.getentrProjectName(), "BURDWAN", POList.getListedRecordsDD());
+			appInd.multiDD_withText(POList.getprojectClick(), POList.getentrProjectName(), sheet.getRow(1).getCell(1).getStringCellValue(), POList.getListedRecordsDD());
 			Thread.sleep(3000);
-			appInd.multiDD_withText(POList.getsubprojectClick(), POList.getentrsubProjectName(), "Antara", POList.getListedRecordsSubDD());
+			appInd.multiDD_withText(POList.getsubprojectClick(), POList.getentrsubProjectName(), sheet.getRow(2).getCell(1).getStringCellValue(), POList.getListedRecordsSubDD());
 			POList.clickgobutton();
 			Thread.sleep(3000);
 		 

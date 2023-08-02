@@ -12,6 +12,8 @@ public class LoginPage extends DriverScript{
 	
 	WebDriver ldriver;
 	
+	
+	
 	public LoginPage(WebDriver rdriver)
 	{
 		ldriver=rdriver;
@@ -20,6 +22,7 @@ public class LoginPage extends DriverScript{
 	
 	@FindBy(id="txtLoginId")
 	@CacheLookup
+	static
 	WebElement txtUsername;
 	
 	@FindBy(id="txtPassword")
@@ -37,7 +40,7 @@ public class LoginPage extends DriverScript{
 	{
 		return lnkLogout;
 	}
-	public void setUserName(String Username)
+	public static void setUserName(String Username)
 	{
 		txtUsername.sendKeys(Username);
 	}
@@ -65,4 +68,5 @@ public class LoginPage extends DriverScript{
 	}
 	
 }
+
 

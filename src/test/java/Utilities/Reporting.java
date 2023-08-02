@@ -17,6 +17,7 @@ import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
 
+
 public class Reporting extends TestListenerAdapter {
 	public ExtentHtmlReporter htmlReporter;
 	public ExtentReports extent;
@@ -42,8 +43,8 @@ public class Reporting extends TestListenerAdapter {
 		htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
 		htmlReporter.config().setTheme(Theme.DARK);	
 	}
-	
-	public void onTestSuccess(ITestResult tr)
+
+public void onTestSuccess(ITestResult tr)
 	{
 		
 		logger=extent.createTest(tr.getName());

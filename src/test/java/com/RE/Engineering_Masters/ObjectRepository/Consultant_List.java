@@ -80,6 +80,7 @@ public class Consultant_List extends Consultant_List_Test {
 		Thread.sleep(4000);
 		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(4000);
+		System.out.println("GO PASS");
 		
 	}
 	
@@ -97,6 +98,7 @@ public class Consultant_List extends Consultant_List_Test {
 		Thread.sleep(1000);
 		ListPageCount.PageCount(nameofCurrMethod,sheetname,Engineering.path);
 		Thread.sleep(2000);
+		System.out.println("STATUS PASS");
 		
 	}
 	

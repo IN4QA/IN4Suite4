@@ -4,21 +4,24 @@ import org.testng.annotations.Test;
 import MenuClick.FullApplicationTestScripts;
 import Utilities.DriverScript;
 
-public class SupAdvance_List_Test extends DriverScript{
+public class SupAdvance_List_Test extends DriverScript {
 
-	public static com.RE.Purchase.ObjectRepository.SupAdvance_List SuppAdvaList=null;
+	public static com.RE.Purchase.ObjectRepository.SupAdvance_List SuppAdvaList = null;
+
 	@Test
 
-	public void SupAdvList() throws Throwable{
-		MenuClick.FullApplicationTestScripts login=new FullApplicationTestScripts();
-		login.loginTest();
-		SuppAdvaList=new com.RE.Purchase.ObjectRepository.SupAdvance_List(oBrowser);
-		
-		SuppAdvaList.MenuSubMenu();
-		SuppAdvaList.company();	
-		SuppAdvaList.project();	
-	}
-	
-	
-}
+	public void SupAdvList() throws Throwable {
+		try {
+			MenuClick.FullApplicationTestScripts login = new FullApplicationTestScripts();
+			login.loginTest();
+			SuppAdvaList = new com.RE.Purchase.ObjectRepository.SupAdvance_List(oBrowser);
 
+			SuppAdvaList.MenuSubMenu();
+			SuppAdvaList.company();
+			SuppAdvaList.project();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

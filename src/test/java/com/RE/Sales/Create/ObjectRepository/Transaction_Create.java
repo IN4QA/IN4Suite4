@@ -1305,9 +1305,10 @@ public class Transaction_Create extends Transaction_Create_Test {
 			getDemandGenerateBtn();
 			if (appInd.AlertPresent()) {
 				appInd.isAlertPresent();
+				Thread.sleep(6000);
 				Datatable.writeExcel(UNO, "Demand Letter is Generated", outPutsheetTransaction, Sales.OutPutCreatePath);
 			}
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			if (appInd.AlertPresent()) {
 				appInd.isAlertPresent();
 			}
@@ -1352,11 +1353,17 @@ public class Transaction_Create extends Transaction_Create_Test {
 			installAmount = installAmount.toString().substring(3, installAmount.length());
 			System.out.println(installAmount);
 			getReceiptAmount().sendKeys(installAmount);
+			Thread.sleep(2000);
 			getReceiptFillBtn();
+			Thread.sleep(3000);
 			getReceiptCreateBtn();
+			Thread.sleep(2000);
 			getReceiptChangeStatus();
+			Thread.sleep(2000);
 			appInd.singleDropDown(getReceiptSelectStatus(), "Approved");
+			Thread.sleep(2000);
 			getReceiptUpdateStatus();
+			Thread.sleep(2000);
 			if (appInd.AlertPresent()) {
 				appInd.isAlertPresent();
 				Datatable.writeExcel(UNO, "Receipt is Not Generated", outPutsheetTransaction, Sales.OutPutCreatePath);

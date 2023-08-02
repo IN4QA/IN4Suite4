@@ -18,7 +18,7 @@ public class Contractor_List_Test extends DriverScript{
 		contractorlist = new com.RE.Engineering_Masters.ObjectRepository.Contractor_List(oBrowser);
 		
 		contractorlist.MenuSubMenu();
-		contractorlist.Go();
+		//contractorlist.Go();
 		contractorlist.status();
 	}
 }

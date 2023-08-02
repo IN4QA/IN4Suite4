@@ -66,7 +66,7 @@ public class MainMenu extends DriverScript {
 	}
 	
 
-	@FindBy(css = "td[class ='ENG custom-css tooltip ']")
+	@FindBy(xpath = "//span[text()='Engg']")
 	private WebElement eng;
 	public WebElement getEngineering()
 	{

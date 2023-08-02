@@ -263,7 +263,7 @@ public class BOQ_Create extends BOQ_Create_Test {
 	public void BOQCreation() throws Throwable{
 		// Getting the Current Method name and storing in variable
 		 String nameofCurrentmethod = new Throwable().getStackTrace()[0].getMethodName();
-		 	int i =1;
+		 	int i =5;
 			int count=0, num=0;
 			int updatecount=0;
 			System.out.println(sheet.getLastRowNum());
